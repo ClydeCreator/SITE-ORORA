@@ -1136,8 +1136,11 @@
                     weapons: {}
                 };
 
-                for (const [weaponName, ownersStr] of Object.entries(data)) {
-                    const owners = ownersStr.split(',').map(o => o.trim()).filter(o => o);
+                // Format INI : [NomArme] puis liste de joueurs avec "0.000000"
+                for (const [weaponName, playersObj] of Object.entries(data)) {
+                    // playersObj est un objet avec les noms de joueurs comme clés
+                    // On récupère tous les joueurs (sauf "Création")
+                    const owners = Object.keys(playersObj).filter(name => name !== 'Création' && name !== 'CrÃ©ation');
                     weapons[rarityInfo.rarity].weapons[weaponName] = owners;
                 }
             }
