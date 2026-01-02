@@ -624,31 +624,42 @@
 
         /* Page Lore */
         .lore-container {
-            background: rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .lore-video-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 0 auto;
+            aspect-ratio: 16 / 9;
+        }
+
+        .lore-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
             border-radius: 15px;
-            padding: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            line-height: 1.8;
         }
 
-        .lore-container h2 {
-            color: #3498db;
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
+        .lore-images-container {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            display: flex;
+            flex-direction: column;
+            line-height: 0;
+            font-size: 0;
         }
 
-        .lore-container h3 {
-            color: #f39c12;
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .lore-container p {
-            color: #ccc;
-            margin-bottom: 15px;
-            text-align: justify;
+        .lore-images-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
         }
 
         /* Page Projet */
@@ -834,99 +845,34 @@
             <!-- PAGE LORE -->
             <div id="page-lore" class="page">
                 <div class="lore-container">
-                    <h2>📖 L'Histoire d'Orora</h2>
-                    
-                    <h3>Origines d'Orora – Les Fondations d'une Illusion</h3>
-                    <p>Il y a longtemps, avant qu'Orora ne s'élève en une mégalopole scintillante de néons et d'acier, elle n'était qu'un projet expérimental. Une cité conçue pour être l'ultime bastion du progrès, où la technologie et l'humanité fusionneraient sans entraves.</p>
-                    
-                    <p>Le projet était dirigé par un conseil anonyme de scientifiques, ingénieurs et visionnaires qui voyaient dans Orora une utopie cybernétique. Ils ont bâti la ville sur trois principes fondamentaux :</p>
-                    
-                    <p><strong>L'ordre absolu :</strong> Seuls les plus compétents dirigeraient.</p>
-                    <p><strong>L'évolution technologique :</strong> La cybernétique deviendrait la norme.</p>
-                    <p><strong>Le secret :</strong> Tout ce qui pourrait menacer l'équilibre devait être enfoui, effacé ou dissimulé.</p>
-                    
-                    <p>Mais la perfection est un rêve fragile. Le Conseil Fondateur s'est divisé lorsque certains ont voulu imposer un contrôle total sur les habitants, tandis que d'autres désiraient une ville libre où chacun pourrait évoluer à son rythme. Cette scission a donné naissance aux deux premières factions :</p>
-                    
-                    <p><strong>L'Alliance,</strong> créée par ceux qui voulaient un ordre strict, où seuls les plus qualifiés auraient accès aux ressources et au pouvoir.</p>
-                    <p><strong>La Rébellion,</strong> formée par les dissidents et les laissés-pour-compte, qui refusaient d'être des rouages d'un système technocratique.</p>
-                    
-                    <p>Mais un troisième groupe existait dans l'ombre bien avant le conflit : <strong>Les Tréfonds.</strong></p>
+                    <!-- Vidéo de présentation -->
+                    <div class="lore-video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/BCpUL7h_y-U" 
+                            title="Orora - Présentation du Lore"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
 
-                    <h3>Saison 1 – La Guerre pour Orora</h3>
-                    <p>Pendant la Saison 1, l'Alliance et la Rébellion se sont affrontées pour le contrôle d'Orora.</p>
-                    
-                    <p><strong>L'Alliance : La Main de Fer de Kei</strong></p>
-                    <p>Dirigée par Kei, un stratège froid et méthodique, l'Alliance dominait. Kei n'était pas seulement un tacticien, il était l'architecte du futur d'Orora. Pour lui, le chaos était la vraie menace – et seul un ordre strict et une surveillance totale pouvaient préserver la ville.</p>
-                    
-                    <p>Avec lui, des lieutenants redoutables assuraient la stabilité :</p>
-                    <p><strong>Emcy,</strong> expert en cyber-guerre et en piratage, assurait que l'information restait sous contrôle.</p>
-                    <p><strong>Zelda,</strong> ancienne militaire cyber-augmentée, était en charge des forces de répression.</p>
-                    <p><strong>Fokamie,</strong> maître de la diplomatie, entretenait des relations complexes avec les puissances économiques.</p>
-                    <p><strong>Chickenrun,</strong> chef tactique des troupes d'intervention, dirigeait les opérations de terrain avec une efficacité implacable.</p>
-                    
-                    <p>L'Alliance utilisait drones, IA et mercenaires cybernétiques pour maintenir sa suprématie, infiltrant chaque recoin de la ville.</p>
-                    
-                    <p><strong>La Rébellion : Le Cri de Xav</strong></p>
-                    <p>Face à eux, Xav incarnait la Rébellion. Charismatique, mais marqué par la douleur, il voyait Orora comme une prison où seuls les privilégiés pouvaient prospérer. Il n'était pas un anarchiste, mais un révolutionnaire prêt à briser le système.</p>
-                    
-                    <p>Ses commandants étaient des symboles d'espoir et de rage :</p>
-                    <p><strong>Breizhdoggy,</strong> chef tacticien, spécialisé dans les embuscades et les sabotages de grande envergure.</p>
-                    <p><strong>Archy Loncart,</strong> ingénieur cybernétique, concevant des implants de contrebande et des armes non traçables.</p>
-                    <p><strong>Yosh,</strong> combattant de rue, légende des bas-fonds, capable d'inspirer la révolte avec une simple parole.</p>
-                    <p><strong>Essangia,</strong> une spécialiste du renseignement, espionne et maîtresse des réseaux de la clandestinité.</p>
-                    
-                    <p>La Rébellion ne cherchait pas seulement à détruire l'Alliance, mais à rendre à Orora son libre arbitre.</p>
-                    
-                    <p><strong>L'Issue du Conflit</strong></p>
-                    <p>Malgré leurs efforts, la Rébellion perdait du terrain. L'Alliance était trop forte, trop organisée. Chaque attaque des insurgés était anticipée, chaque plan semblait compromis avant même d'être exécuté.</p>
-                    
-                    <p>La Saison 1 s'est achevée sur une quasi-victoire de l'Alliance, consolidant son contrôle sur les Ruines de l'Ancienne Ville.</p>
-                    
-                    <p>Mais dans l'ombre, un jeu bien plus dangereux était en train de se dérouler.</p>
-
-                    <h3>L'Éveil des Tréfonds – Le Mensonge Dévoilé</h3>
-                    <p>Alors que l'Alliance célébrait sa victoire et que la Rébellion léchait ses plaies, des anomalies inquiétantes commencèrent à apparaître :</p>
-                    
-                    <p>Des agents de l'Alliance disparaissaient sans laisser de trace.</p>
-                    <p>Des informations classées étaient effacées des bases de données sans explication.</p>
-                    <p>Des chefs rebelles changeaient soudainement de comportement, comme s'ils n'étaient plus eux-mêmes.</p>
-                    
-                    <p>La découverte d'un ancien bunker sous la ville révéla un terrible secret :</p>
-                    <p><strong>Les Tréfonds n'étaient pas une légende. Ils étaient bien réels.</strong></p>
-                    
-                    <p>Des archives perdues révélèrent que cette faction existait depuis la fondation même d'Orora. Ils avaient été chassés dans l'ombre, effacés des mémoires, mais ils n'avaient jamais cessé d'exister.</p>
-                    
-                    <p>Et pire encore… ils étaient là depuis le début.</p>
-                    
-                    <p><strong>L'Infiltration des Tréfonds</strong></p>
-                    <p>Ce n'est qu'à cet instant que l'Alliance et la Rébellion comprirent : les Tréfonds avaient infiltré leurs rangs depuis des années.</p>
-                    
-                    <p><strong>Atalas, Pipsledisque et Mosp</strong> avaient influencé les décisions stratégiques de l'Alliance, provoquant des failles dans leur sécurité, des échecs tactiques étranges.</p>
-                    
-                    <p><strong>Pluton, Fandeclyde et Reivil</strong> avaient intégré la Rébellion, poussant Xav et ses commandants à prendre des risques inutiles, causant des défaites qu'ils n'auraient jamais dû subir.</p>
-                    
-                    <p>Ces espions avaient guidé les événements depuis l'ombre, influencé les décisions, orienté le conflit vers une conclusion prédéterminée.</p>
-                    
-                    <p>Et maintenant, leur mission d'infiltration était terminée.</p>
-                    <p>Ils étaient prêts à révéler leur véritable visage.</p>
-
-                    <h3>L'Alliance, la Rébellion et la Nouvelle Menace</h3>
-                    <p>L'Alliance et la Rébellion doivent maintenant reconsidérer leur combat. Car ce nouvel ennemi n'est ni un oppresseur ni un libérateur.</p>
-                    
-                    <p>Il est un miroir de la ville, un souvenir enfoui, une vérité qui ne devait jamais être dévoilée.</p>
-                    
-                    <p><strong>Les trois leaders face à l'inconnu</strong></p>
-                    <p><strong>Kei</strong> doit protéger Orora, mais peut-il combattre un ennemi qui était dans ses rangs depuis le début ?</p>
-                    <p><strong>Xav</strong> doit se battre pour la liberté, mais comment faire confiance à ses propres officiers quand certains n'étaient que des masques ?</p>
-                    <p><strong>Atalas,</strong> figure centrale des Tréfonds, sort enfin de l'ombre. Il a observé, manipulé… et il a attendu ce moment toute sa vie.</p>
-                    
-                    <p style="text-align: center; font-size: 1.2em; margin-top: 30px;"><strong>La question n'est plus qui gagnera la guerre.</strong></p>
-                    <p style="text-align: center; font-size: 1.2em;"><strong>C'est qui contrôlera la vérité.</strong></p>
-
-                    <h3>Un Monde en Mutation</h3>
-                    <p>Orora n'est plus ce qu'elle était. La guerre entre l'Alliance et la Rébellion n'était qu'un prélude. Maintenant, les masques tombent et une vérité oubliée refait surface.</p>
-                    
-                    <p style="text-align: center; font-size: 1.3em; margin-top: 20px; color: #3498db;"><strong>Et ce n'est que le début.</strong></p>
+                    <!-- Images du lore -->
+                    <div class="lore-images-container">
+                        <img src="./lore/ORORA-01.png" alt="Orora Lore 01">
+                        <img src="./lore/ORORA-02.png" alt="Orora Lore 02">
+                        <img src="./lore/ORORA-03.png" alt="Orora Lore 03">
+                        <img src="./lore/ORORA-04.png" alt="Orora Lore 04">
+                        <img src="./lore/ORORA-05.png" alt="Orora Lore 05">
+                        <img src="./lore/ORORA-06.png" alt="Orora Lore 06">
+                        <img src="./lore/ORORA-07.png" alt="Orora Lore 07">
+                        <img src="./lore/ORORA-08.png" alt="Orora Lore 08">
+                        <img src="./lore/ORORA-09.png" alt="Orora Lore 09">
+                        <img src="./lore/ORORA-10.png" alt="Orora Lore 10">
+                        <img src="./lore/ORORA-11.png" alt="Orora Lore 11">
+                        <img src="./lore/ORORA-12.png" alt="Orora Lore 12">
+                        <img src="./lore/ORORA-13.png" alt="Orora Lore 13">
+                        <img src="./lore/ORORA-14.png" alt="Orora Lore 14">
+                        <img src="./lore/ORORA-15.png" alt="Orora Lore 15">
+                    </div>
                 </div>
             </div>
 
