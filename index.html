@@ -627,13 +627,16 @@
             width: 100%;
             max-width: 100%;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .lore-video-container {
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 0 auto;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
             aspect-ratio: 16 / 9;
         }
 
@@ -644,22 +647,152 @@
             border-radius: 15px;
         }
 
-        .lore-images-container {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            display: flex;
-            flex-direction: column;
-            line-height: 0;
-            font-size: 0;
+        /* Livre interactif */
+        .book-wrapper {
+            perspective: 2000px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 800px;
         }
 
-        .lore-images-container img {
+        .book {
+            position: relative;
             width: 100%;
-            height: auto;
-            display: block;
-            margin: 0;
-            padding: 0;
+            aspect-ratio: 3 / 4;
+            transform-style: preserve-3d;
+        }
+
+        .book-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 10px 10px 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.6s ease, opacity 0.3s ease, z-index 0s 0.3s;
+            transform-origin: left center;
+            backface-visibility: hidden;
+            background: #1a1a2e;
+        }
+
+        .book-page img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #0a0a0a;
+        }
+
+        .book-page.active {
+            z-index: 10;
+            transform: rotateY(0deg);
+        }
+
+        .book-page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 5;
+        }
+
+        .book-page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Contrôles du livre */
+        .book-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .book-btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: bold;
             border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .book-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.6);
+        }
+
+        .book-btn:disabled {
+            background: #333;
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.5;
+        }
+
+        .page-indicator {
+            font-size: 1.2em;
+            color: #888;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .page-indicator span {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        /* Zone cliquable sur le livre */
+        .book-click-zone {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .book-click-zone.left {
+            left: 0;
+        }
+
+        .book-click-zone.right {
+            right: 0;
+        }
+
+        .book-click-zone:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Instructions */
+        .book-instructions {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .book-wrapper {
+                max-width: 95%;
+            }
+            
+            .book-controls {
+                gap: 15px;
+            }
+            
+            .book-btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
         }
 
         /* Page Projet */
@@ -855,24 +988,69 @@
                         </iframe>
                     </div>
 
-                    <!-- Images du lore -->
-                    <div class="lore-images-container">
-                        <img src="./lore/ORORA-01.png" alt="Orora Lore 01">
-                        <img src="./lore/ORORA-02.png" alt="Orora Lore 02">
-                        <img src="./lore/ORORA-03.png" alt="Orora Lore 03">
-                        <img src="./lore/ORORA-04.png" alt="Orora Lore 04">
-                        <img src="./lore/ORORA-05.png" alt="Orora Lore 05">
-                        <img src="./lore/ORORA-06.png" alt="Orora Lore 06">
-                        <img src="./lore/ORORA-07.png" alt="Orora Lore 07">
-                        <img src="./lore/ORORA-08.png" alt="Orora Lore 08">
-                        <img src="./lore/ORORA-09.png" alt="Orora Lore 09">
-                        <img src="./lore/ORORA-10.png" alt="Orora Lore 10">
-                        <img src="./lore/ORORA-11.png" alt="Orora Lore 11">
-                        <img src="./lore/ORORA-12.png" alt="Orora Lore 12">
-                        <img src="./lore/ORORA-13.png" alt="Orora Lore 13">
-                        <img src="./lore/ORORA-14.png" alt="Orora Lore 14">
-                        <img src="./lore/ORORA-15.png" alt="Orora Lore 15">
+                    <!-- Livre interactif -->
+                    <div class="book-wrapper">
+                        <div class="book" id="loreBook">
+                            <div class="book-click-zone left" onclick="prevPage()"></div>
+                            <div class="book-click-zone right" onclick="nextPage()"></div>
+                            
+                            <div class="book-page active" data-page="1">
+                                <img src="./lore/ORORA-01.png" alt="Couverture">
+                            </div>
+                            <div class="book-page hidden" data-page="2">
+                                <img src="./lore/ORORA-02.png" alt="Page 2">
+                            </div>
+                            <div class="book-page hidden" data-page="3">
+                                <img src="./lore/ORORA-03.png" alt="Page 3">
+                            </div>
+                            <div class="book-page hidden" data-page="4">
+                                <img src="./lore/ORORA-04.png" alt="Page 4">
+                            </div>
+                            <div class="book-page hidden" data-page="5">
+                                <img src="./lore/ORORA-05.png" alt="Page 5">
+                            </div>
+                            <div class="book-page hidden" data-page="6">
+                                <img src="./lore/ORORA-06.png" alt="Page 6">
+                            </div>
+                            <div class="book-page hidden" data-page="7">
+                                <img src="./lore/ORORA-07.png" alt="Page 7">
+                            </div>
+                            <div class="book-page hidden" data-page="8">
+                                <img src="./lore/ORORA-08.png" alt="Page 8">
+                            </div>
+                            <div class="book-page hidden" data-page="9">
+                                <img src="./lore/ORORA-09.png" alt="Page 9">
+                            </div>
+                            <div class="book-page hidden" data-page="10">
+                                <img src="./lore/ORORA-10.png" alt="Page 10">
+                            </div>
+                            <div class="book-page hidden" data-page="11">
+                                <img src="./lore/ORORA-11.png" alt="Page 11">
+                            </div>
+                            <div class="book-page hidden" data-page="12">
+                                <img src="./lore/ORORA-12.png" alt="Page 12">
+                            </div>
+                            <div class="book-page hidden" data-page="13">
+                                <img src="./lore/ORORA-13.png" alt="Page 13">
+                            </div>
+                            <div class="book-page hidden" data-page="14">
+                                <img src="./lore/ORORA-14.png" alt="Page 14">
+                            </div>
+                            <div class="book-page hidden" data-page="15">
+                                <img src="./lore/ORORA-15.png" alt="Page 15">
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="book-controls">
+                        <button class="book-btn" id="prevBtn" onclick="prevPage()">◀ Précédent</button>
+                        <div class="page-indicator">
+                            <span id="currentPage">1</span> / <span id="totalPages">15</span>
+                        </div>
+                        <button class="book-btn" id="nextBtn" onclick="nextPage()">Suivant ▶</button>
+                    </div>
+                    
+                    <p class="book-instructions">💡 Cliquez sur les côtés du livre, utilisez les boutons, ou les flèches du clavier ← →</p>
                 </div>
             </div>
 
@@ -965,7 +1143,71 @@
             if (pageName === 'classement') {
                 updateRankingTable();
             }
+            
+            // Si on va sur la page lore, reset le livre à la première page
+            if (pageName === 'lore') {
+                resetBook();
+            }
         }
+
+        // LIVRE INTERACTIF - LORE
+        let currentBookPage = 1;
+        const totalBookPages = 15;
+
+        function updateBook() {
+            const pages = document.querySelectorAll('.book-page');
+            
+            pages.forEach((page, index) => {
+                const pageNum = index + 1;
+                page.classList.remove('active', 'flipped', 'hidden');
+                
+                if (pageNum === currentBookPage) {
+                    page.classList.add('active');
+                } else if (pageNum < currentBookPage) {
+                    page.classList.add('flipped');
+                } else {
+                    page.classList.add('hidden');
+                }
+            });
+
+            // Mettre à jour l'indicateur
+            document.getElementById('currentPage').textContent = currentBookPage;
+            
+            // Mettre à jour les boutons
+            document.getElementById('prevBtn').disabled = currentBookPage === 1;
+            document.getElementById('nextBtn').disabled = currentBookPage === totalBookPages;
+        }
+
+        function nextPage() {
+            if (currentBookPage < totalBookPages) {
+                currentBookPage++;
+                updateBook();
+            }
+        }
+
+        function prevPage() {
+            if (currentBookPage > 1) {
+                currentBookPage--;
+                updateBook();
+            }
+        }
+
+        function resetBook() {
+            currentBookPage = 1;
+            updateBook();
+        }
+
+        // Navigation clavier pour le livre
+        document.addEventListener('keydown', function(e) {
+            const lorePage = document.getElementById('page-lore');
+            if (lorePage && lorePage.classList.contains('active')) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    nextPage();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    prevPage();
+                }
+            }
+        });
 
         // Fonction pour parser un fichier INI
         function parseINI(text) {
@@ -1390,6 +1632,9 @@
         window.showCharacterDetail = showCharacterDetail;
         window.closeCharacterDetail = closeCharacterDetail;
         window.changePage = changePage;
+        window.nextPage = nextPage;
+        window.prevPage = prevPage;
+        window.resetBook = resetBook;
 
         // Lancer le chargement au démarrage
         init();
