@@ -1002,37 +1002,168 @@
                 display: none;
             }
 
-            /* Détail personnage */
+            /* Détail personnage - carte + infos côte à côte */
             .detail-header {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: flex-start;
+                gap: 15px;
             }
 
             .card-image {
-                width: 100%;
-                max-width: 300px;
+                width: 120px;
+                height: 160px;
+                min-width: 120px;
+                border-radius: 8px;
+            }
+
+            .detail-info {
+                min-width: unset;
+                flex: 1;
+            }
+
+            .detail-info h2 {
+                font-size: 1.3em;
+                margin-bottom: 8px;
+            }
+
+            .detail-info .faction-badge {
+                font-size: 0.7em;
+                padding: 3px 8px;
+                margin-bottom: 5px;
+            }
+
+            .rank-badge {
+                padding: 6px 10px;
+                margin: 8px 0;
+                gap: 6px;
+            }
+
+            .rank-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .rank-badge span {
+                font-size: 0.9em !important;
+            }
+
+            .detail-info p {
+                font-size: 0.85em !important;
+                margin: 4px 0 !important;
             }
 
             .character-detail {
-                padding: 15px;
-                margin-bottom: 20px;
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .character-detail h3 {
+                font-size: 1.1em;
+                margin-bottom: 10px;
             }
 
             .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
             }
 
             .stat-box {
-                padding: 10px;
+                padding: 8px 4px;
             }
 
             .stat-label {
-                font-size: 0.8em;
+                font-size: 0.65em;
             }
 
             .stat-value {
-                font-size: 1.3em;
+                font-size: 1.1em;
+            }
+
+            /* Description */
+            .description-box {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+
+            .description-box h3 {
+                font-size: 1.1em;
+                margin-bottom: 8px;
+            }
+
+            .description-box p {
+                font-size: 0.85em !important;
+                line-height: 1.4 !important;
+            }
+
+            /* Arme équipée - plus compact */
+            .equipped-weapon-section {
+                margin-bottom: 15px;
+            }
+
+            .equipped-weapon-title {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+            }
+
+            .equipped-weapon-card {
+                padding: 10px;
+                gap: 12px;
+            }
+
+            .equipped-weapon-image {
+                width: 70px;
+                height: 70px;
+                padding: 5px;
+            }
+
+            .equipped-weapon-name {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+
+            .equipped-weapon-rarity {
+                font-size: 0.7em;
+                padding: 3px 10px;
+            }
+
+            /* Armes débloquées - 4 par ligne */
+            .weapons-section h3 {
+                font-size: 1.1em !important;
+                margin: 15px 0 10px 0 !important;
+            }
+
+            .weapons-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .weapon-card {
+                padding: 6px;
+                border-radius: 8px;
+            }
+
+            .weapon-image {
+                height: 50px;
+                margin-bottom: 5px;
+                padding: 3px;
+            }
+
+            .weapon-name {
+                font-size: 0.6em;
+                margin-bottom: 3px;
+            }
+
+            .weapon-rarity {
+                font-size: 0.5em;
+                padding: 2px 6px;
+            }
+
+            /* Bouton fermer */
+            .close-btn {
+                padding: 12px 30px;
+                font-size: 0.95em;
+                margin-top: 15px;
             }
 
             /* Page Projet */
@@ -1072,6 +1203,48 @@
             .faction-badge {
                 font-size: 0.5em;
                 padding: 2px 4px;
+            }
+
+            /* Détail personnage très petit écran */
+            .card-image {
+                width: 100px;
+                height: 133px;
+                min-width: 100px;
+            }
+
+            .detail-info h2 {
+                font-size: 1.1em;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4px;
+            }
+
+            .stat-label {
+                font-size: 0.55em;
+            }
+
+            .stat-value {
+                font-size: 0.95em;
+            }
+
+            .weapons-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
+            }
+
+            .weapon-image {
+                height: 40px;
+            }
+
+            .weapon-name {
+                font-size: 0.5em;
+            }
+
+            .weapon-rarity {
+                font-size: 0.45em;
+                padding: 1px 4px;
             }
         }
     </style>
