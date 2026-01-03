@@ -700,6 +700,15 @@
             }
         }
 
+        /* Couleurs des rangs */
+        .rank-scarlet { color: #e74c3c; }
+        .rank-maitre { color: #9b59b6; }
+        .rank-or { color: #f39c12; }
+        .rank-argent { color: #7fb3d5; }
+        .rank-bronze { color: #cd7f32; }
+        .rank-fer { color: #888888; }
+        .rank-nonclasse { color: #666666; }
+
         .ranking-stat {
             text-align: center;
             font-size: 1.1em;
@@ -1187,7 +1196,6 @@
             }
 
             .mobile-mmr {
-                color: #9b59b6;
                 font-weight: bold;
                 font-size: 0.95em;
             }
@@ -1917,6 +1925,19 @@
             return 'level-gray';
         }
 
+        // Obtenir la classe de couleur du rang
+        function getRankClass(rang) {
+            switch(rang) {
+                case 'Scarlet': return 'rank-scarlet';
+                case 'Maitre': return 'rank-maitre';
+                case 'Or': return 'rank-or';
+                case 'Argent': return 'rank-argent';
+                case 'Bronze': return 'rank-bronze';
+                case 'Fer': return 'rank-fer';
+                default: return 'rank-nonclasse';
+            }
+        }
+
         // Afficher la grille de personnages
         function displayCharacters(characters) {
             const grid = document.getElementById('characterGrid');
@@ -2129,9 +2150,10 @@
                 if (sortBy === 'level') {
                     mobileStat = `<span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span>`;
                 } else if (sortBy === 'rank') {
+                    const rankClass = getRankClass(char.rang);
                     mobileStat = rankIcon 
-                        ? `<div class="mobile-rank-display"><img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"><span class="mobile-mmr">${char.mmr}</span></div>`
-                        : `<div class="mobile-rank-display"><span>${char.rang}</span><span class="mobile-mmr">${char.mmr}</span></div>`;
+                        ? `<div class="mobile-rank-display"><img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"><span class="mobile-mmr ${rankClass}">${char.mmr}</span></div>`
+                        : `<div class="mobile-rank-display"><span>${char.rang}</span><span class="mobile-mmr ${rankClass}">${char.mmr}</span></div>`;
                 } else if (sortBy === 'power') {
                     mobileStat = `<span style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>`;
                 }
@@ -2148,7 +2170,7 @@
                         </div>
                         <div class="ranking-stat hide-mobile"><span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span></div>
                         <div class="ranking-stat rank-with-icon hide-mobile">${rankDisplay}</div>
-                        <div class="ranking-stat hide-mobile" style="color: #9b59b6;">${char.mmr}</div>
+                        <div class="ranking-stat hide-mobile"><span class="${getRankClass(char.rang)}" style="font-weight: bold;">${char.mmr}</span></div>
                         <div class="ranking-stat hide-mobile" style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</div>
                         <div class="ranking-stat mobile-stat">${mobileStat}</div>
                     </div>
@@ -2208,6 +2230,7 @@
         window.prevPage = prevPage;
         window.resetBook = resetBook;
         window.getLevelClass = getLevelClass;
+        window.getRankClass = getRankClass;
 
         // Lancer le chargement au démarrage
         init();
