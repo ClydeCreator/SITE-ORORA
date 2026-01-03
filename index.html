@@ -781,17 +781,41 @@
         }
 
         @media (max-width: 768px) {
+            .lore-container {
+                padding: 10px;
+            }
+
+            .lore-video-container {
+                margin-bottom: 25px;
+                border-radius: 10px;
+            }
+
+            .lore-video-container iframe {
+                border-radius: 10px;
+            }
+
             .book-wrapper {
-                max-width: 95%;
+                max-width: 100%;
             }
             
             .book-controls {
-                gap: 15px;
+                gap: 10px;
+                margin-top: 20px;
             }
             
             .book-btn {
-                padding: 12px 25px;
+                padding: 10px 18px;
+                font-size: 0.85em;
+            }
+
+            .page-indicator {
                 font-size: 1em;
+                min-width: 70px;
+            }
+
+            .book-instructions {
+                font-size: 0.75em;
+                margin-top: 10px;
             }
         }
 
@@ -888,6 +912,87 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 0;
+            }
+
+            header {
+                padding: 20px 10px 10px;
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                max-width: 280px;
+                margin-bottom: 20px;
+            }
+
+            /* Menu mobile horizontal compact */
+            .nav-menu {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 20px;
+                padding: 0 5px;
+            }
+
+            .nav-btn {
+                padding: 10px 5px;
+                font-size: 0.75em;
+                border-radius: 8px;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            /* Grille de cartes - 3 par ligne sur mobile */
+            .character-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .character-card {
+                height: 160px;
+                border-radius: 8px;
+                border-width: 2px;
+            }
+
+            .character-card:hover {
+                transform: none;
+            }
+
+            .character-card-content {
+                padding: 8px;
+            }
+
+            .character-card h3 {
+                font-size: 0.7em;
+                margin-bottom: 2px;
+            }
+
+            .character-card-info {
+                font-size: 0.6em;
+            }
+
+            .faction-badge {
+                padding: 2px 6px;
+                font-size: 0.55em;
+                margin-bottom: 4px;
+            }
+
+            /* Barre de recherche */
+            .search-container {
+                margin-bottom: 20px;
+            }
+
+            #searchInput {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+
+            /* Classement */
             .ranking-row {
                 grid-template-columns: 50px 1fr 80px;
                 font-size: 0.9em;
@@ -897,6 +1002,7 @@
                 display: none;
             }
 
+            /* Détail personnage */
             .detail-header {
                 flex-direction: column;
                 align-items: center;
@@ -905,6 +1011,67 @@
             .card-image {
                 width: 100%;
                 max-width: 300px;
+            }
+
+            .character-detail {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .stat-box {
+                padding: 10px;
+            }
+
+            .stat-label {
+                font-size: 0.8em;
+            }
+
+            .stat-value {
+                font-size: 1.3em;
+            }
+
+            /* Page Projet */
+            .social-links {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .social-card {
+                padding: 15px;
+            }
+
+            .social-icon {
+                font-size: 2em;
+            }
+
+            .social-name {
+                font-size: 1em;
+            }
+        }
+
+        /* Très petits écrans */
+        @media (max-width: 400px) {
+            .nav-btn {
+                padding: 8px 3px;
+                font-size: 0.65em;
+            }
+
+            .character-card {
+                height: 140px;
+            }
+
+            .character-card h3 {
+                font-size: 0.6em;
+            }
+
+            .faction-badge {
+                font-size: 0.5em;
+                padding: 2px 4px;
             }
         }
     </style>
