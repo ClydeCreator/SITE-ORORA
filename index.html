@@ -500,40 +500,46 @@
         /* Page Classement */
         .filters-container {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
             border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .filters-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            text-align: center;
+            font-size: 1.1em;
             color: #3498db;
+            margin: 0;
+            white-space: nowrap;
         }
 
         .filters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            display: flex;
+            gap: 15px;
+            flex: 1;
+            flex-wrap: wrap;
         }
 
         .filter-group {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
         }
 
         .filter-label {
             font-weight: bold;
             color: #888;
-            font-size: 0.95em;
+            font-size: 0.9em;
+            white-space: nowrap;
         }
 
         .filter-select {
-            padding: 12px;
-            font-size: 1em;
+            padding: 8px 12px;
+            font-size: 0.95em;
             border: 2px solid #333;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.05);
@@ -562,9 +568,9 @@
 
         .ranking-row {
             display: grid;
-            grid-template-columns: 60px 1fr 100px 100px 100px 120px;
+            grid-template-columns: 50px 1fr 90px 120px 80px 110px;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background 0.3s ease;
             cursor: pointer;
@@ -578,14 +584,31 @@
             background: rgba(255, 255, 255, 0.1);
             font-weight: bold;
             cursor: default;
+            padding: 10px 15px;
         }
 
         .ranking-row.header:hover {
             background: rgba(255, 255, 255, 0.1);
         }
 
+        /* Top 3 styles */
+        .ranking-row.top1-row {
+            background: linear-gradient(90deg, rgba(243, 156, 18, 0.25) 0%, rgba(243, 156, 18, 0.1) 50%, transparent 100%);
+            border-left: 4px solid #f39c12;
+        }
+
+        .ranking-row.top2-row {
+            background: linear-gradient(90deg, rgba(149, 165, 166, 0.25) 0%, rgba(149, 165, 166, 0.1) 50%, transparent 100%);
+            border-left: 4px solid #95a5a6;
+        }
+
+        .ranking-row.top3-row {
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.25) 0%, rgba(205, 127, 50, 0.1) 50%, transparent 100%);
+            border-left: 4px solid #cd7f32;
+        }
+
         .rank-position {
-            font-size: 1.5em;
+            font-size: 1.4em;
             font-weight: bold;
             text-align: center;
         }
@@ -597,12 +620,12 @@
         .player-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .player-avatar {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 8px;
             object-fit: cover;
             border: 2px solid;
@@ -612,8 +635,61 @@
         .player-avatar.rebellion { border-color: #e74c3c; }
         .player-avatar.trefonds { border-color: #2ecc71; }
 
+        .player-name-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .player-name {
-            font-size: 1.1em;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .player-faction {
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .player-faction.alliance { background: #3498db; }
+        .player-faction.rebellion { background: #e74c3c; }
+        .player-faction.trefonds { background: #2ecc71; }
+
+        .ranking-stat {
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .ranking-stat.mobile-stat {
+            display: none;
+        }
+
+        .ranking-stat.rank-with-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .ranking-stat .rank-icon-small {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* Couleurs des niveaux */
+        .level-gray { color: #888888; }
+        .level-green { color: #2ecc71; }
+        .level-blue { color: #3498db; }
+        .level-purple { color: #9b59b6; }
+        .level-gold { color: #f39c12; }
+        .level-rainbow {
+            background: linear-gradient(90deg, #ff1493, #00ffff, #ffff00, #00ff00, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: bold;
         }
 
@@ -992,14 +1068,113 @@
                 font-size: 1em;
             }
 
-            /* Classement */
+            /* Filtres mobile */
+            .filters-container {
+                padding: 10px 12px;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .filters-title {
+                display: none;
+            }
+
+            .filters-grid {
+                gap: 10px;
+                width: 100%;
+            }
+
+            .filter-group {
+                flex: 1;
+            }
+
+            .filter-label {
+                display: none;
+            }
+
+            .filter-select {
+                padding: 8px 10px;
+                font-size: 0.85em;
+                width: 100%;
+            }
+
+            /* Classement mobile */
+            .ranking-table {
+                border-radius: 10px;
+            }
+
             .ranking-row {
-                grid-template-columns: 50px 1fr 80px;
+                grid-template-columns: 35px 1fr auto;
+                padding: 10px 8px;
+                font-size: 0.85em;
+                gap: 8px;
+            }
+
+            .ranking-row.header {
+                padding: 8px;
+            }
+
+            .ranking-row.top1-row,
+            .ranking-row.top2-row,
+            .ranking-row.top3-row {
+                padding: 12px 8px;
+            }
+
+            .rank-position {
+                font-size: 1.1em;
+            }
+
+            .ranking-row.top1-row .rank-position,
+            .ranking-row.top2-row .rank-position,
+            .ranking-row.top3-row .rank-position {
+                font-size: 1.3em;
+            }
+
+            .player-avatar {
+                width: 35px;
+                height: 35px;
+                border-radius: 6px;
+            }
+
+            .ranking-row.top1-row .player-avatar,
+            .ranking-row.top2-row .player-avatar,
+            .ranking-row.top3-row .player-avatar {
+                width: 40px;
+                height: 40px;
+            }
+
+            .player-info {
+                gap: 8px;
+            }
+
+            .player-name {
                 font-size: 0.9em;
             }
 
-            .ranking-stat.hide-mobile {
+            .ranking-row.top1-row .player-name,
+            .ranking-row.top2-row .player-name,
+            .ranking-row.top3-row .player-name {
+                font-size: 1em;
+            }
+
+            .player-faction {
                 display: none;
+            }
+
+            .ranking-stat.hide-mobile {
+                display: none !important;
+            }
+
+            .ranking-stat.mobile-stat {
+                display: flex !important;
+                font-size: 0.85em;
+                min-width: 60px;
+                justify-content: flex-end;
+            }
+
+            .ranking-stat .rank-icon-small {
+                width: 18px;
+                height: 18px;
             }
 
             /* Détail personnage - carte + infos côte à côte */
@@ -1288,19 +1463,19 @@
             <!-- PAGE CLASSEMENT -->
             <div id="page-classement" class="page">
                 <div class="filters-container">
-                    <h2 class="filters-title">🔍 Filtres</h2>
+                    <span class="filters-title">🔍 Filtres</span>
                     <div class="filters-grid">
                         <div class="filter-group">
                             <label class="filter-label">Faction</label>
                             <select id="filterFaction" class="filter-select">
-                                <option value="all">Toutes les factions</option>
+                                <option value="all">Toutes factions</option>
                                 <option value="Alliance">Alliance</option>
                                 <option value="Rébellion">Rébellion</option>
                                 <option value="Tréfonds">Tréfonds</option>
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label class="filter-label">Tri par</label>
+                            <label class="filter-label">Tri</label>
                             <select id="filterSort" class="filter-select">
                                 <option value="power">Puissance</option>
                                 <option value="level">Niveau</option>
@@ -1712,6 +1887,16 @@
             return weapons;
         }
 
+        // Obtenir la classe de couleur du niveau
+        function getLevelClass(niveau) {
+            if (niveau >= 100) return 'level-rainbow';
+            if (niveau >= 91) return 'level-gold';
+            if (niveau >= 71) return 'level-purple';
+            if (niveau >= 50) return 'level-blue';
+            if (niveau >= 26) return 'level-green';
+            return 'level-gray';
+        }
+
         // Afficher la grille de personnages
         function displayCharacters(characters) {
             const grid = document.getElementById('characterGrid');
@@ -1732,7 +1917,7 @@
                     <div class="character-card-content">
                         <div class="faction-badge ${char.factionClass}">${char.faction}</div>
                         <h3>${char.name}</h3>
-                        <div class="character-card-info">Niveau ${char.niveau} • ${char.rang}</div>
+                        <div class="character-card-info"><span class="${getLevelClass(char.niveau)}">Niveau ${char.niveau}</span> • ${char.rang}</div>
                     </div>
                 </div>
             `).join('');
@@ -1775,7 +1960,7 @@
                         <div class="faction-badge ${character.factionClass}">${character.faction}</div>
                         <h2>${character.name}</h2>
                         ${rankIcon ? `<div class="rank-badge"><img src="${rankIcon}" class="rank-icon"><span style="font-size: 1.3em; font-weight: bold;">${character.rang}</span></div>` : `<p><strong>Rang:</strong> ${character.rang}</p>`}
-                        <p style="font-size: 1.2em; color: #888; margin: 10px 0;"><strong>Niveau:</strong> ${character.niveau}</p>
+                        <p style="font-size: 1.2em; margin: 10px 0;"><strong>Niveau:</strong> <span class="${getLevelClass(character.niveau)}" style="font-weight: bold;">${character.niveau}</span></p>
                         <p style="font-size: 1.1em; color: #888;"><strong>Titre:</strong> ${character.titreAffiche}</p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 10px;">XP: ${character.xp.toLocaleString()}</p>
                     </div>
@@ -1887,38 +2072,65 @@
 
             const table = document.getElementById('rankingTable');
             
+            // Header dynamique selon le tri pour mobile
+            let mobileStatHeader = 'Stat';
+            if (sortBy === 'level') mobileStatHeader = 'Niv.';
+            else if (sortBy === 'rank') mobileStatHeader = 'Rang';
+            else if (sortBy === 'power') mobileStatHeader = 'Puiss.';
+            
             let html = `
                 <div class="ranking-row header">
                     <div class="rank-position">#</div>
                     <div>Joueur</div>
-                    <div class="ranking-stat">Niveau</div>
+                    <div class="ranking-stat hide-mobile">Niveau</div>
                     <div class="ranking-stat hide-mobile">Rang</div>
                     <div class="ranking-stat hide-mobile">MMR</div>
-                    <div class="ranking-stat">Puissance</div>
+                    <div class="ranking-stat hide-mobile">Puissance</div>
+                    <div class="ranking-stat mobile-stat">${mobileStatHeader}</div>
                 </div>
             `;
 
             filtered.forEach((char, index) => {
                 const position = index + 1;
                 let positionClass = '';
-                if (position === 1) positionClass = 'top1';
-                else if (position === 2) positionClass = 'top2';
-                else if (position === 3) positionClass = 'top3';
+                let rowClass = '';
+                if (position === 1) { positionClass = 'top1'; rowClass = 'top1-row'; }
+                else if (position === 2) { positionClass = 'top2'; rowClass = 'top2-row'; }
+                else if (position === 3) { positionClass = 'top3'; rowClass = 'top3-row'; }
+
+                // Icône de rang
+                const rankIcon = rankIcons[char.rang] || "";
+                const rankDisplay = rankIcon 
+                    ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"> ${char.rang}`
+                    : char.rang;
+
+                // Stat mobile selon le tri
+                let mobileStat = '';
+                if (sortBy === 'level') {
+                    mobileStat = `<span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span>`;
+                } else if (sortBy === 'rank') {
+                    mobileStat = rankIcon 
+                        ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"> <span style="font-size: 0.85em;">${char.mmr}</span>`
+                        : `${char.rang}`;
+                } else if (sortBy === 'power') {
+                    mobileStat = `<span style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>`;
+                }
 
                 html += `
-                    <div class="ranking-row" onclick="changePage('personnages'); setTimeout(() => showCharacterDetail('${char.name}'), 100)">
+                    <div class="ranking-row ${rowClass}" onclick="changePage('personnages'); setTimeout(() => showCharacterDetail('${char.name}'), 100)">
                         <div class="rank-position ${positionClass}">${position}</div>
                         <div class="player-info">
                             <img src="./cards/${char.name}.png" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22%3E%3Crect fill=%22%23333%22 width=%2250%22 height=%2250%22/%3E%3C/svg%3E'">
-                            <div>
-                                <div class="player-name">${char.name}</div>
-                                <div class="faction-badge ${char.factionClass}" style="margin-top: 5px;">${char.faction}</div>
+                            <div class="player-name-container">
+                                <span class="player-name">${char.name}</span>
+                                <span class="player-faction ${char.factionClass}">${char.faction}</span>
                             </div>
                         </div>
-                        <div class="ranking-stat">${char.niveau}</div>
-                        <div class="ranking-stat hide-mobile">${char.rang}</div>
+                        <div class="ranking-stat hide-mobile"><span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span></div>
+                        <div class="ranking-stat rank-with-icon hide-mobile">${rankDisplay}</div>
                         <div class="ranking-stat hide-mobile" style="color: #9b59b6;">${char.mmr}</div>
-                        <div class="ranking-stat" style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</div>
+                        <div class="ranking-stat hide-mobile" style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</div>
+                        <div class="ranking-stat mobile-stat">${mobileStat}</div>
                     </div>
                 `;
             });
@@ -1975,6 +2187,7 @@
         window.nextPage = nextPage;
         window.prevPage = prevPage;
         window.resetBook = resetBook;
+        window.getLevelClass = getLevelClass;
 
         // Lancer le chargement au démarrage
         init();
