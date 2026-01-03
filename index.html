@@ -685,12 +685,19 @@
         .level-blue { color: #3498db; }
         .level-purple { color: #9b59b6; }
         .level-gold { color: #f39c12; }
-        .level-rainbow {
-            background: linear-gradient(90deg, #ff1493, #00ffff, #ffff00, #00ff00, #ff1493);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
+        .level-max {
+            color: #f39c12;
+            text-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.6), 0 0 30px rgba(243, 156, 18, 0.4);
+            animation: gold-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes gold-glow {
+            0%, 100% { 
+                text-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.6), 0 0 30px rgba(243, 156, 18, 0.4);
+            }
+            50% { 
+                text-shadow: 0 0 15px rgba(243, 156, 18, 1), 0 0 30px rgba(243, 156, 18, 0.8), 0 0 45px rgba(243, 156, 18, 0.6);
+            }
         }
 
         .ranking-stat {
@@ -1168,13 +1175,26 @@
             .ranking-stat.mobile-stat {
                 display: flex !important;
                 font-size: 0.85em;
-                min-width: 60px;
+                min-width: 70px;
                 justify-content: flex-end;
+                align-items: center;
+            }
+
+            .mobile-rank-display {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .mobile-mmr {
+                color: #9b59b6;
+                font-weight: bold;
+                font-size: 0.95em;
             }
 
             .ranking-stat .rank-icon-small {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
             /* Détail personnage - carte + infos côte à côte */
@@ -1889,7 +1909,7 @@
 
         // Obtenir la classe de couleur du niveau
         function getLevelClass(niveau) {
-            if (niveau >= 100) return 'level-rainbow';
+            if (niveau >= 100) return 'level-max';
             if (niveau >= 91) return 'level-gold';
             if (niveau >= 71) return 'level-purple';
             if (niveau >= 50) return 'level-blue';
@@ -2110,8 +2130,8 @@
                     mobileStat = `<span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span>`;
                 } else if (sortBy === 'rank') {
                     mobileStat = rankIcon 
-                        ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"> <span style="font-size: 0.85em;">${char.mmr}</span>`
-                        : `${char.rang}`;
+                        ? `<div class="mobile-rank-display"><img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"><span class="mobile-mmr">${char.mmr}</span></div>`
+                        : `<div class="mobile-rank-display"><span>${char.rang}</span><span class="mobile-mmr">${char.mmr}</span></div>`;
                 } else if (sortBy === 'power') {
                     mobileStat = `<span style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>`;
                 }
