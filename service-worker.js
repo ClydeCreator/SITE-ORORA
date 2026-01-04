@@ -1,9 +1,9 @@
-const CACHE_NAME = 'orora-cache-v1';
+const CACHE_NAME = 'orora-cache-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/logo.png',
-  '/manifest.json'
+  './',
+  './index.html',
+  './logo.png',
+  './manifest.json'
 ];
 
 // Installation du Service Worker
