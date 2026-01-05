@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orora - Statistiques des Personnages</title>
+    <title>ORORA</title>
     
     <!-- PWA Meta Tags -->
     <meta name="description" content="Jeu interactif Twitch - Statistiques, classements et lore d'Orora">
     <meta name="theme-color" content="#1a1a2e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Orora">
+    <meta name="apple-mobile-web-app-title" content="ORORA">
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
     <!-- Favicon et icônes -->
-    <link rel="icon" type="image/png" href="icons/64.png">
-    <link rel="apple-touch-icon" href="icons/192.png">
+    <link rel="icon" type="image/png" href="icons/IconApp.png">
+    <link rel="apple-touch-icon" href="icons/AppImages/ios/180.png">
     
     <style>
         * {
@@ -40,10 +40,17 @@
         }
 
         .loading {
-            text-align: center;
-            padding: 100px 20px;
-            font-size: 1.5em;
-            color: #888;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .loading img {
+            max-width: 300px;
+            width: 80%;
+            height: auto;
         }
 
         header {
@@ -1737,7 +1744,7 @@
 </head>
 <body>
     <div id="loadingScreen" class="loading">
-        <p>⏳ Chargement des données d'Orora...</p>
+        <img src="./icons/ChargementORORA.gif" alt="Chargement...">
     </div>
 
     <div id="mainContent" style="display: none;">
@@ -2560,10 +2567,12 @@
             } catch (error) {
                 console.error('❌ Erreur lors du chargement:', error);
                 document.getElementById('loadingScreen').innerHTML = `
-                    <p style="color: #e74c3c;">❌ Erreur lors du chargement des données</p>
-                    <p style="font-size: 0.9em; margin-top: 20px; color: #888;">
-                        Vérifiez que les fichiers INI sont dans le dossier <strong>data/</strong>
-                    </p>
+                    <div style="text-align: center;">
+                        <p style="color: #e74c3c; font-size: 1.5em;">❌ Erreur lors du chargement</p>
+                        <p style="font-size: 0.9em; margin-top: 20px; color: #888;">
+                            Vérifiez que les fichiers INI sont dans le dossier <strong>data/</strong>
+                        </p>
+                    </div>
                 `;
             }
         }
