@@ -1,4 +1,4 @@
-const CACHE_NAME = 'orora-cache-v4';
+const CACHE_NAME = 'orora-cache-v5';
 const urlsToCache = [
   './',
   './index.html',

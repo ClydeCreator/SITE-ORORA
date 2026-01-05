@@ -321,17 +321,113 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            perspective: 1000px;
         }
 
         .lightbox.active {
             display: flex;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
+        .lightbox-card-container {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            cursor: grab;
+        }
+
+        .lightbox-card-container:active {
+            cursor: grabbing;
+        }
+
+        .lightbox-card-container img {
+            max-width: 85vw;
+            max-height: 85vh;
             border-radius: 15px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+            display: block;
+        }
+
+        /* Effet holographique / brillant */
+        .holographic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            pointer-events: none;
+            background: linear-gradient(
+                125deg,
+                transparent 0%,
+                transparent 25%,
+                rgba(255, 255, 255, 0.1) 25%,
+                rgba(255, 255, 255, 0.3) 30%,
+                transparent 35%,
+                transparent 100%
+            );
+            background-size: 200% 200%;
+            mix-blend-mode: overlay;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-card-container:hover .holographic-overlay,
+        .lightbox-card-container.active .holographic-overlay {
+            opacity: 1;
+        }
+
+        /* Reflet arc-en-ciel holographique */
+        .rainbow-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            pointer-events: none;
+            background: linear-gradient(
+                var(--shine-angle, 135deg),
+                transparent 0%,
+                rgba(255, 0, 128, 0.15) 15%,
+                rgba(0, 255, 255, 0.15) 30%,
+                rgba(255, 255, 0, 0.15) 45%,
+                rgba(0, 255, 128, 0.15) 60%,
+                rgba(128, 0, 255, 0.15) 75%,
+                transparent 100%
+            );
+            mix-blend-mode: color-dodge;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-card-container:hover .rainbow-shine,
+        .lightbox-card-container.active .rainbow-shine {
+            opacity: 1;
+        }
+
+        /* Reflet de lumière */
+        .light-reflection {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            pointer-events: none;
+            background: radial-gradient(
+                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.1) 20%,
+                transparent 50%
+            );
+            mix-blend-mode: overlay;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-card-container:hover .light-reflection,
+        .lightbox-card-container.active .light-reflection {
+            opacity: 1;
         }
 
         .lightbox-close {
@@ -342,6 +438,7 @@
             color: white;
             cursor: pointer;
             transition: transform 0.3s ease;
+            z-index: 1001;
         }
 
         .lightbox-close:hover {
@@ -1408,6 +1505,11 @@
                 font-size: 2em;
             }
 
+            .lightbox-card-container img {
+                max-width: 90vw;
+                max-height: 75vh;
+            }
+
             /* Détail personnage - carte + infos côte à côte */
             .detail-header {
                 flex-direction: row;
@@ -1773,9 +1875,14 @@
                 <div id="characterDetail" class="character-detail"></div>
                 
                 <!-- Lightbox pour afficher la carte en grand -->
-                <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-                    <span class="lightbox-close">&times;</span>
-                    <img id="lightboxImage" src="" alt="Carte en grand">
+                <div id="lightbox" class="lightbox" onclick="handleLightboxClick(event)">
+                    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                    <div id="lightboxCardContainer" class="lightbox-card-container">
+                        <img id="lightboxImage" src="" alt="Carte en grand">
+                        <div class="holographic-overlay"></div>
+                        <div class="rainbow-shine"></div>
+                        <div class="light-reflection"></div>
+                    </div>
                 </div>
                 
                 <div id="characterGrid" class="character-grid"></div>
@@ -2400,20 +2507,120 @@
             document.getElementById('characterDetail').style.display = 'none';
         }
 
-        // Lightbox pour afficher la carte en grand
+        // Lightbox pour afficher la carte en grand avec effet 3D
+        let isMouseDown = false;
+        let cardContainer = null;
+
         function openLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightboxImage');
+            cardContainer = document.getElementById('lightboxCardContainer');
+            
             lightboxImage.src = imageSrc;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Reset la transformation
+            cardContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Reset
+            if (cardContainer) {
+                cardContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                cardContainer.classList.remove('active');
+            }
+            isMouseDown = false;
         }
+
+        function handleLightboxClick(event) {
+            // Fermer seulement si on clique en dehors de la carte
+            if (event.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        }
+
+        // Effet 3D sur la carte
+        function handleCardMove(e) {
+            if (!cardContainer) return;
+            
+            const rect = cardContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Position de la souris ou du doigt
+            let clientX, clientY;
+            if (e.touches) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            
+            // Calculer la rotation (max ±15 degrés)
+            const rotateY = ((clientX - centerX) / (rect.width / 2)) * 15;
+            const rotateX = -((clientY - centerY) / (rect.height / 2)) * 15;
+            
+            // Calculer la position du reflet lumineux (en %)
+            const mouseXPercent = ((clientX - rect.left) / rect.width) * 100;
+            const mouseYPercent = ((clientY - rect.top) / rect.height) * 100;
+            
+            // Calculer l'angle du reflet arc-en-ciel
+            const angle = Math.atan2(clientY - centerY, clientX - centerX) * (180 / Math.PI) + 135;
+            
+            // Appliquer les transformations
+            cardContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            cardContainer.style.setProperty('--mouse-x', `${mouseXPercent}%`);
+            cardContainer.style.setProperty('--mouse-y', `${mouseYPercent}%`);
+            cardContainer.style.setProperty('--shine-angle', `${angle}deg`);
+        }
+
+        // Event listeners pour l'effet 3D
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            
+            // Souris
+            lightbox.addEventListener('mousemove', function(e) {
+                if (cardContainer && lightbox.classList.contains('active')) {
+                    cardContainer.classList.add('active');
+                    handleCardMove(e);
+                }
+            });
+            
+            lightbox.addEventListener('mouseleave', function() {
+                if (cardContainer) {
+                    cardContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    cardContainer.classList.remove('active');
+                }
+            });
+            
+            // Touch (mobile)
+            lightbox.addEventListener('touchstart', function(e) {
+                if (cardContainer) {
+                    isMouseDown = true;
+                    cardContainer.classList.add('active');
+                }
+            }, { passive: true });
+            
+            lightbox.addEventListener('touchmove', function(e) {
+                if (cardContainer && isMouseDown && lightbox.classList.contains('active')) {
+                    handleCardMove(e);
+                }
+            }, { passive: true });
+            
+            lightbox.addEventListener('touchend', function() {
+                if (cardContainer) {
+                    cardContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    cardContainer.classList.remove('active');
+                    isMouseDown = false;
+                }
+            });
+        });
 
         // Fermer le lightbox avec la touche Escape
         document.addEventListener('keydown', function(e) {
@@ -2581,6 +2788,7 @@
         window.closeCharacterDetail = closeCharacterDetail;
         window.openLightbox = openLightbox;
         window.closeLightbox = closeLightbox;
+        window.handleLightboxClick = handleLightboxClick;
         window.changePage = changePage;
         window.nextPage = nextPage;
         window.prevPage = prevPage;
