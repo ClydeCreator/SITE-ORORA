@@ -150,7 +150,6 @@
             aspect-ratio: 3 / 4;
             border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
             perspective: 1000px;
         }
 
@@ -167,6 +166,11 @@
             transform: rotateY(0deg);
         }
 
+        /* Effet 3D au hover - géré par JS */
+        .character-card.revealed .character-card-inner.tilt {
+            transition: transform 0.1s ease-out;
+        }
+
         .character-card-front,
         .character-card-back {
             position: absolute;
@@ -178,10 +182,12 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             overflow: hidden;
+            transition: box-shadow 0.3s ease;
         }
 
         .character-card-front {
             z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .character-card-back {
@@ -215,16 +221,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
             border-radius: 15px;
-        }
-
-        .character-card:hover .character-card-bg {
-            transform: scale(1.05);
-        }
-
-        .character-card:hover {
-            transform: translateY(-10px);
         }
 
         .character-card-content {
@@ -236,41 +233,23 @@
             z-index: 2;
         }
 
-        /* Lueur des factions */
-        .character-card.alliance .character-card-front {
-            box-shadow: 0 0 20px rgba(52, 152, 219, 0.6),
-                        0 0 40px rgba(52, 152, 219, 0.3),
-                        0 5px 20px rgba(0, 0, 0, 0.5);
-        }
-
+        /* Lueur des factions - seulement au hover */
         .character-card.alliance:hover .character-card-front {
-            box-shadow: 0 0 30px rgba(52, 152, 219, 0.8),
-                        0 0 60px rgba(52, 152, 219, 0.5),
-                        0 15px 40px rgba(0, 0, 0, 0.7);
-        }
-
-        .character-card.rebellion .character-card-front {
-            box-shadow: 0 0 20px rgba(231, 76, 60, 0.6),
-                        0 0 40px rgba(231, 76, 60, 0.3),
-                        0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 25px rgba(52, 152, 219, 0.7),
+                        0 0 50px rgba(52, 152, 219, 0.4),
+                        0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .character-card.rebellion:hover .character-card-front {
-            box-shadow: 0 0 30px rgba(231, 76, 60, 0.8),
-                        0 0 60px rgba(231, 76, 60, 0.5),
-                        0 15px 40px rgba(0, 0, 0, 0.7);
-        }
-
-        .character-card.trefonds .character-card-front {
-            box-shadow: 0 0 20px rgba(46, 204, 113, 0.6),
-                        0 0 40px rgba(46, 204, 113, 0.3),
-                        0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 25px rgba(231, 76, 60, 0.7),
+                        0 0 50px rgba(231, 76, 60, 0.4),
+                        0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .character-card.trefonds:hover .character-card-front {
-            box-shadow: 0 0 30px rgba(46, 204, 113, 0.8),
-                        0 0 60px rgba(46, 204, 113, 0.5),
-                        0 15px 40px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 25px rgba(46, 204, 113, 0.7),
+                        0 0 50px rgba(46, 204, 113, 0.4),
+                        0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         /* Lueur pour le dos de carte */
@@ -1416,8 +1395,13 @@
                 border-radius: 10px;
             }
 
-            .character-card:hover {
-                transform: none;
+            /* Désactiver les effets hover et 3D sur mobile */
+            .character-card:hover .character-card-front {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4) !important;
+            }
+
+            .character-card .character-card-inner.tilt {
+                transform: rotateY(0deg) rotateX(0deg) !important;
             }
 
             .character-card-content {
@@ -2496,6 +2480,44 @@
                 setTimeout(() => {
                     card.classList.add('revealed');
                 }, index * delay);
+            });
+            
+            // Ajouter l'effet 3D après le reveal
+            setTimeout(() => {
+                initCardTiltEffect();
+            }, cards.length * delay + 500);
+        }
+
+        // Effet 3D au hover sur les cartes de personnages
+        function initCardTiltEffect() {
+            // Ne pas appliquer sur mobile/tactile
+            if (window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window) {
+                return;
+            }
+            
+            const cards = document.querySelectorAll('.character-card.revealed');
+            
+            cards.forEach(card => {
+                const inner = card.querySelector('.character-card-inner');
+                if (!inner) return;
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    // Calculer la rotation (max ±10 degrés)
+                    const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * 10;
+                    const rotateX = -((e.clientY - centerY) / (rect.height / 2)) * 10;
+                    
+                    inner.classList.add('tilt');
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    inner.classList.remove('tilt');
+                    inner.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
             });
         }
 
