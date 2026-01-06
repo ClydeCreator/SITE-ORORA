@@ -19,6 +19,11 @@
     <link rel="icon" type="image/png" href="icons/IconApp.png">
     <link rel="apple-touch-icon" href="icons/AppImages/ios/180.png">
     
+    <!-- Google Fonts - Polices modernes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -27,11 +32,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
             color: #ffffff;
             min-height: 100vh;
             padding: 20px;
+        }
+
+        h1, h2, h3, .nav-btn, .menu-text {
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            letter-spacing: 1px;
         }
 
         .container {
@@ -67,38 +77,96 @@
             filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
         }
 
-        /* Navigation */
+        /* Navigation - Barre moderne */
         .nav-menu {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 8px;
+            margin: 0 auto 40px;
+            max-width: fit-content;
+            gap: 5px;
         }
 
         .nav-btn {
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid #333;
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 1em;
+            position: relative;
+            padding: 12px 25px;
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1em;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .nav-btn .nav-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: brightness(0.7);
+            transition: filter 0.3s ease;
+        }
+
+        .nav-btn:hover .nav-icon,
+        .nav-btn.active .nav-icon {
+            filter: brightness(1);
+        }
+
+        /* Effet holographique au hover */
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 100, 200, 0.15),
+                rgba(100, 200, 255, 0.15),
+                rgba(255, 255, 100, 0.1),
+                transparent
+            );
+            transition: left 0.5s ease;
+            border-radius: 40px;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
         }
 
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #3498db;
-            transform: translateY(-2px);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .nav-btn.active {
-            background: #3498db;
-            border-color: #3498db;
-            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
+                        inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6ec7, #7873f5, #4aeadc);
+            border-radius: 3px;
         }
 
         /* Pages */
@@ -252,11 +320,9 @@
                         0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Lueur pour le dos de carte */
+        /* Dos de carte - pas de lueur */
         .character-card-back {
-            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5),
-                        0 0 40px rgba(155, 89, 182, 0.3),
-                        0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .character-card h3 {
@@ -803,107 +869,132 @@
             color: #ffffff;
         }
 
+        /* Classement - Design avec cartes */
         .ranking-table {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .ranking-row {
             display: grid;
-            grid-template-columns: 50px 1fr 90px 120px 80px 110px;
+            grid-template-columns: 50px 80px 1fr auto;
             align-items: center;
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
             cursor: pointer;
+            gap: 15px;
         }
 
         .ranking-row:hover {
             background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
         }
 
         .ranking-row.header {
-            background: rgba(255, 255, 255, 0.1);
-            font-weight: bold;
-            cursor: default;
-            padding: 10px 15px;
-        }
-
-        .ranking-row.header:hover {
-            background: rgba(255, 255, 255, 0.1);
+            display: none;
         }
 
         /* Top 3 styles */
         .ranking-row.top1-row {
-            background: linear-gradient(90deg, rgba(243, 156, 18, 0.25) 0%, rgba(243, 156, 18, 0.1) 50%, transparent 100%);
-            border-left: 4px solid #f39c12;
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2) 0%, rgba(243, 156, 18, 0.05) 100%);
+            border: 2px solid rgba(243, 156, 18, 0.5);
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
         }
 
         .ranking-row.top2-row {
-            background: linear-gradient(90deg, rgba(149, 165, 166, 0.25) 0%, rgba(149, 165, 166, 0.1) 50%, transparent 100%);
-            border-left: 4px solid #95a5a6;
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(192, 192, 192, 0.05) 100%);
+            border: 2px solid rgba(192, 192, 192, 0.5);
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.2);
         }
 
         .ranking-row.top3-row {
-            background: linear-gradient(90deg, rgba(205, 127, 50, 0.25) 0%, rgba(205, 127, 50, 0.1) 50%, transparent 100%);
-            border-left: 4px solid #cd7f32;
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.2) 0%, rgba(205, 127, 50, 0.05) 100%);
+            border: 2px solid rgba(205, 127, 50, 0.5);
+            box-shadow: 0 0 20px rgba(205, 127, 50, 0.2);
         }
 
         .rank-position {
-            font-size: 1.4em;
-            font-weight: bold;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2em;
             text-align: center;
+            opacity: 0.8;
         }
 
-        .rank-position.top1 { color: #f39c12; }
-        .rank-position.top2 { color: #95a5a6; }
-        .rank-position.top3 { color: #cd7f32; }
+        .rank-position.top1 { color: #f39c12; opacity: 1; }
+        .rank-position.top2 { color: #c0c0c0; opacity: 1; }
+        .rank-position.top3 { color: #cd7f32; opacity: 1; }
 
         .player-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .player-avatar {
-            width: 45px;
-            height: 45px;
+            width: 60px;
+            height: 80px;
             border-radius: 8px;
             object-fit: cover;
-            border: 2px solid;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .player-avatar.alliance { border-color: #3498db; }
-        .player-avatar.rebellion { border-color: #e74c3c; }
-        .player-avatar.trefonds { border-color: #2ecc71; }
+        .player-avatar.alliance { box-shadow: 0 0 15px rgba(52, 152, 219, 0.5); }
+        .player-avatar.rebellion { box-shadow: 0 0 15px rgba(231, 76, 60, 0.5); }
+        .player-avatar.trefonds { box-shadow: 0 0 15px rgba(46, 204, 113, 0.5); }
 
         .player-name-container {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .player-name {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5em;
+            letter-spacing: 1px;
         }
 
         .player-faction {
             font-size: 0.75em;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            width: fit-content;
         }
 
-        .player-faction.alliance { background: #3498db; }
-        .player-faction.rebellion { background: #e74c3c; }
-        .player-faction.trefonds { background: #2ecc71; }
+        .player-faction.alliance { background: rgba(52, 152, 219, 0.3); color: #3498db; }
+        .player-faction.rebellion { background: rgba(231, 76, 60, 0.3); color: #e74c3c; }
+        .player-faction.trefonds { background: rgba(46, 204, 113, 0.3); color: #2ecc71; }
+
+        .ranking-stats {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
         .ranking-stat {
             text-align: center;
-            font-size: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .ranking-stat-label {
+            font-size: 0.7em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ranking-stat-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4em;
         }
 
         .ranking-stat.mobile-stat {
@@ -912,14 +1003,15 @@
 
         .ranking-stat.rank-with-icon {
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             gap: 5px;
         }
 
         .ranking-stat .rank-icon-small {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
         }
 
@@ -952,11 +1044,6 @@
         .rank-bronze { color: #cd7f32; }
         .rank-fer { color: #888888; }
         .rank-nonclasse { color: #666666; }
-
-        .ranking-stat {
-            text-align: center;
-            font-size: 1.1em;
-        }
 
         /* Page Lore */
         .lore-container {
@@ -1052,14 +1139,16 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
             color: white;
-            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .book-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.6);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
         }
 
         .book-btn:disabled {
@@ -1077,7 +1166,7 @@
         }
 
         .page-indicator span {
-            color: #3498db;
+            color: #ffffff;
             font-weight: bold;
         }
 
@@ -1168,10 +1257,20 @@
         }
 
         .project-section h2 {
-            color: #3498db;
+            color: #ffffff;
             font-size: 2em;
             margin-bottom: 20px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .title-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
 
         .project-section p {
@@ -1254,8 +1353,8 @@
 
         /* Section Installation App */
         .install-section {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
-            border: 2px solid rgba(52, 152, 219, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 30px;
             margin-top: 40px;
@@ -1263,7 +1362,7 @@
         }
 
         .install-section h2 {
-            color: #3498db;
+            color: #ffffff;
             font-size: 1.8em;
             margin-bottom: 15px;
         }
@@ -1282,16 +1381,18 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            background: linear-gradient(135deg, #3498db, #9b59b6);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             color: white;
             margin: 20px auto;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .install-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.6);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
         }
 
         .install-btn.show {
@@ -1359,21 +1460,39 @@
                 margin-bottom: 20px;
             }
 
-            /* Menu mobile horizontal compact */
+            /* Menu mobile - barre compacte */
             .nav-menu {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 5px;
                 margin-bottom: 20px;
-                padding: 0 5px;
+                padding: 5px;
+                border-radius: 30px;
+                overflow-x: auto;
+                max-width: 100%;
             }
 
             .nav-btn {
-                padding: 10px 5px;
-                font-size: 0.75em;
-                border-radius: 8px;
-                text-align: center;
+                padding: 8px 12px;
+                font-size: 0.7em;
+                border-radius: 25px;
                 white-space: nowrap;
+                flex-shrink: 0;
+                gap: 5px;
+            }
+
+            .nav-btn .nav-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .nav-btn .menu-text {
+                font-size: 1em;
+            }
+
+            .nav-btn.active::after {
+                width: 20px;
+                height: 2px;
             }
 
             /* Grille de cartes - 3 par ligne sur mobile */
@@ -1465,65 +1584,47 @@
 
             /* Classement mobile */
             .ranking-table {
-                border-radius: 10px;
-            }
-
-            .ranking-row {
-                grid-template-columns: 35px 1fr auto;
-                padding: 10px 8px;
-                font-size: 0.85em;
                 gap: 8px;
             }
 
-            .ranking-row.header {
-                padding: 8px;
+            .ranking-row {
+                grid-template-columns: 40px 50px 1fr auto;
+                padding: 10px;
+                gap: 10px;
+                border-radius: 12px;
             }
 
             .ranking-row.top1-row,
             .ranking-row.top2-row,
             .ranking-row.top3-row {
-                padding: 12px 8px;
+                padding: 12px 10px;
             }
 
             .rank-position {
-                font-size: 1.1em;
-            }
-
-            .ranking-row.top1-row .rank-position,
-            .ranking-row.top2-row .rank-position,
-            .ranking-row.top3-row .rank-position {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
 
             .player-avatar {
-                width: 35px;
-                height: 35px;
+                width: 50px;
+                height: 65px;
                 border-radius: 6px;
             }
 
-            .ranking-row.top1-row .player-avatar,
-            .ranking-row.top2-row .player-avatar,
-            .ranking-row.top3-row .player-avatar {
-                width: 40px;
-                height: 40px;
-            }
-
             .player-info {
-                gap: 8px;
+                gap: 5px;
             }
 
             .player-name {
-                font-size: 0.9em;
-            }
-
-            .ranking-row.top1-row .player-name,
-            .ranking-row.top2-row .player-name,
-            .ranking-row.top3-row .player-name {
-                font-size: 1em;
+                font-size: 1.1em;
             }
 
             .player-faction {
-                display: none;
+                font-size: 0.65em;
+                padding: 2px 6px;
+            }
+
+            .ranking-stats {
+                gap: 5px;
             }
 
             .ranking-stat.hide-mobile {
@@ -1532,26 +1633,15 @@
 
             .ranking-stat.mobile-stat {
                 display: flex !important;
-                font-size: 0.85em;
-                min-width: 70px;
-                justify-content: flex-end;
+                flex-direction: row;
                 align-items: center;
-            }
-
-            .mobile-rank-display {
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }
-
-            .mobile-mmr {
-                font-weight: bold;
-                font-size: 0.95em;
+                gap: 5px;
+                font-size: 1em;
             }
 
             .ranking-stat .rank-icon-small {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
 
             /* Croix de fermeture mobile */
@@ -1778,6 +1868,12 @@
 
             .project-section h2 {
                 font-size: 1.4em;
+                gap: 8px;
+            }
+
+            .title-icon {
+                width: 24px;
+                height: 24px;
             }
 
             .project-section p {
@@ -1916,10 +2012,22 @@
                 <img src="./logo.png" alt="Orora" class="logo">
                 
                 <nav class="nav-menu">
-                    <button class="nav-btn active" onclick="changePage('personnages')">🎴 Personnages</button>
-                    <button class="nav-btn" onclick="changePage('classement')">🏆 Classement</button>
-                    <button class="nav-btn" onclick="changePage('lore')">📖 Lore</button>
-                    <button class="nav-btn" onclick="changePage('projet')">ℹ️ Le Projet</button>
+                    <button class="nav-btn active" onclick="changePage('personnages')">
+                        <img src="./icons/personnages.png" alt="" class="nav-icon">
+                        <span class="menu-text">Personnages</span>
+                    </button>
+                    <button class="nav-btn" onclick="changePage('classement')">
+                        <img src="./icons/classement.png" alt="" class="nav-icon">
+                        <span class="menu-text">Classement</span>
+                    </button>
+                    <button class="nav-btn" onclick="changePage('lore')">
+                        <img src="./icons/lore.png" alt="" class="nav-icon">
+                        <span class="menu-text">Lore</span>
+                    </button>
+                    <button class="nav-btn" onclick="changePage('projet')">
+                        <img src="./icons/informations.png" alt="" class="nav-icon">
+                        <span class="menu-text">Le Projet</span>
+                    </button>
                 </nav>
             </header>
 
@@ -2065,14 +2173,14 @@
             <div id="page-projet" class="page">
                 <div class="project-container">
                     <div class="project-section">
-                        <h2>🎮 Le Projet Orora</h2>
+                        <h2><img src="./icons/informations.png" alt="" class="title-icon"> Le Projet Orora</h2>
                         <p>Orora est un jeu interactif jouable directement sur Twitch avec vos points de chaîne !</p>
                         <p>Créez votre personnage, choisissez votre faction, et participez à l'aventure en direct avec la communauté.</p>
                         <p>Combattez, collectionnez des armes légendaires, et gravissez les rangs pour devenir le héros le plus puissant d'Orora !</p>
                     </div>
 
                     <div class="project-section">
-                        <h2>🌐 Rejoignez la Communauté</h2>
+                        <h2><img src="./icons/communauté.png" alt="" class="title-icon"> Rejoignez la Communauté</h2>
                         <div class="social-links">
                             <a href="https://twitch.tv/clydecreator" target="_blank" class="social-card twitch">
                                 <img src="./icons/Twitch.png" alt="Twitch" class="social-icon">
@@ -2107,16 +2215,16 @@
                     </div>
 
                     <div class="install-section">
-                        <h2>📲 Installer l'Application</h2>
+                        <h2>Installer l'Application</h2>
                         <p>Accédez à Orora directement depuis votre écran d'accueil !</p>
                         
                         <button class="install-btn" id="installBtn" onclick="installApp()">
-                            ⬇️ Installer Orora
+                            Installer Orora
                         </button>
 
                         <div class="install-instructions">
                             <div class="install-card">
-                                <h3>🤖 Android (Chrome)</h3>
+                                <h3>Android (Chrome)</h3>
                                 <ol>
                                     <li>Ouvrez ce site dans <strong>Chrome</strong></li>
                                     <li>Appuyez sur le menu <strong>⋮</strong> (3 points)</li>
@@ -2126,7 +2234,7 @@
                             </div>
 
                             <div class="install-card">
-                                <h3>🍎 iPhone (Safari)</h3>
+                                <h3>iPhone (Safari)</h3>
                                 <ol>
                                     <li>Ouvrez ce site dans <strong>Safari</strong></li>
                                     <li>Appuyez sur <strong>Partager</strong> (carré avec flèche)</li>
@@ -2785,31 +2893,14 @@
                     // Tri par rang d'abord, puis par MMR au sein du même rang
                     filtered.sort((a, b) => {
                         const rankDiff = (rankOrder[b.rang] || 0) - (rankOrder[a.rang] || 0);
-                        if (rankDiff !== 0) return rankDiff; // Si rangs différents, trier par rang
-                        return (b.mmr || 0) - (a.mmr || 0);  // Si même rang, trier par MMR
+                        if (rankDiff !== 0) return rankDiff;
+                        return (b.mmr || 0) - (a.mmr || 0);
                     });
                     break;
             }
 
             const table = document.getElementById('rankingTable');
-            
-            // Header dynamique selon le tri pour mobile
-            let mobileStatHeader = 'Stat';
-            if (sortBy === 'level') mobileStatHeader = 'Niv.';
-            else if (sortBy === 'rank') mobileStatHeader = 'Rang';
-            else if (sortBy === 'power') mobileStatHeader = 'Puiss.';
-            
-            let html = `
-                <div class="ranking-row header">
-                    <div class="rank-position">#</div>
-                    <div>Joueur</div>
-                    <div class="ranking-stat hide-mobile">Niveau</div>
-                    <div class="ranking-stat hide-mobile">Rang</div>
-                    <div class="ranking-stat hide-mobile">MMR</div>
-                    <div class="ranking-stat hide-mobile">Puissance</div>
-                    <div class="ranking-stat mobile-stat">${mobileStatHeader}</div>
-                </div>
-            `;
+            let html = '';
 
             filtered.forEach((char, index) => {
                 const position = index + 1;
@@ -2821,38 +2912,39 @@
 
                 // Icône de rang
                 const rankIcon = rankIcons[char.rang] || "";
-                const rankDisplay = rankIcon 
-                    ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"> ${char.rang}`
-                    : char.rang;
-
-                // Stat mobile selon le tri
-                let mobileStat = '';
-                if (sortBy === 'level') {
-                    mobileStat = `<span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span>`;
-                } else if (sortBy === 'rank') {
-                    const rankClass = getRankClass(char.rang);
-                    mobileStat = rankIcon 
-                        ? `<div class="mobile-rank-display"><img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}"><span class="mobile-mmr ${rankClass}">${char.mmr}</span></div>`
-                        : `<div class="mobile-rank-display"><span>${char.rang}</span><span class="mobile-mmr ${rankClass}">${char.mmr}</span></div>`;
-                } else if (sortBy === 'power') {
-                    mobileStat = `<span style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>`;
-                }
 
                 html += `
                     <div class="ranking-row ${rowClass}" onclick="changePage('personnages'); setTimeout(() => showCharacterDetail('${char.name}'), 100)">
-                        <div class="rank-position ${positionClass}">${position}</div>
+                        <div class="rank-position ${positionClass}">#${position}</div>
+                        <img src="./cards/${char.name}.png" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 80%22%3E%3Crect fill=%22%23333%22 width=%2260%22 height=%2280%22/%3E%3C/svg%3E'">
                         <div class="player-info">
-                            <img src="./cards/${char.name}.png" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22%3E%3Crect fill=%22%23333%22 width=%2250%22 height=%2250%22/%3E%3C/svg%3E'">
                             <div class="player-name-container">
                                 <span class="player-name">${char.name}</span>
                                 <span class="player-faction ${char.factionClass}">${char.faction}</span>
                             </div>
                         </div>
-                        <div class="ranking-stat hide-mobile"><span class="${getLevelClass(char.niveau)}" style="font-weight: bold;">${char.niveau}</span></div>
-                        <div class="ranking-stat rank-with-icon hide-mobile">${rankDisplay}</div>
-                        <div class="ranking-stat hide-mobile"><span class="${getRankClass(char.rang)}" style="font-weight: bold;">${char.mmr}</span></div>
-                        <div class="ranking-stat hide-mobile" style="font-weight: bold; color: #f39c12;">${char.pointsTotaux.toLocaleString()}</div>
-                        <div class="ranking-stat mobile-stat">${mobileStat}</div>
+                        <div class="ranking-stats">
+                            <div class="ranking-stat hide-mobile">
+                                <span class="ranking-stat-label">Niveau</span>
+                                <span class="ranking-stat-value ${getLevelClass(char.niveau)}">${char.niveau}</span>
+                            </div>
+                            <div class="ranking-stat rank-with-icon hide-mobile">
+                                <span class="ranking-stat-label">Rang</span>
+                                <span class="ranking-stat-value">
+                                    ${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}">` : ''}
+                                    <span class="${getRankClass(char.rang)}">${char.mmr}</span>
+                                </span>
+                            </div>
+                            <div class="ranking-stat hide-mobile">
+                                <span class="ranking-stat-label">Puissance</span>
+                                <span class="ranking-stat-value" style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>
+                            </div>
+                            <div class="ranking-stat mobile-stat">
+                                ${sortBy === 'level' ? `<span class="${getLevelClass(char.niveau)}">${char.niveau}</span>` : ''}
+                                ${sortBy === 'rank' ? `${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small">` : ''}<span class="${getRankClass(char.rang)}">${char.mmr}</span>` : ''}
+                                ${sortBy === 'power' ? `<span style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>` : ''}
+                            </div>
+                        </div>
                     </div>
                 `;
             });
