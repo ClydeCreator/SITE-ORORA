@@ -147,15 +147,56 @@
 
         .character-card {
             position: relative;
-            height: 400px;
+            aspect-ratio: 3 / 4;
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            perspective: 1000px;
         }
 
-        .character-card::before {
+        .character-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s ease;
+            transform-style: preserve-3d;
+            transform: rotateY(180deg);
+        }
+
+        .character-card.revealed .character-card-inner {
+            transform: rotateY(0deg);
+        }
+
+        .character-card-front,
+        .character-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        .character-card-front {
+            z-index: 2;
+        }
+
+        .character-card-back {
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+
+        .character-card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .character-card-front::before {
             content: '';
             position: absolute;
             top: 0;
@@ -164,6 +205,7 @@
             bottom: 0;
             background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.95) 100%);
             z-index: 1;
+            border-radius: 15px;
         }
 
         .character-card-bg {
@@ -174,15 +216,15 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            border-radius: 15px;
         }
 
         .character-card:hover .character-card-bg {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .character-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
         }
 
         .character-card-content {
@@ -194,16 +236,48 @@
             z-index: 2;
         }
 
-        .character-card.alliance {
-            border: 3px solid #3498db;
+        /* Lueur des factions */
+        .character-card.alliance .character-card-front {
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.6),
+                        0 0 40px rgba(52, 152, 219, 0.3),
+                        0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .character-card.rebellion {
-            border: 3px solid #e74c3c;
+        .character-card.alliance:hover .character-card-front {
+            box-shadow: 0 0 30px rgba(52, 152, 219, 0.8),
+                        0 0 60px rgba(52, 152, 219, 0.5),
+                        0 15px 40px rgba(0, 0, 0, 0.7);
         }
 
-        .character-card.trefonds {
-            border: 3px solid #2ecc71;
+        .character-card.rebellion .character-card-front {
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.6),
+                        0 0 40px rgba(231, 76, 60, 0.3),
+                        0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .character-card.rebellion:hover .character-card-front {
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.8),
+                        0 0 60px rgba(231, 76, 60, 0.5),
+                        0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .character-card.trefonds .character-card-front {
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.6),
+                        0 0 40px rgba(46, 204, 113, 0.3),
+                        0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .character-card.trefonds:hover .character-card-front {
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.8),
+                        0 0 60px rgba(46, 204, 113, 0.5),
+                        0 15px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Lueur pour le dos de carte */
+        .character-card-back {
+            box-shadow: 0 0 20px rgba(243, 156, 18, 0.5),
+                        0 0 40px rgba(155, 89, 182, 0.3),
+                        0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
         .character-card h3 {
@@ -1326,13 +1400,20 @@
             /* Grille de cartes - 3 par ligne sur mobile */
             .character-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                gap: 10px;
             }
 
             .character-card {
-                height: 160px;
-                border-radius: 8px;
-                border-width: 2px;
+                border-radius: 10px;
+            }
+
+            .character-card-front,
+            .character-card-back {
+                border-radius: 10px;
+            }
+
+            .character-card-back img {
+                border-radius: 10px;
             }
 
             .character-card:hover {
@@ -1785,10 +1866,6 @@
             .nav-btn {
                 padding: 8px 3px;
                 font-size: 0.65em;
-            }
-
-            .character-card {
-                height: 140px;
             }
 
             .character-card h3 {
@@ -2388,16 +2465,38 @@
             grid.style.display = 'grid';
             noResults.style.display = 'none';
             
-            grid.innerHTML = characters.map(char => `
-                <div class="character-card ${char.factionClass}" onclick="showCharacterDetail('${char.name}')">
-                    <img src="./cards/${char.name}.png" alt="${char.name}" class="character-card-bg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 400%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22400%22/%3E%3C/svg%3E'">
-                    <div class="character-card-content">
-                        <div class="faction-badge ${char.factionClass}">${char.faction}</div>
-                        <h3>${char.name}</h3>
-                        <div class="character-card-info"><span class="${getLevelClass(char.niveau)}">Niveau ${char.niveau}</span> • ${char.rang}</div>
+            grid.innerHTML = characters.map((char, index) => `
+                <div class="character-card ${char.factionClass}" onclick="showCharacterDetail('${char.name}')" data-index="${index}">
+                    <div class="character-card-inner">
+                        <div class="character-card-front">
+                            <img src="./cards/${char.name}.png" alt="${char.name}" class="character-card-bg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 400%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22400%22/%3E%3C/svg%3E'">
+                            <div class="character-card-content">
+                                <div class="faction-badge ${char.factionClass}">${char.faction}</div>
+                                <h3>${char.name}</h3>
+                                <div class="character-card-info"><span class="${getLevelClass(char.niveau)}">Niveau ${char.niveau}</span> • ${char.rang}</div>
+                            </div>
+                        </div>
+                        <div class="character-card-back">
+                            <img src="./cards/dos.png" alt="Dos de carte">
+                        </div>
                     </div>
                 </div>
             `).join('');
+            
+            // Animation de retournement séquentiel
+            revealCardsSequentially();
+        }
+
+        // Animation de retournement des cartes une par une
+        function revealCardsSequentially() {
+            const cards = document.querySelectorAll('.character-card:not(.revealed)');
+            const delay = 50; // Délai entre chaque carte en ms
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('revealed');
+                }, index * delay);
+            });
         }
 
         // Afficher les détails d'un personnage
