@@ -838,27 +838,28 @@
         /* Page Classement - Filtres style menu */
         .filters-container {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: center;
+            gap: 30px;
             margin-bottom: 25px;
-            max-width: 900px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
+            flex-wrap: wrap;
         }
 
         .filter-section {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .filter-section-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2em;
-            color: #ffffff;
-            min-width: 80px;
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.6);
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .filter-buttons {
@@ -1376,6 +1377,13 @@
             object-fit: contain;
         }
 
+        .point-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            vertical-align: middle;
+        }
+
         .project-section p {
             color: #ccc;
             line-height: 1.8;
@@ -1384,6 +1392,97 @@
             font-size: 1.1em;
         }
 
+        /* Barre de liens sociaux style menu */
+        .social-links-bar {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 8px;
+            margin-top: 20px;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            position: relative;
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .social-btn-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+        /* Effet holographique */
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 100, 200, 0.15),
+                rgba(100, 200, 255, 0.15),
+                rgba(255, 255, 100, 0.1),
+                transparent
+            );
+            transition: left 0.5s ease;
+            border-radius: 40px;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Couleurs par réseau */
+        .social-btn.twitch:hover {
+            background: rgba(145, 70, 255, 0.3);
+            color: #9146ff;
+        }
+
+        .social-btn.youtube:hover {
+            background: rgba(255, 0, 0, 0.3);
+            color: #ff0000;
+        }
+
+        .social-btn.tiktok:hover {
+            background: rgba(0, 242, 234, 0.3);
+            color: #00f2ea;
+        }
+
+        .social-btn.instagram:hover {
+            background: rgba(225, 48, 108, 0.3);
+            color: #e1306c;
+        }
+
+        .social-btn.discord:hover {
+            background: rgba(114, 137, 218, 0.3);
+            color: #7289da;
+        }
+
+        /* Anciens styles social-links (gardés pour compatibilité) */
         .social-links {
             display: flex;
             justify-content: center;
@@ -1660,32 +1759,39 @@
             }
 
             #searchInput {
-                padding: 12px 15px;
+                padding: 12px 15px 12px 45px;
                 font-size: 1em;
+            }
+
+            .search-icon {
+                left: 12px;
+                width: 18px;
+                height: 18px;
             }
 
             /* Filtres mobile */
             .filters-container {
-                gap: 10px;
+                gap: 15px;
                 margin-bottom: 15px;
+                flex-direction: column;
             }
 
             .filter-section {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 gap: 8px;
+                width: 100%;
             }
 
             .filter-section-title {
                 font-size: 1em;
-                min-width: auto;
+                text-align: center;
             }
 
             .filter-buttons {
                 padding: 4px;
                 gap: 3px;
                 flex-wrap: wrap;
-                width: 100%;
                 justify-content: center;
             }
 
@@ -1754,7 +1860,9 @@
                 flex-direction: row;
                 align-items: center;
                 gap: 5px;
-                font-size: 1em;
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: 1.2em;
+                letter-spacing: 1px;
             }
 
             .ranking-stat .rank-icon-small {
@@ -1998,6 +2106,25 @@
                 font-size: 0.95em;
             }
 
+            /* Barre sociale mobile */
+            .social-links-bar {
+                padding: 6px;
+                gap: 4px;
+                border-radius: 30px;
+                margin-top: 15px;
+            }
+
+            .social-btn {
+                padding: 8px 12px;
+                font-size: 0.85em;
+                gap: 5px;
+            }
+
+            .social-btn-icon {
+                width: 18px;
+                height: 18px;
+            }
+
             /* Section Installation Mobile */
             .install-section {
                 padding: 15px;
@@ -2200,15 +2327,18 @@
                         </div>
                     </div>
                     <div class="filter-section">
-                        <span class="filter-section-title">Tri</span>
+                        <span class="filter-section-title">Trier par</span>
                         <div class="filter-buttons sort-filters">
                             <button class="filter-btn sort-btn active" data-sort="power" onclick="setSort('power')">
+                                <img src="./icons/puissance.png" alt="" class="filter-icon">
                                 <span>Puissance</span>
                             </button>
                             <button class="filter-btn sort-btn" data-sort="level" onclick="setSort('level')">
+                                <img src="./icons/niveau.png" alt="" class="filter-icon">
                                 <span>Niveau</span>
                             </button>
                             <button class="filter-btn sort-btn" data-sort="rank" onclick="setSort('rank')">
+                                <img src="./icons/rang.png" alt="" class="filter-icon">
                                 <span>Rang</span>
                             </button>
                         </div>
@@ -2311,35 +2441,26 @@
 
                     <div class="project-section">
                         <h2><img src="./icons/communauté.png" alt="" class="title-icon"> Rejoignez la Communauté</h2>
-                        <div class="social-links">
-                            <a href="https://twitch.tv/clydecreator" target="_blank" class="social-card twitch">
-                                <img src="./icons/Twitch.png" alt="Twitch" class="social-icon">
-                                <div class="social-name">Twitch</div>
-                                <div class="social-description">Stream plusieurs fois par semaine !</div>
+                        <div class="social-links-bar">
+                            <a href="https://twitch.tv/clydecreator" target="_blank" class="social-btn twitch">
+                                <img src="./icons/Twitch.png" alt="Twitch" class="social-btn-icon">
+                                <span>Twitch</span>
                             </a>
-
-                            <a href="https://youtube.com/@clydecreator" target="_blank" class="social-card youtube">
-                                <img src="./icons/Youtube.png" alt="YouTube" class="social-icon">
-                                <div class="social-name">YouTube</div>
-                                <div class="social-description">Les meilleures vidéos et les Best of de la chaîne !</div>
+                            <a href="https://youtube.com/@clydecreator" target="_blank" class="social-btn youtube">
+                                <img src="./icons/Youtube.png" alt="YouTube" class="social-btn-icon">
+                                <span>YouTube</span>
                             </a>
-
-                            <a href="https://tiktok.com/@clydecreator" target="_blank" class="social-card tiktok">
-                                <img src="./icons/Tiktok.png" alt="TikTok" class="social-icon">
-                                <div class="social-name">TikTok</div>
-                                <div class="social-description">Le meilleur des clips Twitch !</div>
+                            <a href="https://tiktok.com/@clydecreator" target="_blank" class="social-btn tiktok">
+                                <img src="./icons/Tiktok.png" alt="TikTok" class="social-btn-icon">
+                                <span>TikTok</span>
                             </a>
-
-                            <a href="https://instagram.com/clydecreator" target="_blank" class="social-card instagram">
-                                <img src="./icons/Instagram.png" alt="Instagram" class="social-icon">
-                                <div class="social-name">Instagram</div>
-                                <div class="social-description">L'actu de la chaîne !</div>
+                            <a href="https://instagram.com/clydecreator" target="_blank" class="social-btn instagram">
+                                <img src="./icons/Instagram.png" alt="Instagram" class="social-btn-icon">
+                                <span>Instagram</span>
                             </a>
-
-                            <a href="https://discord.gg/NPH4G7wk2F" target="_blank" class="social-card discord">
-                                <img src="./icons/Discord.png" alt="Discord" class="social-icon">
-                                <div class="social-name">Discord</div>
-                                <div class="social-description">Communauté et discussions</div>
+                            <a href="https://discord.gg/NPH4G7wk2F" target="_blank" class="social-btn discord">
+                                <img src="./icons/Discord.png" alt="Discord" class="social-btn-icon">
+                                <span>Discord</span>
                             </a>
                         </div>
                     </div>
@@ -2354,7 +2475,7 @@
 
                         <div class="install-instructions">
                             <div class="install-card">
-                                <h3>Android (Chrome)</h3>
+                                <h3><img src="./icons/point.png" alt="" class="point-icon"> Android (Chrome)</h3>
                                 <ol>
                                     <li>Ouvrez ce site dans <strong>Chrome</strong></li>
                                     <li>Appuyez sur le menu <strong>⋮</strong> (3 points)</li>
@@ -2364,7 +2485,7 @@
                             </div>
 
                             <div class="install-card">
-                                <h3>iPhone (Safari)</h3>
+                                <h3><img src="./icons/point.png" alt="" class="point-icon"> iPhone (Safari)</h3>
                                 <ol>
                                     <li>Ouvrez ce site dans <strong>Safari</strong></li>
                                     <li>Appuyez sur <strong>Partager</strong> (carré avec flèche)</li>
@@ -2776,7 +2897,7 @@
                 if (weapon) {
                     equippedWeaponHTML = `
                         <div class="equipped-weapon-section">
-                            <h3 class="equipped-weapon-title">Arme équipée</h3>
+                            <h3 class="section-title"><img src="./icons/armeequipee.png" alt="" class="section-icon"> Arme équipée</h3>
                             <div class="equipped-weapon-card ${weapon.rarity}">
                                 <img src="./weapons/${weapon.name}.png" alt="${weapon.name}" class="equipped-weapon-image">
                                 <div class="equipped-weapon-info">
@@ -2806,23 +2927,23 @@
                 <h3 class="section-title"><img src="./icons/stats.png" alt="" class="section-icon"> Statistiques</h3>
                 <div class="stats-grid">
                     <div class="stat-box">
-                        <div class="stat-label">Attaque</div>
+                        <div class="stat-label">⚔️ Attaque</div>
                         <div class="stat-value" style="color: #e74c3c;">${character.attaque}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">Défense</div>
+                        <div class="stat-label">🛡️ Défense</div>
                         <div class="stat-value" style="color: #3498db;">${character.defense}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">Stratégie</div>
+                        <div class="stat-label">🧠 Stratégie</div>
                         <div class="stat-value" style="color: #9b59b6;">${character.strategie}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">Vitesse</div>
+                        <div class="stat-label">⚡ Vitesse</div>
                         <div class="stat-value" style="color: #f39c12;">${character.vitesse}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">PV</div>
+                        <div class="stat-label">❤️ PV</div>
                         <div class="stat-value" style="color: #e74c3c;">${character.pv}</div>
                     </div>
                 </div>
@@ -2835,7 +2956,7 @@
                 ${equippedWeaponHTML}
 
                 <div class="weapons-section">
-                    <h3 class="section-title">Armes débloquées</h3>
+                    <h3 class="section-title"><img src="./icons/armes.png" alt="" class="section-icon"> Armes débloquées</h3>
                     <div class="weapons-grid" id="weaponsGrid"></div>
                 </div>
 
