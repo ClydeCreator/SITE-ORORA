@@ -1392,6 +1392,60 @@
             font-size: 1.1em;
         }
 
+        /* Liens des créateurs */
+        .creator-link {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: left 0.4s ease;
+        }
+
+        .creator-link:hover::before {
+            left: 100%;
+        }
+
+        .creator-link.clyde {
+            background: rgba(145, 70, 255, 0.3);
+            color: #9146ff;
+            border: 1px solid rgba(145, 70, 255, 0.5);
+        }
+
+        .creator-link.clyde:hover {
+            background: rgba(145, 70, 255, 0.5);
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
+        }
+
+        .creator-link.swalen {
+            background: rgba(145, 70, 255, 0.3);
+            color: #9146ff;
+            border: 1px solid rgba(145, 70, 255, 0.5);
+        }
+
+        .creator-link.swalen:hover {
+            background: rgba(145, 70, 255, 0.5);
+            box-shadow: 0 0 15px rgba(145, 70, 255, 0.4);
+        }
+
         /* Barre de liens sociaux style menu */
         .social-links-bar {
             display: flex;
@@ -2434,9 +2488,9 @@
                 <div class="project-container">
                     <div class="project-section">
                         <h2><img src="./icons/informations.png" alt="" class="title-icon"> Le Projet Orora</h2>
-                        <p>Orora est un jeu interactif jouable directement sur Twitch avec vos points de chaîne !</p>
-                        <p>Créez votre personnage, choisissez votre faction, et participez à l'aventure en direct avec la communauté.</p>
-                        <p>Combattez, collectionnez des armes légendaires, et gravissez les rangs pour devenir le héros le plus puissant d'Orora !</p>
+                        <p>Orora est un jeu interactif jouable en direct sur Twitch. Créé par <a href="https://www.twitch.tv/clydecreator" target="_blank" class="creator-link clyde">ClydeCreator</a> et développé par <a href="https://www.twitch.tv/swalen_" target="_blank" class="creator-link swalen">Swalen</a>, c'est un jeu où VOUS êtes les personnages et où vous pouvez créer votre carte et augmenter vos statistiques pour devenir plus forts et vaincre d'autres viewers !</p>
+                        <p>Vous voulez participer ? Utilisez la récompense de point de chaîne "jouer à Orora" sur la chaîne Twitch de Clydecreator pendant un live !</p>
+                        <p>Créez votre personnage, combattez, collectionnez des armes légendaires, et gravissez les rangs pour devenir le héros le plus puissant d'Orora !</p>
                     </div>
 
                     <div class="project-section">
