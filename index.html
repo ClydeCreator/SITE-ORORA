@@ -58,22 +58,22 @@
         }
 
         .loading img {
-            max-width: 300px;
-            width: 80%;
+            max-width: 150px;
+            width: 40%;
             height: auto;
         }
 
         header {
             text-align: center;
-            padding: 40px 20px 20px;
-            margin-bottom: 40px;
+            padding: 30px 20px 10px;
+            margin-bottom: 15px;
         }
 
         .logo {
             max-width: 500px;
             width: 100%;
             height: auto;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
         }
 
@@ -84,32 +84,32 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
-            padding: 8px;
-            margin: 0 auto 40px;
+            padding: 10px;
+            margin: 0 auto 15px;
             max-width: fit-content;
-            gap: 5px;
+            gap: 8px;
         }
 
         .nav-btn {
             position: relative;
-            padding: 12px 25px;
+            padding: 15px 32px;
             background: transparent;
             border: none;
             border-radius: 40px;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1em;
+            font-size: 1.4em;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             overflow: hidden;
         }
 
         .nav-btn .nav-icon {
-            width: 20px;
-            height: 20px;
+            width: 26px;
+            height: 26px;
             object-fit: contain;
             filter: brightness(0.7);
             transition: filter 0.3s ease;
@@ -181,13 +181,25 @@
         /* Page Personnages - Styles existants */
         .search-container {
             max-width: 600px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
             position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         #searchInput {
             width: 100%;
-            padding: 15px 20px;
+            padding: 15px 20px 15px 50px;
             font-size: 1.1em;
             border: 2px solid #333;
             border-radius: 10px;
@@ -198,7 +210,7 @@
 
         #searchInput:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.1);
         }
 
@@ -630,6 +642,22 @@
             font-weight: bold;
         }
 
+        /* Titres de section avec icônes */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: #ffffff;
+        }
+
+        .section-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
         .description-box {
             background: rgba(255, 255, 255, 0.05);
             padding: 25px;
@@ -641,7 +669,7 @@
         .description-box h3 {
             margin-bottom: 15px;
             font-size: 1.5em;
-            color: #3498db;
+            color: #ffffff;
         }
 
         .equipped-weapon-section {
@@ -651,7 +679,7 @@
         .equipped-weapon-title {
             font-size: 1.5em;
             margin-bottom: 15px;
-            color: #f39c12;
+            color: #ffffff;
         }
 
         .equipped-weapon-card {
@@ -807,66 +835,137 @@
             font-size: 1.2em;
         }
 
-        /* Page Classement */
+        /* Page Classement - Filtres style menu */
         .filters-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-section {
             display: flex;
             align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .filters-title {
-            font-size: 1.1em;
-            color: #3498db;
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .filters-grid {
-            display: flex;
             gap: 15px;
-            flex: 1;
             flex-wrap: wrap;
         }
 
-        .filter-group {
+        .filter-section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2em;
+            color: #ffffff;
+            min-width: 80px;
+            letter-spacing: 1px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 6px;
+            gap: 5px;
+        }
+
+        .filter-btn {
+            position: relative;
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
+            overflow: hidden;
         }
 
-        .filter-label {
-            font-weight: bold;
-            color: #888;
-            font-size: 0.9em;
-            white-space: nowrap;
+        .filter-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: brightness(0.5);
+            transition: filter 0.3s ease;
         }
 
-        .filter-select {
-            padding: 8px 12px;
-            font-size: 0.95em;
-            border: 2px solid #333;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
+        .filter-btn:hover .filter-icon,
+        .filter-btn.active .filter-icon {
+            filter: brightness(1);
+        }
+
+        /* Effet holographique */
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 100, 200, 0.15),
+                rgba(100, 200, 255, 0.15),
+                rgba(255, 255, 100, 0.1),
+                transparent
+            );
+            transition: left 0.5s ease;
+            border-radius: 30px;
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Boutons de faction avec couleurs */
+        .faction-btn.alliance.active {
+            background: rgba(52, 152, 219, 0.3);
+            color: #3498db;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .faction-btn.rebellion.active {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .faction-btn.trefonds.active {
+            background: rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Boutons de tri */
+        .sort-btn.active {
+            background: rgba(255, 255, 255, 0.15);
             color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        .filter-select:focus {
-            outline: none;
-            border-color: #3498db;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .filter-select option {
-            background: #1a1a2e;
-            color: #ffffff;
+        .sort-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6ec7, #7873f5, #4aeadc);
+            border-radius: 2px;
         }
 
         /* Classement - Design avec cartes */
@@ -974,15 +1073,17 @@
 
         .ranking-stats {
             display: flex;
-            gap: 20px;
-            align-items: center;
+            gap: 30px;
+            align-items: flex-start;
         }
 
         .ranking-stat {
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 5px;
+            min-width: 80px;
+            align-items: center;
         }
 
         .ranking-stat-label {
@@ -995,18 +1096,20 @@
         .ranking-stat-value {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .ranking-stat-value.rank-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .ranking-stat.mobile-stat {
             display: none;
-        }
-
-        .ranking-stat.rank-with-icon {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
         }
 
         .ranking-stat .rank-icon-small {
@@ -1365,6 +1468,10 @@
             color: #ffffff;
             font-size: 1.8em;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
         .install-section > p {
@@ -1460,38 +1567,43 @@
                 margin-bottom: 20px;
             }
 
-            /* Menu mobile - barre compacte */
+            /* Menu mobile - icônes avec texte en dessous */
             .nav-menu {
                 display: flex;
-                flex-wrap: nowrap;
-                gap: 5px;
-                margin-bottom: 20px;
-                padding: 5px;
-                border-radius: 30px;
-                overflow-x: auto;
+                justify-content: center;
+                gap: 0;
+                margin-bottom: 15px;
+                padding: 8px 10px;
+                border-radius: 20px;
+                width: 100%;
                 max-width: 100%;
             }
 
             .nav-btn {
-                padding: 8px 12px;
-                font-size: 0.7em;
-                border-radius: 25px;
-                white-space: nowrap;
-                flex-shrink: 0;
+                padding: 10px 8px;
+                font-size: 0.65em;
+                border-radius: 15px;
+                flex: 1;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 gap: 5px;
+                text-align: center;
             }
 
             .nav-btn .nav-icon {
-                width: 16px;
-                height: 16px;
+                width: 24px;
+                height: 24px;
             }
 
             .nav-btn .menu-text {
                 font-size: 1em;
+                line-height: 1.2;
             }
 
             .nav-btn.active::after {
-                width: 20px;
+                bottom: 3px;
+                width: 15px;
                 height: 2px;
             }
 
@@ -1554,32 +1666,38 @@
 
             /* Filtres mobile */
             .filters-container {
-                padding: 10px 12px;
                 gap: 10px;
                 margin-bottom: 15px;
             }
 
-            .filters-title {
-                display: none;
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
 
-            .filters-grid {
-                gap: 10px;
+            .filter-section-title {
+                font-size: 1em;
+                min-width: auto;
+            }
+
+            .filter-buttons {
+                padding: 4px;
+                gap: 3px;
+                flex-wrap: wrap;
                 width: 100%;
+                justify-content: center;
             }
 
-            .filter-group {
-                flex: 1;
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 0.9em;
+                gap: 5px;
             }
 
-            .filter-label {
-                display: none;
-            }
-
-            .filter-select {
-                padding: 8px 10px;
-                font-size: 0.85em;
-                width: 100%;
+            .filter-icon {
+                width: 16px;
+                height: 16px;
             }
 
             /* Classement mobile */
@@ -2014,7 +2132,7 @@
                 <nav class="nav-menu">
                     <button class="nav-btn active" onclick="changePage('personnages')">
                         <img src="./icons/personnages.png" alt="" class="nav-icon">
-                        <span class="menu-text">Personnages</span>
+                        <span class="menu-text">Cartes</span>
                     </button>
                     <button class="nav-btn" onclick="changePage('classement')">
                         <img src="./icons/classement.png" alt="" class="nav-icon">
@@ -2034,10 +2152,11 @@
             <!-- PAGE PERSONNAGES -->
             <div id="page-personnages" class="page active">
                 <div class="search-container">
+                    <img src="./icons/search.png" alt="" class="search-icon">
                     <input 
                         type="text" 
                         id="searchInput" 
-                        placeholder="🔍 Rechercher un personnage..."
+                        placeholder="Rechercher un personnage..."
                     >
                 </div>
 
@@ -2063,24 +2182,35 @@
             <!-- PAGE CLASSEMENT -->
             <div id="page-classement" class="page">
                 <div class="filters-container">
-                    <span class="filters-title">🔍 Filtres</span>
-                    <div class="filters-grid">
-                        <div class="filter-group">
-                            <label class="filter-label">Faction</label>
-                            <select id="filterFaction" class="filter-select">
-                                <option value="all">Toutes factions</option>
-                                <option value="Alliance">Alliance</option>
-                                <option value="Rébellion">Rébellion</option>
-                                <option value="Tréfonds">Tréfonds</option>
-                            </select>
+                    <div class="filter-section">
+                        <span class="filter-section-title">Factions</span>
+                        <div class="filter-buttons faction-filters">
+                            <button class="filter-btn faction-btn alliance active" data-faction="Alliance" onclick="toggleFaction('Alliance')">
+                                <img src="./icons/alliance.png" alt="" class="filter-icon">
+                                <span>Alliance</span>
+                            </button>
+                            <button class="filter-btn faction-btn rebellion active" data-faction="Rébellion" onclick="toggleFaction('Rébellion')">
+                                <img src="./icons/rebellion.png" alt="" class="filter-icon">
+                                <span>Rébellion</span>
+                            </button>
+                            <button class="filter-btn faction-btn trefonds active" data-faction="Tréfonds" onclick="toggleFaction('Tréfonds')">
+                                <img src="./icons/trefonds.png" alt="" class="filter-icon">
+                                <span>Tréfonds</span>
+                            </button>
                         </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Tri</label>
-                            <select id="filterSort" class="filter-select">
-                                <option value="power">Puissance</option>
-                                <option value="level">Niveau</option>
-                                <option value="rank">Rang</option>
-                            </select>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-section-title">Tri</span>
+                        <div class="filter-buttons sort-filters">
+                            <button class="filter-btn sort-btn active" data-sort="power" onclick="setSort('power')">
+                                <span>Puissance</span>
+                            </button>
+                            <button class="filter-btn sort-btn" data-sort="level" onclick="setSort('level')">
+                                <span>Niveau</span>
+                            </button>
+                            <button class="filter-btn sort-btn" data-sort="rank" onclick="setSort('rank')">
+                                <span>Rang</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2215,7 +2345,7 @@
                     </div>
 
                     <div class="install-section">
-                        <h2>Installer l'Application</h2>
+                        <h2><img src="./icons/download.png" alt="" class="title-icon"> Installer l'Application</h2>
                         <p>Accédez à Orora directement depuis votre écran d'accueil !</p>
                         
                         <button class="install-btn" id="installBtn" onclick="installApp()">
@@ -2646,7 +2776,7 @@
                 if (weapon) {
                     equippedWeaponHTML = `
                         <div class="equipped-weapon-section">
-                            <h3 class="equipped-weapon-title">🗡️ Arme équipée</h3>
+                            <h3 class="equipped-weapon-title">Arme équipée</h3>
                             <div class="equipped-weapon-card ${weapon.rarity}">
                                 <img src="./weapons/${weapon.name}.png" alt="${weapon.name}" class="equipped-weapon-image">
                                 <div class="equipped-weapon-info">
@@ -2673,39 +2803,39 @@
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 15px; font-size: 1.5em;">📊 Statistiques</h3>
+                <h3 class="section-title"><img src="./icons/stats.png" alt="" class="section-icon"> Statistiques</h3>
                 <div class="stats-grid">
                     <div class="stat-box">
-                        <div class="stat-label">⚔️ Attaque</div>
+                        <div class="stat-label">Attaque</div>
                         <div class="stat-value" style="color: #e74c3c;">${character.attaque}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">🛡️ Défense</div>
+                        <div class="stat-label">Défense</div>
                         <div class="stat-value" style="color: #3498db;">${character.defense}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">🧠 Stratégie</div>
+                        <div class="stat-label">Stratégie</div>
                         <div class="stat-value" style="color: #9b59b6;">${character.strategie}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">⚡ Vitesse</div>
+                        <div class="stat-label">Vitesse</div>
                         <div class="stat-value" style="color: #f39c12;">${character.vitesse}</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-label">❤️ PV</div>
+                        <div class="stat-label">PV</div>
                         <div class="stat-value" style="color: #e74c3c;">${character.pv}</div>
                     </div>
                 </div>
 
                 <div class="description-box">
-                    <h3>📜 Description</h3>
+                    <h3 class="section-title"><img src="./icons/informations.png" alt="" class="section-icon"> Description</h3>
                     <p style="line-height: 1.6; color: #ccc;">${character.description}</p>
                 </div>
 
                 ${equippedWeaponHTML}
 
                 <div class="weapons-section">
-                    <h3 style="margin: 30px 0 20px 0; font-size: 1.5em;">⚔️ Armes débloquées</h3>
+                    <h3 class="section-title">Armes débloquées</h3>
                     <div class="weapons-grid" id="weaponsGrid"></div>
                 </div>
 
@@ -2858,17 +2988,54 @@
             }
         });
 
-        // CLASSEMENT
-        function updateRankingTable() {
-            const factionFilter = document.getElementById('filterFaction').value;
-            const sortBy = document.getElementById('filterSort').value;
+        // CLASSEMENT - Variables pour les filtres
+        let activeFactions = ['Alliance', 'Rébellion', 'Tréfonds'];
+        let currentSort = 'power';
 
+        function toggleFaction(faction) {
+            const index = activeFactions.indexOf(faction);
+            if (index > -1) {
+                // Ne pas désactiver si c'est la dernière faction active
+                if (activeFactions.length > 1) {
+                    activeFactions.splice(index, 1);
+                }
+            } else {
+                activeFactions.push(faction);
+            }
+            
+            // Mettre à jour les boutons
+            document.querySelectorAll('.faction-btn').forEach(btn => {
+                const btnFaction = btn.dataset.faction;
+                if (activeFactions.includes(btnFaction)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            updateRankingTable();
+        }
+
+        function setSort(sort) {
+            currentSort = sort;
+            
+            // Mettre à jour les boutons
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                if (btn.dataset.sort === sort) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            updateRankingTable();
+        }
+
+        function updateRankingTable() {
             let filtered = [...allCharacters];
 
-            // Filtrer par faction
-            if (factionFilter !== 'all') {
-                filtered = filtered.filter(c => c.faction === factionFilter);
-            }
+            // Filtrer par factions actives
+            filtered = filtered.filter(c => activeFactions.includes(c.faction));
 
             // Ordre des rangs du meilleur au moins bon
             const rankOrder = {
@@ -2882,7 +3049,7 @@
             };
 
             // Trier
-            switch(sortBy) {
+            switch(currentSort) {
                 case 'power':
                     filtered.sort((a, b) => b.pointsTotaux - a.pointsTotaux);
                     break;
@@ -2890,7 +3057,6 @@
                     filtered.sort((a, b) => b.niveau - a.niveau);
                     break;
                 case 'rank':
-                    // Tri par rang d'abord, puis par MMR au sein du même rang
                     filtered.sort((a, b) => {
                         const rankDiff = (rankOrder[b.rang] || 0) - (rankOrder[a.rang] || 0);
                         if (rankDiff !== 0) return rankDiff;
@@ -2928,9 +3094,9 @@
                                 <span class="ranking-stat-label">Niveau</span>
                                 <span class="ranking-stat-value ${getLevelClass(char.niveau)}">${char.niveau}</span>
                             </div>
-                            <div class="ranking-stat rank-with-icon hide-mobile">
+                            <div class="ranking-stat hide-mobile">
                                 <span class="ranking-stat-label">Rang</span>
-                                <span class="ranking-stat-value">
+                                <span class="ranking-stat-value rank-display">
                                     ${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small" alt="${char.rang}">` : ''}
                                     <span class="${getRankClass(char.rang)}">${char.mmr}</span>
                                 </span>
@@ -2940,9 +3106,9 @@
                                 <span class="ranking-stat-value" style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>
                             </div>
                             <div class="ranking-stat mobile-stat">
-                                ${sortBy === 'level' ? `<span class="${getLevelClass(char.niveau)}">${char.niveau}</span>` : ''}
-                                ${sortBy === 'rank' ? `${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small">` : ''}<span class="${getRankClass(char.rang)}">${char.mmr}</span>` : ''}
-                                ${sortBy === 'power' ? `<span style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>` : ''}
+                                ${currentSort === 'level' ? `<span class="${getLevelClass(char.niveau)}">${char.niveau}</span>` : ''}
+                                ${currentSort === 'rank' ? `${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small">` : ''}<span class="${getRankClass(char.rang)}">${char.mmr}</span>` : ''}
+                                ${currentSort === 'power' ? `<span style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -2951,6 +3117,9 @@
 
             table.innerHTML = html;
         }
+
+        window.toggleFaction = toggleFaction;
+        window.setSort = setSort;
 
         // Recherche
         document.getElementById('searchInput').addEventListener('input', function(e) {
@@ -2964,10 +3133,6 @@
             const filtered = allCharacters.filter(char => char.name.toLowerCase().includes(searchTerm));
             displayCharacters(filtered);
         });
-
-        // Event listeners pour les filtres du classement
-        document.getElementById('filterFaction').addEventListener('change', updateRankingTable);
-        document.getElementById('filterSort').addEventListener('change', updateRankingTable);
 
         // Initialisation
         async function init() {
