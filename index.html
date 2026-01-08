@@ -66,7 +66,7 @@
         header {
             text-align: center;
             padding: 30px 20px 10px;
-            margin-bottom: 15px;
+            margin-bottom: 45px;
         }
 
         .logo {
@@ -85,7 +85,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             padding: 10px;
-            margin: 0 auto 15px;
+            margin: 0 auto 0;
             max-width: fit-content;
             gap: 8px;
         }
@@ -2421,7 +2421,7 @@
 
             header {
                 padding: 10px 10px 0;
-                margin-bottom: 5px;
+                margin-bottom: 20px;
             }
 
             .logo {
@@ -2434,7 +2434,7 @@
                 display: flex;
                 justify-content: center;
                 gap: 0;
-                margin-bottom: 5px;
+                margin-bottom: 0;
                 padding: 8px 10px;
                 border-radius: 20px;
                 width: 100%;
@@ -2588,43 +2588,53 @@
             }
 
             .ranking-row {
-                grid-template-columns: 40px 50px 1fr auto;
-                padding: 10px;
-                gap: 10px;
+                grid-template-columns: 35px 45px 1fr auto;
+                padding: 8px;
+                gap: 8px;
                 border-radius: 12px;
             }
 
             .ranking-row.top1-row,
             .ranking-row.top2-row,
             .ranking-row.top3-row {
-                padding: 12px 10px;
+                padding: 10px 8px;
             }
 
             .rank-position {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
 
             .player-avatar {
-                width: 50px;
-                height: 65px;
+                width: 45px;
+                height: 60px;
                 border-radius: 6px;
             }
 
             .player-info {
-                gap: 5px;
+                gap: 3px;
+                min-width: 0;
+                overflow: hidden;
             }
 
             .player-name {
-                font-size: 1.1em;
+                font-size: 1em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .player-name.long-name {
+                font-size: 0.85em;
             }
 
             .player-faction {
-                font-size: 0.65em;
-                padding: 2px 6px;
+                font-size: 0.6em;
+                padding: 2px 5px;
             }
 
             .ranking-stats {
-                gap: 8px;
+                gap: 4px;
+                flex-shrink: 0;
             }
 
             .ranking-stat.hide-mobile {
@@ -2635,27 +2645,27 @@
                 display: flex !important;
                 flex-direction: column;
                 align-items: center;
-                gap: 3px;
+                gap: 2px;
                 font-family: 'Bebas Neue', sans-serif;
-                font-size: 0.95em;
-                letter-spacing: 1px;
-                min-width: 60px;
+                font-size: 0.85em;
+                letter-spacing: 0.5px;
+                min-width: 45px;
             }
 
             .mobile-stat-label {
-                font-size: 0.65em;
+                font-size: 0.55em;
                 color: rgba(255, 255, 255, 0.7);
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
 
             .mobile-stat.mobile-rank .mobile-stat-label {
-                font-size: 0.7em;
+                font-size: 0.6em;
             }
 
             .ranking-stat .rank-icon-small {
-                width: 18px;
-                height: 18px;
+                width: 16px;
+                height: 16px;
             }
 
             /* Croix de fermeture mobile */
@@ -2785,19 +2795,16 @@
 
             .equipped-weapon-card {
                 padding: 10px;
-                gap: 12px;
-                flex-direction: column;
-                text-align: center;
+                gap: 10px;
             }
 
             .equipped-weapon-card .weapon-event-badge {
-                position: static;
-                display: inline-block;
-                font-size: 0.65em;
-                padding: 3px 8px;
-                border-radius: 10px;
-                margin-top: 5px;
-                order: 10;
+                position: absolute;
+                top: 3px;
+                right: 3px;
+                font-size: 0.5em;
+                padding: 2px 5px;
+                border-radius: 6px;
             }
 
             .equipped-weapon-image {
@@ -4230,15 +4237,10 @@
         }
 
         function updateRankingTable() {
-            let filtered = [...allCharacters];
+            let allFiltered = [...allCharacters];
 
             // Filtrer par factions actives
-            filtered = filtered.filter(c => activeFactions.includes(c.faction));
-
-            // Filtrer par recherche
-            if (rankingSearchTerm) {
-                filtered = filtered.filter(c => c.name.toLowerCase().includes(rankingSearchTerm));
-            }
+            allFiltered = allFiltered.filter(c => activeFactions.includes(c.faction));
 
             // Ordre des rangs du meilleur au moins bon
             const rankOrder = {
@@ -4251,16 +4253,16 @@
                 'Non classé': 1
             };
 
-            // Trier
+            // Trier TOUS les personnages d'abord pour obtenir leur position globale
             switch(currentSort) {
                 case 'power':
-                    filtered.sort((a, b) => b.pointsTotaux - a.pointsTotaux);
+                    allFiltered.sort((a, b) => b.pointsTotaux - a.pointsTotaux);
                     break;
                 case 'level':
-                    filtered.sort((a, b) => b.niveau - a.niveau);
+                    allFiltered.sort((a, b) => b.niveau - a.niveau);
                     break;
                 case 'rank':
-                    filtered.sort((a, b) => {
+                    allFiltered.sort((a, b) => {
                         const rankDiff = (rankOrder[b.rang] || 0) - (rankOrder[a.rang] || 0);
                         if (rankDiff !== 0) return rankDiff;
                         return (b.mmr || 0) - (a.mmr || 0);
@@ -4268,11 +4270,23 @@
                     break;
             }
 
+            // Assigner les positions AVANT de filtrer par recherche
+            const withPositions = allFiltered.map((char, index) => ({
+                ...char,
+                globalPosition: index + 1
+            }));
+
+            // Filtrer par recherche APRÈS avoir assigné les positions
+            let toDisplay = withPositions;
+            if (rankingSearchTerm) {
+                toDisplay = withPositions.filter(c => c.name.toLowerCase().includes(rankingSearchTerm));
+            }
+
             const table = document.getElementById('rankingTable');
             let html = '';
 
-            filtered.forEach((char, index) => {
-                const position = index + 1;
+            toDisplay.forEach((char) => {
+                const position = char.globalPosition;
                 let positionClass = '';
                 let rowClass = '';
                 if (position === 1) { positionClass = 'top1'; rowClass = 'top1-row'; }
@@ -4281,6 +4295,9 @@
 
                 // Icône de rang
                 const rankIcon = rankIcons[char.rang] || "";
+                
+                // Classe pour noms longs (plus de 12 caractères)
+                const nameClass = char.name.length > 12 ? 'long-name' : '';
 
                 html += `
                     <div class="ranking-row ${rowClass}" onclick="changePage('personnages'); setTimeout(() => showCharacterDetail('${char.name}'), 100)">
@@ -4288,7 +4305,7 @@
                         <img src="./cards/${char.name}.png" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 80%22%3E%3Crect fill=%22%23333%22 width=%2260%22 height=%2280%22/%3E%3C/svg%3E'">
                         <div class="player-info">
                             <div class="player-name-container">
-                                <span class="player-name">${char.name}</span>
+                                <span class="player-name ${nameClass}">${char.name}</span>
                                 <span class="player-faction ${char.factionClass}">${char.faction}</span>
                             </div>
                         </div>
