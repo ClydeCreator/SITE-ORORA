@@ -1622,9 +1622,11 @@
             letter-spacing: 1px;
         }
 
+        .weapons-rarity-title.commune { color: #888888; border-color: rgba(136, 136, 136, 0.3); }
         .weapons-rarity-title.rare { color: #3498db; border-color: rgba(52, 152, 219, 0.3); }
         .weapons-rarity-title.epique { color: #9b59b6; border-color: rgba(155, 89, 182, 0.3); }
         .weapons-rarity-title.legendaire { color: #f39c12; border-color: rgba(243, 156, 18, 0.3); }
+        .weapons-rarity-title.master { color: #ff1493; border-color: rgba(255, 20, 147, 0.3); }
 
         .weapons-rarity-grid {
             display: grid;
@@ -1647,9 +1649,20 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .weapon-showcase-card.commune { border-color: rgba(136, 136, 136, 0.4); }
         .weapon-showcase-card.rare { border-color: rgba(52, 152, 219, 0.4); }
         .weapon-showcase-card.epique { border-color: rgba(155, 89, 182, 0.4); }
         .weapon-showcase-card.legendaire { border-color: rgba(243, 156, 18, 0.4); }
+        .weapon-showcase-card.master { 
+            border-color: rgba(255, 20, 147, 0.4); 
+            animation: rainbow-border 3s infinite;
+        }
+
+        @keyframes rainbow-border {
+            0%, 100% { border-color: rgba(255, 20, 147, 0.6); }
+            33% { border-color: rgba(0, 255, 255, 0.6); }
+            66% { border-color: rgba(255, 255, 0, 0.6); }
+        }
 
         .weapon-showcase-img {
             width: 80px;
@@ -1917,6 +1930,17 @@
             margin-bottom: 15px;
             text-align: center;
             font-size: 1.1em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Centrage du bouton boutique */
+        .project-section .shop-btn {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
         }
 
         /* Liens des créateurs */
@@ -3149,29 +3173,29 @@
                         <h2><img src="./icons/rang.png" alt="" class="title-icon"> Combats & Rangs</h2>
                         <p>Les combats sont au cœur de l'expérience Orora. Combattez d'autres joueurs d'une faction adverse pour gagner en puissance et gravir les rangs !</p>
                         <div class="ranks-display">
-                            <div class="rank-item scarlet">
-                                <img src="./ranks/Scarlet.png" alt="Scarlet" class="rank-img">
-                                <span>Scarlet</span>
-                            </div>
-                            <div class="rank-item maitre">
-                                <img src="./ranks/Maitre.png" alt="Maître" class="rank-img">
-                                <span>Maître</span>
-                            </div>
-                            <div class="rank-item or">
-                                <img src="./ranks/Or.png" alt="Or" class="rank-img">
-                                <span>Or</span>
-                            </div>
-                            <div class="rank-item argent">
-                                <img src="./ranks/Argent.png" alt="Argent" class="rank-img">
-                                <span>Argent</span>
+                            <div class="rank-item fer">
+                                <img src="./ranks/Fer.png" alt="Fer" class="rank-img">
+                                <span>Fer</span>
                             </div>
                             <div class="rank-item bronze">
                                 <img src="./ranks/Bronze.png" alt="Bronze" class="rank-img">
                                 <span>Bronze</span>
                             </div>
-                            <div class="rank-item fer">
-                                <img src="./ranks/Fer.png" alt="Fer" class="rank-img">
-                                <span>Fer</span>
+                            <div class="rank-item argent">
+                                <img src="./ranks/Argent.png" alt="Argent" class="rank-img">
+                                <span>Argent</span>
+                            </div>
+                            <div class="rank-item or">
+                                <img src="./ranks/Or.png" alt="Or" class="rank-img">
+                                <span>Or</span>
+                            </div>
+                            <div class="rank-item maitre">
+                                <img src="./ranks/Maitre.png" alt="Maître" class="rank-img">
+                                <span>Maître</span>
+                            </div>
+                            <div class="rank-item scarlet">
+                                <img src="./ranks/Scarlet.png" alt="Scarlet" class="rank-img">
+                                <span>Scarlet</span>
                             </div>
                         </div>
                         <p class="rank-info">Un système de rang est en place, permettant de progresser dans les classements. Plus vous remportez de combats, plus vous avancez dans les différents paliers de rang.</p>
@@ -4222,25 +4246,31 @@
                 'BazooKado'
             ];
 
+            // Ordre d'affichage : du moins rare au plus rare
             const rarityOrder = [
-                { key: 'legendaire', label: 'Légendaire', class: 'legendaire' },
+                { key: 'commune', label: 'Commune', class: 'commune' },
+                { key: 'rare', label: 'Rare', class: 'rare' },
                 { key: 'epique', label: 'Épique', class: 'epique' },
-                { key: 'rare', label: 'Rare', class: 'rare' }
+                { key: 'legendaire', label: 'Légendaire', class: 'legendaire' },
+                { key: 'master', label: 'Master', class: 'master' }
             ];
 
             let html = '';
 
             rarityOrder.forEach(rarity => {
-                const weapons = weaponsData[rarity.key];
-                if (!weapons || weapons.length === 0) return;
+                const rarityData = weaponsData[rarity.key];
+                if (!rarityData || !rarityData.weapons) return;
+                
+                const weaponNames = Object.keys(rarityData.weapons);
+                if (weaponNames.length === 0) return;
 
                 html += `
                     <div class="weapons-rarity-section">
-                        <h3 class="weapons-rarity-title ${rarity.class}">${rarity.label}</h3>
+                        <h3 class="weapons-rarity-title ${rarity.class}">${rarity.label} (${weaponNames.length})</h3>
                         <div class="weapons-rarity-grid">
                 `;
 
-                weapons.forEach(weaponName => {
+                weaponNames.forEach(weaponName => {
                     const isChristmas = christmasWeapons.includes(weaponName);
                     html += `
                         <div class="weapon-showcase-card ${rarity.class}">
