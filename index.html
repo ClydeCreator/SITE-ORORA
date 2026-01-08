@@ -683,6 +683,7 @@
         }
 
         .equipped-weapon-card {
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -692,6 +693,19 @@
             gap: 20px;
             width: fit-content;
             max-width: 100%;
+        }
+
+        .equipped-weapon-card .weapon-event-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #c41e3a, #228b22);
+            color: white;
+            font-size: 0.7em;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1;
         }
 
         .equipped-weapon-card.legendaire {
@@ -762,6 +776,7 @@
         }
 
         .weapon-card {
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -772,6 +787,19 @@
 
         .weapon-card:hover {
             transform: translateY(-5px);
+        }
+
+        .weapon-card .weapon-event-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: linear-gradient(135deg, #c41e3a, #228b22);
+            color: white;
+            font-size: 0.6em;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 1;
         }
 
         .weapon-card.legendaire {
@@ -1348,6 +1376,505 @@
             }
         }
 
+        /* Page Le Jeu */
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .game-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+        }
+
+        .game-section p {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .game-section p strong {
+            color: #fff;
+        }
+
+        /* Features cards */
+        .game-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            font-size: 0.85em;
+            color: #888;
+            margin: 0;
+        }
+
+        /* Stats explanation */
+        .stats-explanation {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat-explain-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-explain-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-explain-card.attack { border-color: rgba(231, 76, 60, 0.5); }
+        .stat-explain-card.defense { border-color: rgba(52, 152, 219, 0.5); }
+        .stat-explain-card.strategy { border-color: rgba(155, 89, 182, 0.5); }
+        .stat-explain-card.speed { border-color: rgba(243, 156, 18, 0.5); }
+        .stat-explain-card.hp { border-color: rgba(231, 76, 60, 0.5); }
+
+        .stat-explain-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stat-emoji {
+            font-size: 1.5em;
+        }
+
+        .stat-explain-card h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .stat-explain-card.attack h4 { color: #e74c3c; }
+        .stat-explain-card.defense h4 { color: #3498db; }
+        .stat-explain-card.strategy h4 { color: #9b59b6; }
+        .stat-explain-card.speed h4 { color: #f39c12; }
+        .stat-explain-card.hp h4 { color: #e74c3c; }
+
+        .stat-explain-card p {
+            font-size: 0.8em;
+            color: #aaa;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Improve list */
+        .improve-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .improve-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .improve-icon {
+            font-size: 1.8em;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .improve-content h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .improve-content p {
+            font-size: 0.9em;
+            color: #aaa;
+            margin: 0;
+        }
+
+        /* Ranks display */
+        .ranks-display {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .rank-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .rank-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .rank-item span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+        }
+
+        .rank-item.scarlet { border-color: rgba(220, 20, 60, 0.5); }
+        .rank-item.scarlet span { color: #dc143c; }
+        .rank-item.maitre { border-color: rgba(148, 0, 211, 0.5); }
+        .rank-item.maitre span { color: #9400d3; }
+        .rank-item.or { border-color: rgba(255, 215, 0, 0.5); }
+        .rank-item.or span { color: #ffd700; }
+        .rank-item.argent { border-color: rgba(192, 192, 192, 0.5); }
+        .rank-item.argent span { color: #c0c0c0; }
+        .rank-item.bronze { border-color: rgba(205, 127, 50, 0.5); }
+        .rank-item.bronze span { color: #cd7f32; }
+        .rank-item.fer { border-color: rgba(128, 128, 128, 0.5); }
+        .rank-item.fer span { color: #808080; }
+
+        .rank-info {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+
+        /* Weapons showcase */
+        .weapons-showcase {
+            margin-top: 20px;
+        }
+
+        .weapons-rarity-section {
+            margin-bottom: 25px;
+        }
+
+        .weapons-rarity-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 1px;
+        }
+
+        .weapons-rarity-title.rare { color: #3498db; border-color: rgba(52, 152, 219, 0.3); }
+        .weapons-rarity-title.epique { color: #9b59b6; border-color: rgba(155, 89, 182, 0.3); }
+        .weapons-rarity-title.legendaire { color: #f39c12; border-color: rgba(243, 156, 18, 0.3); }
+
+        .weapons-rarity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .weapon-showcase-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .weapon-showcase-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .weapon-showcase-card.rare { border-color: rgba(52, 152, 219, 0.4); }
+        .weapon-showcase-card.epique { border-color: rgba(155, 89, 182, 0.4); }
+        .weapon-showcase-card.legendaire { border-color: rgba(243, 156, 18, 0.4); }
+
+        .weapon-showcase-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .weapon-showcase-name {
+            font-size: 0.85em;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .weapon-event-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: linear-gradient(135deg, #c41e3a, #228b22);
+            color: white;
+            font-size: 0.6em;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Titles list */
+        .titles-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .title-requirement {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .title-icon {
+            font-size: 1.3em;
+        }
+
+        .title-requirement span:last-child {
+            color: #ccc;
+            font-size: 0.95em;
+        }
+
+        /* XP methods */
+        .xp-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .xp-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .xp-icon {
+            font-size: 1.3em;
+        }
+
+        .xp-method span:last-child {
+            color: #ccc;
+        }
+
+        /* Lore section in game page */
+        .lore-section {
+            margin-top: 30px;
+        }
+
+        .book-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4em;
+            text-align: center;
+            margin: 30px 0 20px;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        /* Mobile styles for game page */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 0 10px;
+            }
+
+            .game-section {
+                padding: 20px 15px;
+                margin-bottom: 15px;
+            }
+
+            .game-section h2 {
+                font-size: 1.4em;
+                gap: 8px;
+            }
+
+            .game-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .feature-card {
+                padding: 15px 10px;
+            }
+
+            .feature-emoji {
+                font-size: 2em;
+            }
+
+            .feature-card h4 {
+                font-size: 1em;
+            }
+
+            .feature-card p {
+                font-size: 0.75em;
+            }
+
+            .stats-explanation {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .stat-explain-card {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .stat-explain-header {
+                flex-direction: column;
+                align-items: center;
+                min-width: 60px;
+                margin-bottom: 0;
+            }
+
+            .improve-item {
+                padding: 12px;
+            }
+
+            .improve-icon {
+                font-size: 1.5em;
+                min-width: 35px;
+            }
+
+            .improve-content h4 {
+                font-size: 1em;
+            }
+
+            .improve-content p {
+                font-size: 0.85em;
+            }
+
+            .ranks-display {
+                gap: 10px;
+            }
+
+            .rank-item {
+                padding: 10px;
+                min-width: 70px;
+            }
+
+            .rank-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .rank-item span {
+                font-size: 0.8em;
+            }
+
+            .weapons-rarity-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .weapon-showcase-card {
+                padding: 8px;
+            }
+
+            .weapon-showcase-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .weapon-showcase-name {
+                font-size: 0.7em;
+            }
+
+            .weapon-event-badge {
+                font-size: 0.5em;
+                padding: 1px 4px;
+            }
+
+            .titles-list {
+                grid-template-columns: 1fr;
+            }
+
+            .title-requirement {
+                padding: 10px 12px;
+            }
+
+            .xp-methods {
+                flex-direction: column;
+            }
+
+            .xp-method {
+                justify-content: center;
+            }
+        }
+
         /* Page Projet */
         .project-container {
             background: rgba(255, 255, 255, 0.05);
@@ -1513,6 +2040,105 @@
         .social-btn.discord:hover {
             background: rgba(114, 137, 218, 0.3);
             color: #7289da;
+        }
+
+        /* Social blocks - nouveaux blocs rectangulaires */
+        .social-blocks {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .social-block:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-block-icon {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .social-block:hover .social-block-icon {
+            transform: scale(1.1);
+        }
+
+        .social-block-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+
+        .social-block.twitch:hover {
+            border-color: #9146ff;
+            box-shadow: 0 10px 30px rgba(145, 70, 255, 0.4);
+        }
+        .social-block.twitch .social-block-name { color: #9146ff; }
+
+        .social-block.youtube:hover {
+            border-color: #ff0000;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+        }
+        .social-block.youtube .social-block-name { color: #ff0000; }
+
+        .social-block.tiktok:hover {
+            border-color: #00f2ea;
+            box-shadow: 0 10px 30px rgba(0, 242, 234, 0.4);
+        }
+        .social-block.tiktok .social-block-name { color: #00f2ea; }
+
+        .social-block.instagram:hover {
+            border-color: #e1306c;
+            box-shadow: 0 10px 30px rgba(225, 48, 108, 0.4);
+        }
+        .social-block.instagram .social-block-name { color: #e1306c; }
+
+        .social-block.discord:hover {
+            border-color: #7289da;
+            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.4);
+        }
+        .social-block.discord .social-block-name { color: #7289da; }
+
+        /* Bouton boutique */
+        .shop-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.3), rgba(243, 156, 18, 0.1));
+            border: 2px solid rgba(243, 156, 18, 0.5);
+            border-radius: 30px;
+            color: #f39c12;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.5), rgba(243, 156, 18, 0.2));
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
         }
 
         /* Anciens styles social-links (gardés pour compatibilité) */
@@ -2158,6 +2784,30 @@
                 height: 18px;
             }
 
+            /* Social blocks mobile */
+            .social-blocks {
+                gap: 10px;
+            }
+
+            .social-block {
+                padding: 15px 18px;
+                min-width: 70px;
+            }
+
+            .social-block-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .social-block-name {
+                font-size: 0.9em;
+            }
+
+            .shop-btn {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+
             /* Section Installation Mobile */
             .install-section {
                 padding: 15px;
@@ -2300,7 +2950,7 @@
                     </button>
                     <button class="nav-btn" onclick="changePage('lore')">
                         <img src="./icons/lore.png" alt="" class="nav-icon">
-                        <span class="menu-text">Lore</span>
+                        <span class="menu-text">Le Jeu</span>
                     </button>
                     <button class="nav-btn" onclick="changePage('projet')">
                         <img src="./icons/informations.png" alt="" class="nav-icon">
@@ -2385,80 +3035,289 @@
 
             <!-- PAGE LORE -->
             <div id="page-lore" class="page">
-                <div class="lore-container">
-                    <!-- Vidéo de présentation -->
-                    <div class="lore-video-container">
-                        <iframe 
-                            src="https://www.youtube.com/embed/BCpUL7h_y-U" 
-                            title="Orora - Présentation du Lore"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-
-                    <!-- Livre interactif -->
-                    <div class="book-wrapper">
-                        <div class="book" id="loreBook">
-                            <div class="book-click-zone left" onclick="prevPage()"></div>
-                            <div class="book-click-zone right" onclick="nextPage()"></div>
-                            
-                            <div class="book-page active" data-page="1">
-                                <img src="./lore/ORORA-01.png" alt="Couverture">
-                            </div>
-                            <div class="book-page hidden" data-page="2">
-                                <img src="./lore/ORORA-02.png" alt="Page 2">
-                            </div>
-                            <div class="book-page hidden" data-page="3">
-                                <img src="./lore/ORORA-03.png" alt="Page 3">
-                            </div>
-                            <div class="book-page hidden" data-page="4">
-                                <img src="./lore/ORORA-04.png" alt="Page 4">
-                            </div>
-                            <div class="book-page hidden" data-page="5">
-                                <img src="./lore/ORORA-05.png" alt="Page 5">
-                            </div>
-                            <div class="book-page hidden" data-page="6">
-                                <img src="./lore/ORORA-06.png" alt="Page 6">
-                            </div>
-                            <div class="book-page hidden" data-page="7">
-                                <img src="./lore/ORORA-07.png" alt="Page 7">
-                            </div>
-                            <div class="book-page hidden" data-page="8">
-                                <img src="./lore/ORORA-08.png" alt="Page 8">
-                            </div>
-                            <div class="book-page hidden" data-page="9">
-                                <img src="./lore/ORORA-09.png" alt="Page 9">
-                            </div>
-                            <div class="book-page hidden" data-page="10">
-                                <img src="./lore/ORORA-10.png" alt="Page 10">
-                            </div>
-                            <div class="book-page hidden" data-page="11">
-                                <img src="./lore/ORORA-11.png" alt="Page 11">
-                            </div>
-                            <div class="book-page hidden" data-page="12">
-                                <img src="./lore/ORORA-12.png" alt="Page 12">
-                            </div>
-                            <div class="book-page hidden" data-page="13">
-                                <img src="./lore/ORORA-13.png" alt="Page 13">
-                            </div>
-                            <div class="book-page hidden" data-page="14">
-                                <img src="./lore/ORORA-14.png" alt="Page 14">
-                            </div>
-                            <div class="book-page hidden" data-page="15">
-                                <img src="./lore/ORORA-15.png" alt="Page 15">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="book-controls">
-                        <button class="book-btn" id="prevBtn" onclick="prevPage()">◀ Précédent</button>
-                        <div class="page-indicator">
-                            <span id="currentPage">1</span> / <span id="totalPages">15</span>
-                        </div>
-                        <button class="book-btn" id="nextBtn" onclick="nextPage()">Suivant ▶</button>
-                    </div>
+                <div class="game-container">
                     
-                    <p class="book-instructions">💡 Cliquez sur les côtés du livre, utilisez les boutons, ou les flèches du clavier ← →</p>
+                    <!-- Section Introduction -->
+                    <div class="game-section">
+                        <h2><img src="./icons/informations.png" alt="" class="title-icon"> C'est quoi Orora ?</h2>
+                        <p>Orora est un <strong>TCG interactif</strong> où chaque carte représente un viewer sur Twitch. Vous pouvez créer votre propre carte en décrivant le personnage que vous souhaitez incarner !</p>
+                        <div class="game-features">
+                            <div class="feature-card">
+                                <span class="feature-emoji">🎴</span>
+                                <h4>Créez votre carte</h4>
+                                <p>Décrivez votre personnage et obtenez votre carte unique</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-emoji">🎲</span>
+                                <h4>Lancez des dés</h4>
+                                <p>Augmentez vos statistiques avec des lancers de dés</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-emoji">📦</span>
+                                <h4>Ouvrez des coffres</h4>
+                                <p>Gagnez des armes pour augmenter votre puissance</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-emoji">💬</span>
+                                <h4>Gagnez de l'XP</h4>
+                                <p>Jouez et discutez pour monter en niveau</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Stats -->
+                    <div class="game-section">
+                        <h2><img src="./icons/stats.png" alt="" class="title-icon"> Les Statistiques</h2>
+                        <p>Chaque carte possède 5 statistiques de base qui définissent sa puissance en combat :</p>
+                        <div class="stats-explanation">
+                            <div class="stat-explain-card attack">
+                                <div class="stat-explain-header">
+                                    <span class="stat-emoji">⚔️</span>
+                                    <h4>Attaque</h4>
+                                </div>
+                                <p>Vous permet d'attaquer à chaque coup entre 0 et votre attaque maximum.</p>
+                            </div>
+                            <div class="stat-explain-card defense">
+                                <div class="stat-explain-header">
+                                    <span class="stat-emoji">🛡️</span>
+                                    <h4>Défense</h4>
+                                </div>
+                                <p>Permet de contrer l'attaque adverse. Se calcule sur la différence entre votre défense et celle de votre adversaire, contre un % de l'attaque adverse.</p>
+                            </div>
+                            <div class="stat-explain-card strategy">
+                                <div class="stat-explain-header">
+                                    <span class="stat-emoji">🧠</span>
+                                    <h4>Stratégie</h4>
+                                </div>
+                                <p>Permet d'augmenter votre attaque. Se calcule sur la différence entre votre stratégie et celle de votre adversaire, ajoutant un % de dégâts à votre attaque.</p>
+                            </div>
+                            <div class="stat-explain-card speed">
+                                <div class="stat-explain-header">
+                                    <span class="stat-emoji">⚡</span>
+                                    <h4>Vitesse</h4>
+                                </div>
+                                <p>Permet d'attaquer en premier (celui qui a le plus de vitesse). Plus votre vitesse est grande, plus vous avez de chances d'esquiver !</p>
+                            </div>
+                            <div class="stat-explain-card hp">
+                                <div class="stat-explain-header">
+                                    <span class="stat-emoji">❤️</span>
+                                    <h4>PV</h4>
+                                </div>
+                                <p>Vos points de vie correspondent à 5 fois le total de votre stat de PV.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Améliorer stats -->
+                    <div class="game-section">
+                        <h2><img src="./icons/niveau.png" alt="" class="title-icon"> Améliorer vos statistiques</h2>
+                        <p>Il existe plusieurs moyens d'améliorer les statistiques de votre carte :</p>
+                        <div class="improve-list">
+                            <div class="improve-item">
+                                <span class="improve-icon">🎲</span>
+                                <div class="improve-content">
+                                    <h4>Lancer des dés</h4>
+                                    <p>Les dés sont dégressifs : plus vous êtes fort, plus le dé que vous lancez est petit.</p>
+                                </div>
+                            </div>
+                            <div class="improve-item">
+                                <span class="improve-icon">⚔️</span>
+                                <div class="improve-content">
+                                    <h4>Gagner des combats</h4>
+                                    <p>Vaincre d'autres viewers vous octroie entre +1 et +3 sur une de vos statistiques.</p>
+                                </div>
+                            </div>
+                            <div class="improve-item">
+                                <span class="improve-icon">📦</span>
+                                <div class="improve-content">
+                                    <h4>Ouvrir des coffres</h4>
+                                    <p>Obtenez des armes augmentant votre puissance d'attaque.</p>
+                                </div>
+                            </div>
+                            <div class="improve-item">
+                                <span class="improve-icon">🙏</span>
+                                <div class="improve-content">
+                                    <h4>Faire des offrandes</h4>
+                                    <p>Peut vous permettre de tomber dans des situations vous permettant de gagner des statistiques.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Combats & Rangs -->
+                    <div class="game-section">
+                        <h2><img src="./icons/rang.png" alt="" class="title-icon"> Combats & Rangs</h2>
+                        <p>Les combats sont au cœur de l'expérience Orora. Combattez d'autres joueurs d'une faction adverse pour gagner en puissance et gravir les rangs !</p>
+                        <div class="ranks-display">
+                            <div class="rank-item scarlet">
+                                <img src="./ranks/Scarlet.png" alt="Scarlet" class="rank-img">
+                                <span>Scarlet</span>
+                            </div>
+                            <div class="rank-item maitre">
+                                <img src="./ranks/Maitre.png" alt="Maître" class="rank-img">
+                                <span>Maître</span>
+                            </div>
+                            <div class="rank-item or">
+                                <img src="./ranks/Or.png" alt="Or" class="rank-img">
+                                <span>Or</span>
+                            </div>
+                            <div class="rank-item argent">
+                                <img src="./ranks/Argent.png" alt="Argent" class="rank-img">
+                                <span>Argent</span>
+                            </div>
+                            <div class="rank-item bronze">
+                                <img src="./ranks/Bronze.png" alt="Bronze" class="rank-img">
+                                <span>Bronze</span>
+                            </div>
+                            <div class="rank-item fer">
+                                <img src="./ranks/Fer.png" alt="Fer" class="rank-img">
+                                <span>Fer</span>
+                            </div>
+                        </div>
+                        <p class="rank-info">Un système de rang est en place, permettant de progresser dans les classements. Plus vous remportez de combats, plus vous avancez dans les différents paliers de rang.</p>
+                    </div>
+
+                    <!-- Section Armes -->
+                    <div class="game-section">
+                        <h2><img src="./icons/armes.png" alt="" class="title-icon"> Les Armes</h2>
+                        <p>Ouvrez des coffres pour obtenir des armes et augmenter votre puissance d'attaque !</p>
+                        <div class="weapons-showcase" id="weaponsShowcase">
+                            <!-- Les armes seront générées par JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Section Titres -->
+                    <div class="game-section">
+                        <h2><img src="./icons/classement.png" alt="" class="title-icon"> Les Titres</h2>
+                        <p>Des titres exclusifs peuvent être débloqués en atteignant des objectifs spécifiques :</p>
+                        <div class="titles-list">
+                            <div class="title-requirement">
+                                <span class="title-icon">🎲</span>
+                                <span>Lancer un certain nombre de dés</span>
+                            </div>
+                            <div class="title-requirement">
+                                <span class="title-icon">🏆</span>
+                                <span>Gagner un certain nombre de combats</span>
+                            </div>
+                            <div class="title-requirement">
+                                <span class="title-icon">📦</span>
+                                <span>Ouvrir des coffres</span>
+                            </div>
+                            <div class="title-requirement">
+                                <span class="title-icon">📈</span>
+                                <span>Augmenter vos stats à un niveau exceptionnel</span>
+                            </div>
+                            <div class="title-requirement">
+                                <span class="title-icon">⭐</span>
+                                <span>Atteindre des rangs spécifiques</span>
+                            </div>
+                            <div class="title-requirement">
+                                <span class="title-icon">✨</span>
+                                <span>Et plein d'autres manières...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section XP -->
+                    <div class="game-section">
+                        <h2><img src="./icons/niveau.png" alt="" class="title-icon"> Expérience (XP)</h2>
+                        <p>Vous pourrez gagner de l'expérience en réalisant diverses actions :</p>
+                        <div class="xp-methods">
+                            <div class="xp-method">
+                                <span class="xp-icon">🎁</span>
+                                <span>Utiliser les points de chaîne</span>
+                            </div>
+                            <div class="xp-method">
+                                <span class="xp-icon">⚔️</span>
+                                <span>Combattre d'autres joueurs</span>
+                            </div>
+                            <div class="xp-method">
+                                <span class="xp-icon">💬</span>
+                                <span>Envoyer des messages dans le chat Twitch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Lore -->
+                    <div class="game-section lore-section">
+                        <h2><img src="./icons/lore.png" alt="" class="title-icon"> Le Lore</h2>
+                        <p>Découvrez l'histoire et l'univers d'Orora !</p>
+                        
+                        <!-- Vidéo de présentation -->
+                        <div class="lore-video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/BCpUL7h_y-U" 
+                                title="Orora - Présentation du Lore"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <!-- Livre interactif -->
+                        <h3 class="book-title">📖 Journal du Lore</h3>
+                        <div class="book-wrapper">
+                            <div class="book" id="loreBook">
+                                <div class="book-click-zone left" onclick="prevPage()"></div>
+                                <div class="book-click-zone right" onclick="nextPage()"></div>
+                                
+                                <div class="book-page active" data-page="1">
+                                    <img src="./lore/ORORA-01.png" alt="Couverture">
+                                </div>
+                                <div class="book-page hidden" data-page="2">
+                                    <img src="./lore/ORORA-02.png" alt="Page 2">
+                                </div>
+                                <div class="book-page hidden" data-page="3">
+                                    <img src="./lore/ORORA-03.png" alt="Page 3">
+                                </div>
+                                <div class="book-page hidden" data-page="4">
+                                    <img src="./lore/ORORA-04.png" alt="Page 4">
+                                </div>
+                                <div class="book-page hidden" data-page="5">
+                                    <img src="./lore/ORORA-05.png" alt="Page 5">
+                                </div>
+                                <div class="book-page hidden" data-page="6">
+                                    <img src="./lore/ORORA-06.png" alt="Page 6">
+                                </div>
+                                <div class="book-page hidden" data-page="7">
+                                    <img src="./lore/ORORA-07.png" alt="Page 7">
+                                </div>
+                                <div class="book-page hidden" data-page="8">
+                                    <img src="./lore/ORORA-08.png" alt="Page 8">
+                                </div>
+                                <div class="book-page hidden" data-page="9">
+                                    <img src="./lore/ORORA-09.png" alt="Page 9">
+                                </div>
+                                <div class="book-page hidden" data-page="10">
+                                    <img src="./lore/ORORA-10.png" alt="Page 10">
+                                </div>
+                                <div class="book-page hidden" data-page="11">
+                                    <img src="./lore/ORORA-11.png" alt="Page 11">
+                                </div>
+                                <div class="book-page hidden" data-page="12">
+                                    <img src="./lore/ORORA-12.png" alt="Page 12">
+                                </div>
+                                <div class="book-page hidden" data-page="13">
+                                    <img src="./lore/ORORA-13.png" alt="Page 13">
+                                </div>
+                                <div class="book-page hidden" data-page="14">
+                                    <img src="./lore/ORORA-14.png" alt="Page 14">
+                                </div>
+                                <div class="book-page hidden" data-page="15">
+                                    <img src="./lore/ORORA-15.png" alt="Page 15">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="book-controls">
+                            <button class="book-btn" id="prevBtn" onclick="prevPage()">◀ Précédent</button>
+                            <div class="page-indicator">
+                                <span id="currentPage">1</span> / <span id="totalPages">15</span>
+                            </div>
+                            <button class="book-btn" id="nextBtn" onclick="nextPage()">Suivant ▶</button>
+                        </div>
+                        
+                        <p class="book-instructions">💡 Cliquez sur les côtés du livre, utilisez les boutons, ou les flèches du clavier ← →</p>
+                    </div>
                 </div>
             </div>
 
@@ -2474,28 +3333,37 @@
 
                     <div class="project-section">
                         <h2><img src="./icons/communauté.png" alt="" class="title-icon"> Rejoignez la Communauté</h2>
-                        <div class="social-links-bar">
-                            <a href="https://twitch.tv/clydecreator" target="_blank" class="social-btn twitch">
-                                <img src="./icons/Twitch.png" alt="Twitch" class="social-btn-icon">
-                                <span>Twitch</span>
+                        <div class="social-blocks">
+                            <a href="https://twitch.tv/clydecreator" target="_blank" class="social-block twitch">
+                                <img src="./icons/Twitch.png" alt="Twitch" class="social-block-icon">
+                                <span class="social-block-name">Twitch</span>
                             </a>
-                            <a href="https://youtube.com/@clydecreator" target="_blank" class="social-btn youtube">
-                                <img src="./icons/Youtube.png" alt="YouTube" class="social-btn-icon">
-                                <span>YouTube</span>
+                            <a href="https://youtube.com/@clydecreator" target="_blank" class="social-block youtube">
+                                <img src="./icons/Youtube.png" alt="YouTube" class="social-block-icon">
+                                <span class="social-block-name">YouTube</span>
                             </a>
-                            <a href="https://tiktok.com/@clydecreator" target="_blank" class="social-btn tiktok">
-                                <img src="./icons/Tiktok.png" alt="TikTok" class="social-btn-icon">
-                                <span>TikTok</span>
+                            <a href="https://tiktok.com/@clydecreator" target="_blank" class="social-block tiktok">
+                                <img src="./icons/Tiktok.png" alt="TikTok" class="social-block-icon">
+                                <span class="social-block-name">TikTok</span>
                             </a>
-                            <a href="https://instagram.com/clydecreator" target="_blank" class="social-btn instagram">
-                                <img src="./icons/Instagram.png" alt="Instagram" class="social-btn-icon">
-                                <span>Instagram</span>
+                            <a href="https://instagram.com/clydecreator" target="_blank" class="social-block instagram">
+                                <img src="./icons/Instagram.png" alt="Instagram" class="social-block-icon">
+                                <span class="social-block-name">Instagram</span>
                             </a>
-                            <a href="https://discord.gg/NPH4G7wk2F" target="_blank" class="social-btn discord">
-                                <img src="./icons/Discord.png" alt="Discord" class="social-btn-icon">
-                                <span>Discord</span>
+                            <a href="https://discord.gg/NPH4G7wk2F" target="_blank" class="social-block discord">
+                                <img src="./icons/Discord.png" alt="Discord" class="social-block-icon">
+                                <span class="social-block-name">Discord</span>
                             </a>
                         </div>
+                    </div>
+
+                    <div class="project-section">
+                        <h2><img src="./icons/personnages.png" alt="" class="title-icon"> La Boutique TCG</h2>
+                        <p>À la fin de chaque saison, les viewers les plus présents et actifs ont l'honneur de voir leur carte intégrée dans le <strong>TCG physique d'ORORA</strong> !</p>
+                        <p>Des boosters sont créés et disponibles à la vente dans la boutique officielle. Collectionnez les cartes de vos viewers préférés !</p>
+                        <a href="https://www.clydetcg.fr/" target="_blank" class="shop-btn">
+                            <span>🛒</span> Accéder à la Boutique
+                        </a>
                     </div>
 
                     <div class="install-section">
@@ -2924,14 +3792,25 @@
             
             const rankIcon = rankIcons[character.rang] || "";
             
+            // Armes de Noël 2025
+            const christmasWeaponsEquipped = [
+                'Christmas Star Shuriken',
+                'Candy Blaze Shooter',
+                'Polar Eagle',
+                'Revol-Vert',
+                'BazooKado'
+            ];
+            
             let equippedWeaponHTML = '';
             if (character.armeAffiche && character.armeAffiche !== '0.000000' && character.armeAffiche !== '') {
                 const weapon = getWeaponInfo(character.armeAffiche);
                 if (weapon) {
+                    const isChristmasEquipped = christmasWeaponsEquipped.includes(weapon.name);
                     equippedWeaponHTML = `
                         <div class="equipped-weapon-section">
                             <h3 class="section-title"><img src="./icons/armeequipee.png" alt="" class="section-icon"> Arme équipée</h3>
                             <div class="equipped-weapon-card ${weapon.rarity}">
+                                ${isChristmasEquipped ? '<span class="weapon-event-badge">🎄 Noël 2025</span>' : ''}
                                 <img src="./weapons/${weapon.name}.png" alt="${weapon.name}" class="equipped-weapon-image">
                                 <div class="equipped-weapon-info">
                                     <div class="equipped-weapon-name">${weapon.name}</div>
@@ -2999,16 +3878,28 @@
             const playerWeapons = getPlayerWeapons(character.name);
             const weaponsGrid = document.getElementById('weaponsGrid');
             
+            // Armes de Noël 2025
+            const christmasWeapons = [
+                'Christmas Star Shuriken',
+                'Candy Blaze Shooter',
+                'Polar Eagle',
+                'Revol-Vert',
+                'BazooKado'
+            ];
+            
             if (playerWeapons.length > 0) {
-                weaponsGrid.innerHTML = playerWeapons.map(weapon => `
+                weaponsGrid.innerHTML = playerWeapons.map(weapon => {
+                    const isChristmas = christmasWeapons.includes(weapon.name);
+                    return `
                     <div class="weapon-card ${weapon.rarity}">
+                        ${isChristmas ? '<span class="weapon-event-badge">🎄 Noël 2025</span>' : ''}
                         <img src="./weapons/${weapon.name}.png" alt="${weapon.name}" class="weapon-image">
                         <div class="weapon-info">
                             <div class="weapon-name">${weapon.name}</div>
                             <div class="weapon-rarity" style="background: ${weapon.color};">${weapon.label}</div>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
             } else {
                 weaponsGrid.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Aucune arme débloquée</p>';
             }
@@ -3300,6 +4191,7 @@
                 document.getElementById('mainContent').style.display = 'block';
                 
                 displayCharacters(allCharacters);
+                displayWeaponsShowcase();
                 
                 console.log(`✅ ${allCharacters.length} personnages chargés`);
                 console.log(`✅ Armes chargées pour ${Object.keys(weaponsData).length} raretés`);
@@ -3314,6 +4206,58 @@
                     </div>
                 `;
             }
+        }
+
+        // Afficher les armes dans la page Le Jeu
+        function displayWeaponsShowcase() {
+            const container = document.getElementById('weaponsShowcase');
+            if (!container || !weaponsData) return;
+
+            // Armes de Noël 2025
+            const christmasWeapons = [
+                'Christmas Star Shuriken',
+                'Candy Blaze Shooter',
+                'Polar Eagle',
+                'Revol-Vert',
+                'BazooKado'
+            ];
+
+            const rarityOrder = [
+                { key: 'legendaire', label: 'Légendaire', class: 'legendaire' },
+                { key: 'epique', label: 'Épique', class: 'epique' },
+                { key: 'rare', label: 'Rare', class: 'rare' }
+            ];
+
+            let html = '';
+
+            rarityOrder.forEach(rarity => {
+                const weapons = weaponsData[rarity.key];
+                if (!weapons || weapons.length === 0) return;
+
+                html += `
+                    <div class="weapons-rarity-section">
+                        <h3 class="weapons-rarity-title ${rarity.class}">${rarity.label}</h3>
+                        <div class="weapons-rarity-grid">
+                `;
+
+                weapons.forEach(weaponName => {
+                    const isChristmas = christmasWeapons.includes(weaponName);
+                    html += `
+                        <div class="weapon-showcase-card ${rarity.class}">
+                            ${isChristmas ? '<span class="weapon-event-badge">🎄 Noël 2025</span>' : ''}
+                            <img src="./weapons/${weaponName}.png" alt="${weaponName}" class="weapon-showcase-img" onerror="this.style.opacity='0.3'">
+                            <div class="weapon-showcase-name">${weaponName}</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
         }
 
         window.showCharacterDetail = showCharacterDetail;
