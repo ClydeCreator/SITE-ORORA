@@ -863,6 +863,44 @@
             font-size: 1.2em;
         }
 
+        /* Page Classement - Recherche */
+        .ranking-search-container {
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+            padding: 0 15px;
+        }
+
+        .ranking-search {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 12px 20px 12px 50px;
+            position: relative;
+        }
+
+        .ranking-search .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+        }
+
+        .ranking-search input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .ranking-search input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
         /* Page Classement - Filtres style menu */
         .filters-container {
             display: flex;
@@ -1433,10 +1471,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .feature-emoji {
-            font-size: 2.5em;
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
             display: block;
-            margin-bottom: 10px;
+            margin: 0 auto 10px auto;
         }
 
         .feature-card h4 {
@@ -1531,6 +1571,13 @@
             font-size: 1.8em;
             min-width: 40px;
             text-align: center;
+        }
+
+        .improve-icon-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            min-width: 40px;
         }
 
         .improve-content h4 {
@@ -1711,6 +1758,12 @@
             font-size: 1.3em;
         }
 
+        .title-req-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
         .title-requirement span:last-child {
             color: #ccc;
             font-size: 0.95em;
@@ -1737,6 +1790,12 @@
 
         .xp-icon {
             font-size: 1.3em;
+        }
+
+        .xp-method-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
         }
 
         .xp-method span:last-child {
@@ -1782,8 +1841,9 @@
                 padding: 15px 10px;
             }
 
-            .feature-emoji {
-                font-size: 2em;
+            .feature-icon {
+                width: 40px;
+                height: 40px;
             }
 
             .feature-card h4 {
@@ -1820,6 +1880,12 @@
             .improve-icon {
                 font-size: 1.5em;
                 min-width: 35px;
+            }
+
+            .improve-icon-img {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
             }
 
             .improve-content h4 {
@@ -1879,6 +1945,11 @@
                 padding: 10px 12px;
             }
 
+            .title-req-icon {
+                width: 22px;
+                height: 22px;
+            }
+
             .xp-methods {
                 flex-direction: column;
             }
@@ -1886,18 +1957,27 @@
             .xp-method {
                 justify-content: center;
             }
+
+            .xp-method-icon {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         /* Page Projet */
         .project-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .project-section {
-            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .project-section h2 {
@@ -2151,7 +2231,7 @@
             background: linear-gradient(135deg, rgba(243, 156, 18, 0.3), rgba(243, 156, 18, 0.1));
             border: 2px solid rgba(243, 156, 18, 0.5);
             border-radius: 30px;
-            color: #f39c12;
+            color: #ffffff;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.3em;
             letter-spacing: 1px;
@@ -2163,6 +2243,7 @@
             transform: translateY(-3px);
             background: linear-gradient(135deg, rgba(243, 156, 18, 0.5), rgba(243, 156, 18, 0.2));
             box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+            color: #ffffff;
         }
 
         /* Anciens styles social-links (gardés pour compatibilité) */
@@ -2242,7 +2323,6 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 30px;
-            margin-top: 40px;
             text-align: center;
         }
 
@@ -2340,13 +2420,13 @@
             }
 
             header {
-                padding: 20px 10px 10px;
-                margin-bottom: 20px;
+                padding: 10px 10px 0;
+                margin-bottom: 5px;
             }
 
             .logo {
                 max-width: 280px;
-                margin-bottom: 20px;
+                margin-bottom: 5px;
             }
 
             /* Menu mobile - icônes avec texte en dessous */
@@ -2354,7 +2434,7 @@
                 display: flex;
                 justify-content: center;
                 gap: 0;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 padding: 8px 10px;
                 border-radius: 20px;
                 width: 100%;
@@ -2452,6 +2532,19 @@
                 height: 18px;
             }
 
+            /* Recherche classement mobile */
+            .ranking-search-container {
+                margin-bottom: 15px;
+            }
+
+            .ranking-search {
+                padding: 10px 15px 10px 45px;
+            }
+
+            .ranking-search input {
+                font-size: 0.9em;
+            }
+
             /* Filtres mobile */
             .filters-container {
                 gap: 15px;
@@ -2531,7 +2624,7 @@
             }
 
             .ranking-stats {
-                gap: 5px;
+                gap: 8px;
             }
 
             .ranking-stat.hide-mobile {
@@ -2540,12 +2633,24 @@
 
             .ranking-stat.mobile-stat {
                 display: flex !important;
-                flex-direction: row;
+                flex-direction: column;
                 align-items: center;
-                gap: 5px;
+                gap: 3px;
                 font-family: 'Bebas Neue', sans-serif;
-                font-size: 1.2em;
+                font-size: 0.95em;
                 letter-spacing: 1px;
+                min-width: 60px;
+            }
+
+            .mobile-stat-label {
+                font-size: 0.65em;
+                color: rgba(255, 255, 255, 0.7);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .mobile-stat.mobile-rank .mobile-stat-label {
+                font-size: 0.7em;
             }
 
             .ranking-stat .rank-icon-small {
@@ -2681,6 +2786,18 @@
             .equipped-weapon-card {
                 padding: 10px;
                 gap: 12px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .equipped-weapon-card .weapon-event-badge {
+                position: static;
+                display: inline-block;
+                font-size: 0.65em;
+                padding: 3px 8px;
+                border-radius: 10px;
+                margin-top: 5px;
+                order: 10;
             }
 
             .equipped-weapon-image {
@@ -2713,6 +2830,14 @@
             .weapon-card {
                 padding: 6px;
                 border-radius: 8px;
+            }
+
+            .weapon-card .weapon-event-badge {
+                font-size: 0.5em;
+                padding: 2px 4px;
+                top: 3px;
+                right: 3px;
+                border-radius: 5px;
             }
 
             .weapon-image {
@@ -2766,13 +2891,13 @@
 
             /* Page Projet Mobile */
             .project-container {
-                padding: 15px;
-                border-radius: 10px;
-                overflow: hidden;
+                gap: 15px;
+                padding: 0 10px;
             }
 
             .project-section {
-                margin-bottom: 25px;
+                padding: 20px 15px;
+                border-radius: 12px;
             }
 
             .project-section h2 {
@@ -2835,9 +2960,6 @@
             /* Section Installation Mobile */
             .install-section {
                 padding: 15px;
-                margin-top: 25px;
-                margin-left: 0;
-                margin-right: 0;
                 overflow: hidden;
                 box-sizing: border-box;
             }
@@ -3015,6 +3137,12 @@
 
             <!-- PAGE CLASSEMENT -->
             <div id="page-classement" class="page">
+                <div class="ranking-search-container">
+                    <div class="search-box ranking-search">
+                        <img src="./icons/search.png" alt="" class="search-icon">
+                        <input type="text" id="rankingSearchInput" placeholder="Rechercher un personnage...">
+                    </div>
+                </div>
                 <div class="filters-container">
                     <div class="filter-section">
                         <span class="filter-section-title">Factions</span>
@@ -3067,22 +3195,22 @@
                         <p>Orora est un <strong>TCG interactif</strong> où chaque carte représente un viewer sur Twitch. Vous pouvez créer votre propre carte en décrivant le personnage que vous souhaitez incarner !</p>
                         <div class="game-features">
                             <div class="feature-card">
-                                <span class="feature-emoji">🎴</span>
+                                <img src="./icons/carte.png" alt="" class="feature-icon">
                                 <h4>Créez votre carte</h4>
                                 <p>Décrivez votre personnage et obtenez votre carte unique</p>
                             </div>
                             <div class="feature-card">
-                                <span class="feature-emoji">🎲</span>
+                                <img src="./icons/statistiques.png" alt="" class="feature-icon">
                                 <h4>Lancez des dés</h4>
                                 <p>Augmentez vos statistiques avec des lancers de dés</p>
                             </div>
                             <div class="feature-card">
-                                <span class="feature-emoji">📦</span>
+                                <img src="./icons/coffre.png" alt="" class="feature-icon">
                                 <h4>Ouvrez des coffres</h4>
                                 <p>Gagnez des armes pour augmenter votre puissance</p>
                             </div>
                             <div class="feature-card">
-                                <span class="feature-emoji">💬</span>
+                                <img src="./icons/xp.png" alt="" class="feature-icon">
                                 <h4>Gagnez de l'XP</h4>
                                 <p>Jouez et discutez pour monter en niveau</p>
                             </div>
@@ -3138,28 +3266,28 @@
                         <p>Il existe plusieurs moyens d'améliorer les statistiques de votre carte :</p>
                         <div class="improve-list">
                             <div class="improve-item">
-                                <span class="improve-icon">🎲</span>
+                                <img src="./icons/statistiques.png" alt="" class="improve-icon-img">
                                 <div class="improve-content">
                                     <h4>Lancer des dés</h4>
                                     <p>Les dés sont dégressifs : plus vous êtes fort, plus le dé que vous lancez est petit.</p>
                                 </div>
                             </div>
                             <div class="improve-item">
-                                <span class="improve-icon">⚔️</span>
+                                <img src="./icons/combat.png" alt="" class="improve-icon-img">
                                 <div class="improve-content">
                                     <h4>Gagner des combats</h4>
                                     <p>Vaincre d'autres viewers vous octroie entre +1 et +3 sur une de vos statistiques.</p>
                                 </div>
                             </div>
                             <div class="improve-item">
-                                <span class="improve-icon">📦</span>
+                                <img src="./icons/coffre.png" alt="" class="improve-icon-img">
                                 <div class="improve-content">
                                     <h4>Ouvrir des coffres</h4>
                                     <p>Obtenez des armes augmentant votre puissance d'attaque.</p>
                                 </div>
                             </div>
                             <div class="improve-item">
-                                <span class="improve-icon">🙏</span>
+                                <img src="./icons/offrande.png" alt="" class="improve-icon-img">
                                 <div class="improve-content">
                                     <h4>Faire des offrandes</h4>
                                     <p>Peut vous permettre de tomber dans des situations vous permettant de gagner des statistiques.</p>
@@ -3216,27 +3344,27 @@
                         <p>Des titres exclusifs peuvent être débloqués en atteignant des objectifs spécifiques :</p>
                         <div class="titles-list">
                             <div class="title-requirement">
-                                <span class="title-icon">🎲</span>
+                                <img src="./icons/statistiques.png" alt="" class="title-req-icon">
                                 <span>Lancer un certain nombre de dés</span>
                             </div>
                             <div class="title-requirement">
-                                <span class="title-icon">🏆</span>
+                                <img src="./icons/combat.png" alt="" class="title-req-icon">
                                 <span>Gagner un certain nombre de combats</span>
                             </div>
                             <div class="title-requirement">
-                                <span class="title-icon">📦</span>
+                                <img src="./icons/coffre.png" alt="" class="title-req-icon">
                                 <span>Ouvrir des coffres</span>
                             </div>
                             <div class="title-requirement">
-                                <span class="title-icon">📈</span>
+                                <img src="./icons/statistiques.png" alt="" class="title-req-icon">
                                 <span>Augmenter vos stats à un niveau exceptionnel</span>
                             </div>
                             <div class="title-requirement">
-                                <span class="title-icon">⭐</span>
+                                <img src="./icons/rank.png" alt="" class="title-req-icon">
                                 <span>Atteindre des rangs spécifiques</span>
                             </div>
                             <div class="title-requirement">
-                                <span class="title-icon">✨</span>
+                                <img src="./icons/xp.png" alt="" class="title-req-icon">
                                 <span>Et plein d'autres manières...</span>
                             </div>
                         </div>
@@ -3248,15 +3376,15 @@
                         <p>Vous pourrez gagner de l'expérience en réalisant diverses actions :</p>
                         <div class="xp-methods">
                             <div class="xp-method">
-                                <span class="xp-icon">🎁</span>
+                                <img src="./icons/xp.png" alt="" class="xp-method-icon">
                                 <span>Utiliser les points de chaîne</span>
                             </div>
                             <div class="xp-method">
-                                <span class="xp-icon">⚔️</span>
+                                <img src="./icons/combat.png" alt="" class="xp-method-icon">
                                 <span>Combattre d'autres joueurs</span>
                             </div>
                             <div class="xp-method">
-                                <span class="xp-icon">💬</span>
+                                <img src="./icons/xp.png" alt="" class="xp-method-icon">
                                 <span>Envoyer des messages dans le chat Twitch</span>
                             </div>
                         </div>
@@ -4060,6 +4188,7 @@
         // CLASSEMENT - Variables pour les filtres
         let activeFactions = ['Alliance', 'Rébellion', 'Tréfonds'];
         let currentSort = 'power';
+        let rankingSearchTerm = '';
 
         function toggleFaction(faction) {
             const index = activeFactions.indexOf(faction);
@@ -4105,6 +4234,11 @@
 
             // Filtrer par factions actives
             filtered = filtered.filter(c => activeFactions.includes(c.faction));
+
+            // Filtrer par recherche
+            if (rankingSearchTerm) {
+                filtered = filtered.filter(c => c.name.toLowerCase().includes(rankingSearchTerm));
+            }
 
             // Ordre des rangs du meilleur au moins bon
             const rankOrder = {
@@ -4174,10 +4308,17 @@
                                 <span class="ranking-stat-label">Puissance</span>
                                 <span class="ranking-stat-value" style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>
                             </div>
-                            <div class="ranking-stat mobile-stat">
-                                ${currentSort === 'level' ? `<span class="${getLevelClass(char.niveau)}">${char.niveau}</span>` : ''}
-                                ${currentSort === 'rank' ? `${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small">` : ''}<span class="${getRankClass(char.rang)}">${char.mmr}</span>` : ''}
-                                ${currentSort === 'power' ? `<span style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>` : ''}
+                            <div class="ranking-stat mobile-stat mobile-power">
+                                <span class="mobile-stat-label">Puissance</span>
+                                <span style="color: #f39c12;">${char.pointsTotaux.toLocaleString()}</span>
+                            </div>
+                            <div class="ranking-stat mobile-stat mobile-level">
+                                <span class="mobile-stat-label">Niveau</span>
+                                <span class="${getLevelClass(char.niveau)}">${char.niveau}</span>
+                            </div>
+                            <div class="ranking-stat mobile-stat mobile-rank">
+                                <span class="mobile-stat-label ${getRankClass(char.rang)}">${char.rang}</span>
+                                ${rankIcon ? `<img src="${rankIcon}" class="rank-icon-small">` : ''}
                             </div>
                         </div>
                     </div>
@@ -4190,7 +4331,7 @@
         window.toggleFaction = toggleFaction;
         window.setSort = setSort;
 
-        // Recherche
+        // Recherche page Cartes
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase().trim();
             
@@ -4201,6 +4342,12 @@
             
             const filtered = allCharacters.filter(char => char.name.toLowerCase().includes(searchTerm));
             displayCharacters(filtered);
+        });
+
+        // Recherche page Classement
+        document.getElementById('rankingSearchInput').addEventListener('input', function(e) {
+            rankingSearchTerm = e.target.value.toLowerCase().trim();
+            updateRankingTable();
         });
 
         // Initialisation
