@@ -711,11 +711,28 @@
         .equipped-weapon-card.legendaire {
             box-shadow: 0 0 30px rgba(243, 156, 18, 0.6);
             border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .equipped-weapon-card.epique {
+            border-color: rgba(155, 89, 182, 0.6);
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        .equipped-weapon-card.rare {
+            border-color: rgba(52, 152, 219, 0.6);
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .equipped-weapon-card.commune {
+            border-color: rgba(136, 136, 136, 0.4);
+            background: rgba(136, 136, 136, 0.08);
         }
 
         .equipped-weapon-card.master {
             animation: rainbow-glow 3s infinite;
             border: 2px solid;
+            background: rgba(255, 20, 147, 0.1);
         }
 
         @keyframes rainbow-glow {
@@ -805,11 +822,28 @@
         .weapon-card.legendaire {
             box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
             border-color: #f39c12;
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .weapon-card.epique {
+            border-color: rgba(155, 89, 182, 0.6);
+            background: rgba(155, 89, 182, 0.1);
+        }
+
+        .weapon-card.rare {
+            border-color: rgba(52, 152, 219, 0.6);
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .weapon-card.commune {
+            border-color: rgba(136, 136, 136, 0.4);
+            background: rgba(136, 136, 136, 0.08);
         }
 
         .weapon-card.master {
             animation: rainbow-glow 3s infinite;
             border: 2px solid;
+            background: rgba(255, 20, 147, 0.1);
         }
 
         .weapon-image {
@@ -1162,17 +1196,22 @@
 
         .ranking-stat-value {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4em;
+            font-size: 2.1em;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 8px;
         }
 
         .ranking-stat-value.rank-display {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+        }
+
+        .ranking-stat .rank-icon-small {
+            width: 36px;
+            height: 36px;
         }
 
         .ranking-stat.mobile-stat {
@@ -1503,9 +1542,10 @@
         .stat-explain-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
-            padding: 15px;
+            padding: 18px 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .stat-explain-card:hover {
@@ -1520,18 +1560,19 @@
 
         .stat-explain-header {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 5px;
+            margin-bottom: 12px;
         }
 
         .stat-emoji {
-            font-size: 1.5em;
+            font-size: 2.5em;
         }
 
         .stat-explain-card h4 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1em;
+            font-size: 1.4em;
             margin: 0;
             letter-spacing: 1px;
         }
@@ -1547,6 +1588,7 @@
             color: #aaa;
             margin: 0;
             line-height: 1.5;
+            text-align: center;
         }
 
         /* Improve list */
@@ -1696,12 +1738,25 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .weapon-showcase-card.commune { border-color: rgba(136, 136, 136, 0.4); }
-        .weapon-showcase-card.rare { border-color: rgba(52, 152, 219, 0.4); }
-        .weapon-showcase-card.epique { border-color: rgba(155, 89, 182, 0.4); }
-        .weapon-showcase-card.legendaire { border-color: rgba(243, 156, 18, 0.4); }
+        .weapon-showcase-card.commune { 
+            border-color: rgba(136, 136, 136, 0.4); 
+            background: rgba(136, 136, 136, 0.08);
+        }
+        .weapon-showcase-card.rare { 
+            border-color: rgba(52, 152, 219, 0.4); 
+            background: rgba(52, 152, 219, 0.1);
+        }
+        .weapon-showcase-card.epique { 
+            border-color: rgba(155, 89, 182, 0.4); 
+            background: rgba(155, 89, 182, 0.1);
+        }
+        .weapon-showcase-card.legendaire { 
+            border-color: rgba(243, 156, 18, 0.4); 
+            background: rgba(243, 156, 18, 0.1);
+        }
         .weapon-showcase-card.master { 
             border-color: rgba(255, 20, 147, 0.4); 
+            background: rgba(255, 20, 147, 0.1);
             animation: rainbow-border 3s infinite;
         }
 
@@ -1864,13 +1919,27 @@
                 flex-direction: row;
                 align-items: flex-start;
                 gap: 12px;
+                text-align: left;
+            }
+
+            .stat-explain-card p {
+                text-align: left;
             }
 
             .stat-explain-header {
                 flex-direction: column;
                 align-items: center;
-                min-width: 60px;
+                min-width: 70px;
                 margin-bottom: 0;
+            }
+
+            .stat-explain-header .stat-emoji {
+                font-size: 2em;
+            }
+
+            .stat-explain-header h4 {
+                font-size: 1.1em;
+                text-align: center;
             }
 
             .improve-item {
@@ -2633,7 +2702,7 @@
             }
 
             .ranking-stats {
-                gap: 4px;
+                gap: 6px;
                 flex-shrink: 0;
             }
 
@@ -2645,27 +2714,27 @@
                 display: flex !important;
                 flex-direction: column;
                 align-items: center;
-                gap: 2px;
+                gap: 3px;
                 font-family: 'Bebas Neue', sans-serif;
-                font-size: 0.85em;
+                font-size: 1.5em;
                 letter-spacing: 0.5px;
-                min-width: 45px;
+                min-width: 50px;
             }
 
             .mobile-stat-label {
-                font-size: 0.55em;
+                font-size: 0.4em;
                 color: rgba(255, 255, 255, 0.7);
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
 
             .mobile-stat.mobile-rank .mobile-stat-label {
-                font-size: 0.6em;
+                font-size: 0.45em;
             }
 
             .ranking-stat .rank-icon-small {
-                width: 16px;
-                height: 16px;
+                width: 28px;
+                height: 28px;
             }
 
             /* Croix de fermeture mobile */
@@ -3207,7 +3276,7 @@
                                 <p>Décrivez votre personnage et obtenez votre carte unique</p>
                             </div>
                             <div class="feature-card">
-                                <img src="./icons/statistiques.png" alt="" class="feature-icon">
+                                <img src="./icons/dés.png" alt="" class="feature-icon">
                                 <h4>Lancez des dés</h4>
                                 <p>Augmentez vos statistiques avec des lancers de dés</p>
                             </div>
@@ -3273,7 +3342,7 @@
                         <p>Il existe plusieurs moyens d'améliorer les statistiques de votre carte :</p>
                         <div class="improve-list">
                             <div class="improve-item">
-                                <img src="./icons/statistiques.png" alt="" class="improve-icon-img">
+                                <img src="./icons/dés.png" alt="" class="improve-icon-img">
                                 <div class="improve-content">
                                     <h4>Lancer des dés</h4>
                                     <p>Les dés sont dégressifs : plus vous êtes fort, plus le dé que vous lancez est petit.</p>
@@ -3351,7 +3420,7 @@
                         <p>Des titres exclusifs peuvent être débloqués en atteignant des objectifs spécifiques :</p>
                         <div class="titles-list">
                             <div class="title-requirement">
-                                <img src="./icons/statistiques.png" alt="" class="title-req-icon">
+                                <img src="./icons/dés.png" alt="" class="title-req-icon">
                                 <span>Lancer un certain nombre de dés</span>
                             </div>
                             <div class="title-requirement">
@@ -3383,7 +3452,7 @@
                         <p>Vous pourrez gagner de l'expérience en réalisant diverses actions :</p>
                         <div class="xp-methods">
                             <div class="xp-method">
-                                <img src="./icons/xp.png" alt="" class="xp-method-icon">
+                                <img src="./icons/offrande.png" alt="" class="xp-method-icon">
                                 <span>Utiliser les points de chaîne</span>
                             </div>
                             <div class="xp-method">
@@ -3391,7 +3460,7 @@
                                 <span>Combattre d'autres joueurs</span>
                             </div>
                             <div class="xp-method">
-                                <img src="./icons/xp.png" alt="" class="xp-method-icon">
+                                <img src="./icons/message.png" alt="" class="xp-method-icon">
                                 <span>Envoyer des messages dans le chat Twitch</span>
                             </div>
                         </div>
