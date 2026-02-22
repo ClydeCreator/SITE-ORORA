@@ -370,6 +370,80 @@
             background: #2ecc71;
         }
 
+        .no-card-section {
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+
+        .no-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5em;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 16px;
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .no-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+        }
+
+        .no-card-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .no-card-row:hover {
+            background: rgba(255,255,255,0.09);
+        }
+
+        .no-card-row.alliance { border-left: 3px solid #3498db; }
+        .no-card-row.rebellion { border-left: 3px solid #e74c3c; }
+        .no-card-row.trefonds { border-left: 3px solid #2ecc71; }
+
+        .no-card-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .no-card-name {
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            font-size: 1.05em;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .no-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82em;
+            color: #999;
+        }
+
+        .no-card-rank {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
         .character-detail {
             display: none;
             background: rgba(255, 255, 255, 0.05);
@@ -428,11 +502,12 @@
             width: 300px;
             height: 400px;
             border-radius: 10px;
-            object-fit: cover;
+            object-fit: contain;
             border: 3px solid;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             cursor: pointer;
             transition: transform 0.3s ease;
+            display: block;
         }
 
         .card-image:hover {
@@ -586,6 +661,115 @@
 
         .card-image.trefonds {
             border-color: #2ecc71;
+        }
+
+        /* Illustration de la carte */
+        .card-illustration {
+            font-size: 1.1em;
+            color: #888;
+            margin: 0 0 10px;
+        }
+
+        /* Carousel multi-cartes */
+        .card-carousel {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .carousel-track .card-image {
+            flex: 0 0 300px;
+            width: 300px;
+            height: 400px;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            object-fit: cover;
+        }
+
+        .carousel-track .card-image:first-child {
+            border-radius: 7px 0 0 7px;
+        }
+
+        .carousel-track .card-image:last-child {
+            border-radius: 0 7px 7px 0;
+        }
+
+        .carousel-track .card-image:only-child {
+            border-radius: 7px;
+        }
+
+        /* Ombre/bordure sur le wrapper quand il y a un carousel */
+        .carousel-wrapper.multi {
+            border: 3px solid;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-wrapper.multi.alliance { border-color: #3498db; }
+        .carousel-wrapper.multi.rebellion { border-color: #e74c3c; }
+        .carousel-wrapper.multi.trefonds { border-color: #2ecc71; }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            font-size: 2em;
+            width: 36px;
+            height: 56px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .carousel-btn-left  { left: 8px; }
+        .carousel-btn-right { right: 8px; }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .carousel-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            background: #fff;
+            transform: scale(1.3);
         }
 
         .detail-info {
@@ -2767,10 +2951,41 @@
             }
 
             .card-image {
-                width: 120px;
-                height: 160px;
-                min-width: 120px;
+                width: 160px;
+                height: 213px;
+                min-width: 160px;
                 border-radius: 8px;
+            }
+
+            .card-carousel {
+                width: 160px;
+                flex-shrink: 0;
+            }
+
+            .carousel-wrapper {
+                width: 160px;
+                height: 213px;
+            }
+
+            .carousel-track .card-image {
+                flex: 0 0 160px;
+                width: 160px;
+                height: 213px;
+            }
+
+            .carousel-btn {
+                width: 22px;
+                height: 36px;
+                font-size: 1.1em;
+                background: rgba(0, 0, 0, 0.55);
+            }
+
+            .carousel-btn-left  { left: 4px; }
+            .carousel-btn-right { right: 4px; }
+
+            .card-illustration {
+                font-size: 0.85em;
+                margin: 0 0 6px;
             }
 
             .detail-info {
@@ -3109,9 +3324,24 @@
 
             /* Détail personnage très petit écran */
             .card-image {
-                width: 100px;
-                height: 133px;
-                min-width: 100px;
+                width: 110px;
+                height: 147px;
+                min-width: 110px;
+            }
+
+            .card-carousel {
+                width: 110px;
+            }
+
+            .carousel-wrapper {
+                width: 110px;
+                height: 147px;
+            }
+
+            .carousel-track .card-image {
+                flex: 0 0 110px;
+                width: 110px;
+                height: 147px;
             }
 
             .detail-info h2 {
@@ -3802,27 +4032,30 @@
                 const data = await loadINI(faction.file);
                 
                 for (const [name, stats] of Object.entries(data)) {
-                    // Vérifier si la carte est créée
-                    if (stats['zz CreationCarte'] === 'Faite') {
-                        characters.push({
-                            name: name,
-                            faction: faction.name,
-                            factionClass: faction.class,
-                            niveau: parseInt(stats.Niveau) || 0,
-                            attaque: parseInt(stats.Attaque) || 0,
-                            defense: parseInt(stats.Defense) || 0,
-                            strategie: parseInt(stats.Strategie) || 0,
-                            vitesse: parseInt(stats.Vitesse) || 0,
-                            pv: parseInt(stats.PV) || 0,
-                            rang: stats.Rang || 'Non classé',
-                            titreAffiche: stats.TitreAffiche && stats.TitreAffiche !== '0.000000' ? stats.TitreAffiche : 'Sans titre',
-                            xp: parseInt(stats.XP) || 0,
-                            pointsTotaux: parseInt(stats.PointsTotaux) || 0,
-                            mmr: parseInt(stats.MMR) || 0,
-                            armeAffiche: stats.ArmeAffiche && stats.ArmeAffiche !== '0.000000' ? stats.ArmeAffiche : '',
-                            description: stats['zz Carte'] && stats['zz Carte'] !== '0.000000' ? stats['zz Carte'] : 'Aucune description'
-                        });
-                    }
+                    // Ignorer les entrées sans niveau (pas de vrai personnage)
+                    if (!stats.Niveau) continue;
+
+                    const hasCard = stats['zz CreationCarte'] === 'Faite';
+                    characters.push({
+                        name: name,
+                        faction: faction.name,
+                        factionClass: faction.class,
+                        hasCard: hasCard,
+                        niveau: parseInt(stats.Niveau) || 0,
+                        attaque: parseInt(stats.Attaque) || 0,
+                        defense: parseInt(stats.Defense) || 0,
+                        strategie: parseInt(stats.Strategie) || 0,
+                        vitesse: parseInt(stats.Vitesse) || 0,
+                        pv: parseInt(stats.PV) || 0,
+                        rang: stats.Rang || 'Non classé',
+                        titreAffiche: stats.TitreAffiche && stats.TitreAffiche !== '0.000000' ? stats.TitreAffiche : 'Sans titre',
+                        xp: parseInt(stats.XP) || 0,
+                        pointsTotaux: parseInt(stats.PointsTotaux) || 0,
+                        mmr: parseInt(stats.MMR) || 0,
+                        armeAffiche: stats.ArmeAffiche && stats.ArmeAffiche !== '0.000000' ? stats.ArmeAffiche : '',
+                        description: stats['zz Carte'] && stats['zz Carte'] !== '0.000000' ? stats['zz Carte'] : 'Aucune description',
+                        illustration: (stats['Illustration'] || stats['illustration'] || stats['ILLUSTRATION'] || '')
+                    });
                 }
             }
 
@@ -3923,40 +4156,88 @@
             }
         }
 
-        // Afficher la grille de personnages
+        // Afficher la grille de personnages + liste sans carte
         function displayCharacters(characters) {
             const grid = document.getElementById('characterGrid');
             const noResults = document.getElementById('noResults');
-            
+            let noCardList = document.getElementById('noCardList');
+
+            // Créer le conteneur de liste si absent
+            if (!noCardList) {
+                noCardList = document.createElement('div');
+                noCardList.id = 'noCardList';
+                grid.parentNode.insertBefore(noCardList, grid.nextSibling);
+            }
+
+            const withCard = characters.filter(c => c.hasCard);
+            const noCard   = characters.filter(c => !c.hasCard);
+
             if (characters.length === 0) {
                 grid.style.display = 'none';
+                noCardList.innerHTML = '';
                 noResults.style.display = 'block';
                 return;
             }
-            
-            grid.style.display = 'grid';
+
             noResults.style.display = 'none';
-            
-            grid.innerHTML = characters.map((char, index) => `
-                <div class="character-card ${char.factionClass}" onclick="showCharacterDetail('${char.name}')" data-index="${index}">
-                    <div class="character-card-inner">
-                        <div class="character-card-front">
-                            <img src="./cards/${char.name}.png" alt="${char.name}" class="character-card-bg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 400%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22400%22/%3E%3C/svg%3E'">
-                            <div class="character-card-content">
-                                <div class="faction-badge ${char.factionClass}">${char.faction}</div>
-                                <h3>${char.name}</h3>
-                                <div class="character-card-info"><span class="${getLevelClass(char.niveau)}">Niveau ${char.niveau}</span> • ${char.rang}</div>
+
+            // --- Grille des cartes ---
+            if (withCard.length === 0) {
+                grid.style.display = 'none';
+            } else {
+                grid.style.display = 'grid';
+                grid.innerHTML = withCard.map((char, index) => `
+                    <div class="character-card ${char.factionClass}" onclick="showCharacterDetail('${char.name}')" data-index="${index}">
+                        <div class="character-card-inner">
+                            <div class="character-card-front">
+                                <img src="./cards/${char.name}.png" alt="${char.name}" class="character-card-bg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 400%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22400%22/%3E%3C/svg%3E'">
+                                <div class="character-card-content">
+                                    <div class="faction-badge ${char.factionClass}">${char.faction}</div>
+                                    <h3>${char.name}</h3>
+                                    <div class="character-card-info"><span class="${getLevelClass(char.niveau)}">Niveau ${char.niveau}</span> • ${char.rang}</div>
+                                </div>
+                            </div>
+                            <div class="character-card-back">
+                                <img src="./cards/dos.png" alt="Dos de carte">
                             </div>
                         </div>
-                        <div class="character-card-back">
-                            <img src="./cards/dos.png" alt="Dos de carte">
+                    </div>
+                `).join('');
+                revealCardsSequentially();
+            }
+
+            // --- Liste des personnages sans carte ---
+            if (noCard.length === 0) {
+                noCardList.innerHTML = '';
+            } else {
+                noCardList.innerHTML = `
+                    <div class="no-card-section">
+                        <h3 class="no-card-title">
+                            <img src="./icons/classement.png" alt="" class="section-icon"> Autres joueurs (${noCard.length})
+                        </h3>
+                        <div class="no-card-grid">
+                            ${noCard.map(char => {
+                                const rankIcon = rankIcons[char.rang] || '';
+                                return `
+                                <div class="no-card-row ${char.factionClass}" onclick="showCharacterDetail('${char.name}')">
+                                    <div class="no-card-faction-bar"></div>
+                                    <div class="no-card-info">
+                                        <span class="no-card-name">${char.name}</span>
+                                        <span class="no-card-meta">
+                                            <span class="faction-badge ${char.factionClass}" style="font-size:0.7em;padding:2px 8px;">${char.faction}</span>
+                                            <span class="${getLevelClass(char.niveau)}">Niv. ${char.niveau}</span>
+                                        </span>
+                                    </div>
+                                    <div class="no-card-rank">
+                                        ${rankIcon ? `<img src="${rankIcon}" style="width:22px;height:22px;object-fit:contain;">` : ''}
+                                        <span class="${getRankClass(char.rang)}" style="font-size:0.85em;">${char.rang}</span>
+                                    </div>
+                                </div>`;
+                            }).join('')}
                         </div>
                     </div>
-                </div>
-            `).join('');
-            
-            // Animation de retournement séquentiel
-            revealCardsSequentially();
+                `;
+            }
         }
 
         // Animation de retournement des cartes une par une
@@ -4050,10 +4331,24 @@
                 }
             }
             
+            // Image de faction par défaut pour les personnages sans carte
+            const factionCardMap = {
+                'alliance': './cards/Alliance.png',
+                'rebellion': './cards/Rebellion.png',
+                'trefonds': './cards/Trefonds.png'
+            };
+            const cardSrc = character.hasCard
+                ? `./cards/${character.name}.png`
+                : (factionCardMap[character.factionClass] || './cards/dos.png');
+
+            const cardSection = `<div id="cardCarousel" class="card-carousel">
+                        <img src="${cardSrc}" alt="${character.name}" class="card-image ${character.factionClass}" id="carouselMainImg" onclick="openLightbox('${cardSrc}')">
+                   </div>`;
+
             detailDiv.innerHTML = `
                 <button class="close-detail-btn" onclick="closeCharacterDetail()">×</button>
                 <div class="detail-header">
-                    <img src="./cards/${character.name}.png" alt="${character.name}" class="card-image ${character.factionClass}" onclick="openLightbox('./cards/${character.name}.png')">
+                    ${cardSection}
                     <div class="detail-info">
                         <div class="faction-badge ${character.factionClass}">${character.faction}</div>
                         <h2>${character.name}</h2>
@@ -4061,6 +4356,7 @@
                         <p style="font-size: 1.2em; margin: 10px 0;"><strong>Niveau:</strong> <span class="${getLevelClass(character.niveau)}" style="font-weight: bold;">${character.niveau}</span></p>
                         <p style="font-size: 1.1em; color: #888;"><strong>Titre:</strong> ${character.titreAffiche}</p>
                         <p style="font-size: 0.9em; color: #666; margin-top: 10px;">XP: ${character.xp.toLocaleString()}</p>
+                        ${character.illustration ? `<p style="font-size: 1.1em; color: #888; margin-top: 6px;"><strong>Illustration:</strong> ${character.illustration}</p>` : ''}
                     </div>
                 </div>
 
@@ -4132,7 +4428,126 @@
                 weaponsGrid.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Aucune arme débloquée</p>';
             }
 
+            // Initialiser le carousel de cartes (seulement si carte créée)
+            if (character.hasCard) setupCardCarousel(character);
+
             detailDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Vérifie si une image existe
+        function imageExists(src) {
+            return new Promise(resolve => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = src;
+            });
+        }
+
+        // Détecte toutes les cartes disponibles pour un personnage
+        async function detectCardImages(name) {
+            const images = [`./cards/${name}.png`];
+            for (let i = 2; i <= 6; i++) {
+                const src = `./cards/${name}_${i}.png`;
+                const exists = await imageExists(src);
+                if (!exists) break;
+                images.push(src);
+            }
+            return images;
+        }
+
+        // Cache des images multi-cartes (nom → [src1, src2, ...])
+        // Configure le carousel dans le détail avec slide fluide + auto-scroll 10s
+        async function setupCardCarousel(character) {
+            const images = await detectCardImages(character.name);
+            if (images.length <= 1) return;
+
+            const carousel = document.getElementById('cardCarousel');
+            if (!carousel) return;
+
+            let currentIndex = 0;
+            let autoTimer = null;
+            let isAnimating = false;
+
+            // Construire le carousel une seule fois (slide via translateX)
+            const factionClass = character.factionClass;
+            const w = carousel.offsetWidth || 300;
+
+            carousel.innerHTML = `
+                <div class="carousel-wrapper multi ${factionClass}" style="width:${w}px;">
+                    <div class="carousel-track" id="carouselTrack">
+                        ${images.map((src, i) => `
+                            <img src="${src}" alt="${character.name}" class="card-image ${factionClass}" style="flex:0 0 ${w}px;width:${w}px;" onclick="openLightbox('${src}')">
+                        `).join('')}
+                    </div>
+                    <button class="carousel-btn carousel-btn-left" id="carouselLeft">&#8249;</button>
+                    <button class="carousel-btn carousel-btn-right" id="carouselRight">&#8250;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots">
+                    ${images.map((_, i) => `<span class="carousel-dot${i === 0 ? ' active' : ''}" data-index="${i}"></span>`).join('')}
+                </div>
+            `;
+
+            const track = carousel.querySelector('#carouselTrack');
+            const dotsEl = carousel.querySelector('#carouselDots');
+
+            function slideTo(idx, animate = true) {
+                if (isAnimating && animate) return;
+                currentIndex = (idx + images.length) % images.length;
+
+                if (!animate) {
+                    track.style.transition = 'none';
+                } else {
+                    isAnimating = true;
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    setTimeout(() => { isAnimating = false; }, 650);
+                }
+
+                track.style.transform = `translateX(-${currentIndex * w}px)`;
+
+                // Mettre à jour les dots
+                dotsEl.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function resetAutoTimer() {
+                if (autoTimer) clearInterval(autoTimer);
+                autoTimer = setInterval(() => {
+                    slideTo(currentIndex + 1);
+                }, 10000);
+            }
+
+            carousel.querySelector('#carouselLeft').addEventListener('click', (e) => {
+                e.stopPropagation();
+                slideTo(currentIndex - 1);
+                resetAutoTimer();
+            });
+
+            carousel.querySelector('#carouselRight').addEventListener('click', (e) => {
+                e.stopPropagation();
+                slideTo(currentIndex + 1);
+                resetAutoTimer();
+            });
+
+            dotsEl.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    slideTo(parseInt(dot.dataset.index));
+                    resetAutoTimer();
+                });
+            });
+
+            // Position initiale sans animation
+            slideTo(0, false);
+            resetAutoTimer();
+
+            // Arrêter le timer quand on ferme le détail
+            const origClose = window.closeCharacterDetail;
+            window.closeCharacterDetail = function() {
+                if (autoTimer) clearInterval(autoTimer);
+                origClose();
+            };
         }
 
         function closeCharacterDetail() {
@@ -4371,7 +4786,7 @@
                 html += `
                     <div class="ranking-row ${rowClass}" onclick="changePage('personnages'); setTimeout(() => showCharacterDetail('${char.name}'), 100)">
                         <div class="rank-position ${positionClass}">#${position}</div>
-                        <img src="./cards/${char.name}.png" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 80%22%3E%3Crect fill=%22%23333%22 width=%2260%22 height=%2280%22/%3E%3C/svg%3E'">
+                        <img src="${char.hasCard ? `./cards/${char.name}.png` : ({'alliance':'./cards/Alliance.png','rebellion':'./cards/Rebellion.png','trefonds':'./cards/Trefonds.png'}[char.factionClass] || './cards/dos.png')}" alt="${char.name}" class="player-avatar ${char.factionClass}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 80%22%3E%3Crect fill=%22%23333%22 width=%2260%22 height=%2280%22/%3E%3C/svg%3E'">
                         <div class="player-info">
                             <div class="player-name-container">
                                 <span class="player-name ${nameClass}">${char.name}</span>
@@ -4423,11 +4838,11 @@
             
             if (searchTerm === '') {
                 displayCharacters(allCharacters);
-                return;
+            } else {
+                const filtered = allCharacters.filter(char => char.name.toLowerCase().includes(searchTerm));
+                displayCharacters(filtered);
             }
-            
-            const filtered = allCharacters.filter(char => char.name.toLowerCase().includes(searchTerm));
-            displayCharacters(filtered);
+            // Relancer les animations de grille après filtrage
         });
 
         // Recherche page Classement
