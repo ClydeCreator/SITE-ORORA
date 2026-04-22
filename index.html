@@ -3566,9 +3566,6 @@
             border-radius: 10px;
             cursor: pointer;
             perspective: 1000px;
-            /* Optimisation de rendu : ne calcule que les cartes visibles */
-            content-visibility: auto;
-            contain-intrinsic-size: 180px 252px;
             /* Anti-téléchargement */
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -3672,6 +3669,12 @@
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* Pendant le scroll, on met les animations en pause pour soulager le GPU
+           (évite que Safari iOS tue la page sous pression GPU/mémoire) */
+        body.is-scrolling .edition-card.holographic .edition-holo-shine {
+            animation-play-state: paused;
         }
 
         /* ======== ÉTAT "VALIDÉ / COLLECTÉ" = noir et blanc ======== */
@@ -5558,40 +5561,91 @@
             updateEditionProgress();
             attachEditionCardEvents();
             setupEditionLazyLoad();
+            attachEditionScrollPause();
         }
 
-        // Lazy-load des images de fond : on ne charge que les cartes visibles (ou proches)
+        // Lazy-load des images avec DÉCHARGEMENT mémoire.
+        // Sur iOS Safari, garder 92 PNG haute-rés en RAM fait tuer la page
+        // ("Un problème récurrent est survenu..."). On charge à proximité
+        // du viewport et on décharge quand on s'en éloigne franchement.
         function setupEditionLazyLoad() {
             const cards = document.querySelectorAll('.edition-card[data-img]');
+
             if (!('IntersectionObserver' in window)) {
-                // Fallback : charger tout directement
-                cards.forEach(card => {
-                    const img = card.querySelector('.edition-card-image');
-                    if (img) img.style.backgroundImage = `url('${card.dataset.img}')`;
-                    card.removeAttribute('data-img');
-                });
+                // Fallback safe pour les très vieux navigateurs :
+                // charge par petits lots, pas tout d'un coup
+                let idx = 0;
+                const loadBatch = () => {
+                    for (let i = 0; i < 6 && idx < cards.length; i++, idx++) {
+                        const img = cards[idx].querySelector('.edition-card-image');
+                        if (img) img.style.backgroundImage = `url('${cards[idx].dataset.img}')`;
+                    }
+                    if (idx < cards.length) setTimeout(loadBatch, 400);
+                };
+                loadBatch();
                 return;
             }
 
-            const io = new IntersectionObserver((entries) => {
+            // Observer 1 : CHARGER quand on s'approche du viewport
+            const loadIO = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     const card = entry.target;
                     const img = card.querySelector('.edition-card-image');
-                    const src = card.dataset.img;
-                    if (img && src) {
-                        img.style.backgroundImage = `url('${src}')`;
+                    if (img && !img.dataset.loaded) {
+                        img.style.backgroundImage = `url('${card.dataset.img}')`;
+                        img.dataset.loaded = '1';
                     }
-                    card.removeAttribute('data-img');
-                    io.unobserve(card);
                 });
             }, {
-                // Charger les images un peu avant qu'elles soient visibles
-                rootMargin: '300px 0px',
+                rootMargin: '400px 0px',
                 threshold: 0.01
             });
 
-            cards.forEach(card => io.observe(card));
+            // Observer 2 : DÉCHARGER quand on s'éloigne franchement
+            // (rootMargin plus grand que celui du loader → aucun clignotement
+            // à la limite : on décharge uniquement les cartes vraiment loin)
+            const unloadIO = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) return;
+                    const card = entry.target;
+                    const img = card.querySelector('.edition-card-image');
+                    if (img && img.dataset.loaded) {
+                        img.style.backgroundImage = '';
+                        delete img.dataset.loaded;
+                    }
+                });
+            }, {
+                rootMargin: '1500px 0px',
+                threshold: 0
+            });
+
+            cards.forEach(card => {
+                loadIO.observe(card);
+                unloadIO.observe(card);
+            });
+        }
+
+        // Pendant que l'utilisateur scrolle, on pose un flag qui met les
+        // animations holographiques en pause (via CSS). Quand le scroll
+        // s'arrête, on retire le flag après 200 ms → animation reprend.
+        // Ça soulage énormément le GPU sur mobile.
+        let _editionScrollPauseTimer = null;
+        let _editionScrollListenerAttached = false;
+        function attachEditionScrollPause() {
+            if (_editionScrollListenerAttached) return;
+            _editionScrollListenerAttached = true;
+
+            const onScroll = () => {
+                if (!document.body.classList.contains('is-scrolling')) {
+                    document.body.classList.add('is-scrolling');
+                }
+                clearTimeout(_editionScrollPauseTimer);
+                _editionScrollPauseTimer = setTimeout(() => {
+                    document.body.classList.remove('is-scrolling');
+                }, 200);
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
         }
 
         // Attacher les événements 3D + clic sur chaque carte
